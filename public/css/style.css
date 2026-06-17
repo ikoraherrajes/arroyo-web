@@ -282,4 +282,18 @@ section{position:relative}
   .dist{grid-template-columns:1fr}
   .grid .wide{grid-column:span 2}
   .hero__actions .btn{width:100%}
+  /* ritmo vertical más ajustado en celular */
+  .split,.suites,.gallery,.services,.location__body{padding-top:3.6rem;padding-bottom:3.6rem}
+  .quote{padding:3.8rem 1.3rem 2.6rem}
+  .cta{padding:4.2rem 1.3rem}
+  .feat{margin-bottom:3rem;gap:1.6rem}
+  .split__media img,.feat__img img{height:300px}
+  .section-head{margin-bottom:2.2rem}
+  .feat__txt h3,.svc h4{font-size:1.7rem}
+  .brand__logo{height:40px}
+  .nav.scrolled .brand__logo{height:34px}
+  .nav__inner{padding:1.1rem 1.2rem}
+  .info__col{padding:2rem 1.2rem}
+  .lb__nav{font-size:2.6rem;padding:0 .6rem}
+  .lb__close{top:14px;right:16px}
 }
