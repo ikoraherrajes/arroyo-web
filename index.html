@@ -1,313 +1,260 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Arroyo Suite House — Suites para parejas en Traslasierra, Córdoba</title>
-<meta name="description" content="Suites premium para parejas en Arroyo de los Patos, Traslasierra. Pileta, asador con vista al Río Los Sauces, calefacción y total privacidad. 9,6 en Booking. Reservá por WhatsApp.">
-<meta property="og:title" content="Arroyo Suite House — Suites para parejas en Traslasierra">
-<meta property="og:description" content="Suites premium para parejas. Pileta, asador con vista al río, diseño y privacidad. Arroyo de los Patos, Córdoba.">
+<title>Arroyo Suite House · Suites Premium para parejas · Córdoba</title>
+<meta name="description" content="Suites premium para parejas en Arroyo de los Patos, Traslasierra (Córdoba). A 200 m del río, con pileta, asador privado, desayuno y Starlink. Una experiencia distinta todo el año.">
+<meta name="theme-color" content="#15110d">
+
+<!-- Open Graph -->
 <meta property="og:type" content="website">
+<meta property="og:title" content="Arroyo Suite House · Suites Premium para parejas">
+<meta property="og:description" content="Un nuevo concepto para disfrutar en pareja, muy cerca del río y rodeado de las bellezas naturales de Traslasierra.">
+<meta property="og:image" content="assets/web/e8ef7d_358eda4b5aa04638a210ffaf87f3c11f.jpg">
 <meta property="og:url" content="https://www.arroyosuitehouse.com">
+
+<link rel="icon" href="assets/img/e8ef7d_ef93f556585a4207a95e641afa9b6c5c_7Emv2.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --verde:#243027; --verde2:#374a3c; --crema:#f4efe6; --crema2:#ece4d5;
-    --tinta:#262320; --suave:#6f6a61; --oro:#b08a52; --oro2:#caa468; --linea:#ded5c4;
-    --serif:'Cormorant Garamond',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:var(--sans);color:var(--tinta);background:var(--crema);font-weight:300;line-height:1.75;font-size:16px;overflow-x:hidden}
-  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.1;letter-spacing:.2px}
-  a{color:inherit;text-decoration:none}
-  img{display:block;max-width:100%}
-  .wrap{max-width:1160px;margin:0 auto;padding:0 26px}
-  .eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:11.5px;letter-spacing:3.5px;text-transform:uppercase;color:var(--oro);font-weight:500;margin-bottom:18px}
-  .eyebrow::before{content:"";width:34px;height:1px;background:var(--oro);opacity:.7}
-  .eyebrow.c::after{content:"";width:34px;height:1px;background:var(--oro);opacity:.7}
-  .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 28px;border-radius:999px;font-size:13.5px;font-weight:500;letter-spacing:.4px;transition:.25s;cursor:pointer;border:1px solid transparent}
-  .btn-wa{background:#25D366;color:#0b3d20}.btn-wa:hover{background:#1eb858;transform:translateY(-2px)}
-  .btn-line{border-color:rgba(255,255,255,.5);color:#fff}.btn-line:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
-  .btn-oro{background:var(--oro);color:#2a1f10}.btn-oro:hover{background:var(--oro2);transform:translateY(-2px)}
-
-  .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1)}
-  .reveal.in{opacity:1;transform:none}
-
-  /* NAV */
-  nav{position:fixed;inset:0 0 auto;z-index:50;transition:.35s;padding:20px 0}
-  nav.solid{background:rgba(244,239,230,.97);box-shadow:0 1px 0 var(--linea);backdrop-filter:blur(10px);padding:13px 0}
-  nav .row{display:flex;align-items:center;justify-content:space-between}
-  nav .brand{font-family:var(--serif);font-size:23px;font-weight:600;color:#fff;letter-spacing:1.5px;transition:.35s}
-  nav.solid .brand{color:var(--tinta)}
-  nav .links{display:flex;gap:30px;align-items:center}
-  nav .links a{font-size:12.5px;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.85);position:relative}
-  nav.solid .links a{color:var(--tinta)}
-  nav .links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--oro);transition:.25s}
-  nav .links a:not(.btn):hover::after{width:100%}
-  nav .links .btn{text-transform:none;letter-spacing:.3px}
-  @media(max-width:880px){nav .links a:not(.btn){display:none}}
-
-  /* HERO */
-  .hero{min-height:100vh;display:flex;align-items:center;position:relative;color:#fff;overflow:hidden;background:#243027}
-  .hero .bg{position:absolute;inset:0;background:url(img/hero.jpg) center/cover;animation:kb 18s ease-out forwards}
-  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,26,20,.45),rgba(18,26,20,.5) 55%,rgba(18,26,20,.82))}
-  @keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
-  .hero .wrap{position:relative;z-index:2;padding:96px 26px 60px}
-  .hero .award{display:inline-flex;align-items:center;gap:11px;margin-bottom:26px;padding:8px 18px;border:1px solid rgba(255,255,255,.35);border-radius:999px;font-size:12.5px;letter-spacing:.6px;backdrop-filter:blur(4px)}
-  .hero .award b{font-family:var(--serif);font-size:19px;color:#f0d9a8}
-  .hero h1{font-size:clamp(44px,7.2vw,88px);max-width:13ch;font-weight:600}
-  .hero p.sub{font-size:clamp(16px,2.3vw,22px);font-weight:300;max-width:44ch;margin:24px 0 4px;color:rgba(255,255,255,.92)}
-  .hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
-  .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;font-size:10.5px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.6)}
-
-  /* SECCIONES */
-  section{padding:110px 0}
-  .center{text-align:center;max-width:720px;margin:0 auto}
-  h2{font-size:clamp(32px,4.6vw,52px);margin-bottom:20px;font-weight:600}
-  .lead{font-size:18.5px;color:var(--suave);font-weight:300}
-  .num{font-family:var(--serif);font-size:15px;color:var(--oro);letter-spacing:2px;margin-bottom:6px}
-
-  .concepto .three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:64px}
-  .concepto .three .it{text-align:center;padding:38px 26px;background:#fff;border:1px solid var(--linea);border-radius:16px;transition:.3s}
-  .concepto .three .it:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(40,35,28,.08)}
-  .concepto .three h3{font-size:28px;margin-bottom:10px;color:var(--verde)}
-  .concepto .three p{font-size:15px;color:var(--suave)}
-  @media(max-width:760px){.concepto .three{grid-template-columns:1fr;gap:14px}}
-
-  /* FRANJA full-bleed */
-  .band{min-height:78vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;position:relative;
-    background:linear-gradient(rgba(20,28,22,.42),rgba(20,28,22,.56)),url(img/pileta.jpg) center/cover}
-  .band .inner{max-width:760px;padding:40px 26px;position:relative;z-index:2}
-  .band h2{color:#fff;font-size:clamp(30px,4.6vw,50px);font-style:italic;font-weight:500}
-  .band p{margin-top:18px;font-size:18px;color:rgba(255,255,255,.88);font-weight:300}
-  @media(min-width:880px){.band{background-attachment:fixed}}
-
-  /* AMENITIES */
-  .amen{background:var(--verde);color:var(--crema)}
-  .amen .eyebrow{color:var(--oro2)} .amen .eyebrow::before{background:var(--oro2)}
-  .amen h2{color:#fff} .amen .lead{color:rgba(244,239,230,.7)}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:58px}
-  .grid .cell{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:28px 26px;display:flex;gap:16px;align-items:flex-start;transition:.3s}
-  .grid .cell:hover{background:rgba(255,255,255,.08);transform:translateY(-4px)}
-  .grid .cell svg{flex-shrink:0;margin-top:2px;color:var(--oro2)}
-  .grid .cell b{display:block;font-weight:500;font-size:16.5px;color:#fff;margin-bottom:4px}
-  .grid .cell span{font-size:13.5px;color:rgba(244,239,230,.66);font-weight:300;line-height:1.6}
-  @media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:540px){.grid{grid-template-columns:1fr}}
-
-  /* GALERIA */
-  .galeria-sec{background:var(--crema2)}
-  .galeria{columns:3 280px;column-gap:16px;margin-top:54px}
-  .galeria a{display:block;margin-bottom:16px;border-radius:12px;overflow:hidden;position:relative}
-  .galeria img{width:100%;transition:transform .6s cubic-bezier(.2,.6,.2,1);filter:saturate(1.03)}
-  .galeria a:hover img{transform:scale(1.05)}
-  .galeria a::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 60%,rgba(20,28,22,.25));opacity:0;transition:.3s}
-  .galeria a:hover::after{opacity:1}
-
-  /* RESEÑA */
-  .resena{background:var(--verde);color:#fff;text-align:center}
-  .resena .stars{font-size:22px;color:var(--oro2);letter-spacing:4px;margin-bottom:22px}
-  .resena blockquote{font-family:var(--serif);font-size:clamp(26px,3.8vw,40px);font-weight:500;font-style:italic;line-height:1.3;max-width:880px;margin:0 auto;color:#fff}
-  .resena .src{margin-top:26px;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--oro2)}
-  .resena .puntaje{font-family:var(--serif);font-size:64px;color:#f0d9a8;line-height:1;margin-bottom:8px}
-
-  /* UBICACION */
-  .ubic .cols{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:30px}
-  .ubic ul{list-style:none}
-  .ubic li{display:flex;justify-content:space-between;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--linea);font-size:15.5px}
-  .ubic li b{font-weight:500}.ubic li span{color:var(--suave);font-family:var(--serif);font-size:20px;color:var(--oro)}
-  .ubic .map{aspect-ratio:1/1;border-radius:18px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(rgba(20,28,22,.30),rgba(20,28,22,.52)),url(img/vista.jpg) center/cover;box-shadow:0 14px 40px rgba(40,35,28,.18)}
-  .ubic .map a{color:#fff;font-family:var(--serif);font-size:22px;border:1px solid rgba(255,255,255,.6);padding:13px 26px;border-radius:999px;transition:.25s}
-  .ubic .map a:hover{background:rgba(255,255,255,.15)}
-  @media(max-width:820px){.ubic .cols{grid-template-columns:1fr;gap:34px}}
-
-  /* CONTACTO */
-  .cont{background:var(--verde);color:#fff;text-align:center;position:relative;overflow:hidden}
-  .cont::before{content:"";position:absolute;inset:0;background:url(img/deck.jpg) center/cover;opacity:.14}
-  .cont .wrap{position:relative;z-index:2}
-  .cont h2{color:#fff} .cont .lead{color:rgba(244,239,230,.78);margin-bottom:36px}
-  .cont .eyebrow{color:var(--oro2)} .cont .eyebrow::before{background:var(--oro2)}
-  .cont .botones{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .cont .datos{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:68px;text-align:left;border-top:1px solid rgba(255,255,255,.16);padding-top:46px}
-  .cont .datos h4{font-family:var(--sans);font-size:11.5px;letter-spacing:2px;text-transform:uppercase;color:var(--oro2);font-weight:600;margin-bottom:10px}
-  .cont .datos p{font-size:14.5px;color:rgba(244,239,230,.84);font-weight:300}
-  .cont .datos a:hover{color:#fff;text-decoration:underline}
-  @media(max-width:760px){.cont .datos{grid-template-columns:1fr;gap:26px}}
-
-  footer{background:#1a221c;color:rgba(244,239,230,.5);text-align:center;padding:34px 0;font-size:13px}
-  footer .social{display:flex;gap:24px;justify-content:center;margin-bottom:14px}
-  footer .social a{color:rgba(244,239,230,.72);letter-spacing:.5px}footer .social a:hover{color:var(--oro2)}
-
-  .wa-float{position:fixed;right:20px;bottom:20px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:.2s}
-  .wa-float:hover{transform:scale(1.07)}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=163">
 </head>
 <body>
+<div class="grain" aria-hidden="true"></div>
 
-<nav id="nav"><div class="wrap row">
-  <a href="#" class="brand">ARROYO SUITE HOUSE</a>
-  <div class="links">
-    <a href="#concepto">El lugar</a>
-    <a href="#amenities">Amenities</a>
-    <a href="#galeria">Galería</a>
-    <a href="#ubicacion">Ubicación</a>
-    <a class="btn btn-oro" href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Arroyo%20Suite%20House" target="_blank" rel="noopener">Reservar</a>
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#inicio" class="brand" aria-label="Arroyo Suite House">
+      <img src="assets/img/logo-blanco.png" alt="Arroyo Suite House" class="brand__logo">
+    </a>
+    <nav class="nav__links" id="navLinks">
+      <a href="#experiencia">Experiencia</a>
+      <a href="#suites">Suites</a>
+      <a href="#galeria">Galería</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#contacto" class="nav__cta">Reservar</a>
+    </nav>
+    <button class="nav__burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
   </div>
-</div></nav>
-
-<header class="hero">
-  <div class="bg"></div>
-  <div class="wrap">
-    <div class="award reveal">★ <b>9,6</b> en Booking · Traveller Review Awards</div>
-    <h1 class="reveal">Suites para parejas en Traslasierra</h1>
-    <p class="sub reveal">Diseño, descanso y total privacidad frente al Río Los Sauces, en Arroyo de los Patos, Córdoba. Abierto todo el año.</p>
-    <div class="cta reveal">
-      <a class="btn btn-wa" href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Arroyo%20Suite%20House" target="_blank" rel="noopener">Reservá por WhatsApp</a>
-      <a class="btn btn-line" href="https://www.booking.com/hotel/ar/arroyo-suite-house.es-ar.html" target="_blank" rel="noopener">Ver en Booking</a>
-    </div>
-  </div>
-  <div class="scroll-hint">Descubrí más ↓</div>
 </header>
 
-<section class="concepto" id="concepto">
-  <div class="wrap">
-    <div class="center reveal">
-      <div class="num">01 — Un nuevo concepto</div>
-      <h2>Un lugar pensado para desconectar de a dos</h2>
-      <p class="lead">Suite's premium para 1 o 2 personas, muy cerca del río y rodeadas de la naturaleza de las sierras. Espacios amplios, cálidos y diseñados para que tu estadía sea realmente única.</p>
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+  <div class="hero__media"></div>
+  <div class="hero__veil"></div>
+  <div class="hero__content">
+    <p class="hero__eyebrow reveal">Arroyo de los Patos · Traslasierra · Córdoba</p>
+    <h1 class="hero__title reveal">Suites premium<br><em>para parejas</em></h1>
+    <p class="hero__lede reveal">El sonido del río, el cielo serrano y la privacidad de un refugio pensado solo para dos. Una experiencia distinta, durante todo el año.</p>
+    <div class="hero__actions reveal">
+      <a class="btn btn--gold" href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Arroyo%20Suite%20House" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+      <a class="btn btn--ghost" href="#suites">Conocé las suites</a>
     </div>
-    <div class="three">
-      <div class="it reveal"><h3>Diseño</h3><p>Ambientes cuidados, modernos y luminosos, pensados al detalle.</p></div>
-      <div class="it reveal"><h3>Descanso</h3><p>Sommier King Size, climatización y el silencio del valle.</p></div>
-      <div class="it reveal"><h3>Privacidad</h3><p>Asador y deck propio en cada suite, con vista al río.</p></div>
+  </div>
+  <a href="#award" class="hero__scroll" aria-label="Bajar">↓</a>
+</section>
+
+<!-- ============ AWARD STRIP ============ -->
+<section class="award" id="award">
+  <div class="award__inner reveal">
+    <div class="award__score">9,6</div>
+    <div class="award__txt">
+      <strong>Traveller Review Awards 2025</strong>
+      <span>Puntaje 9,6 · 4.º año consecutivo según las reseñas de nuestros huéspedes.</span>
     </div>
   </div>
 </section>
 
-<section class="band" style="padding:0">
-  <div class="inner reveal">
-    <h2>“Para disfrutar en pareja durante todo el año, muy cerca del río y rodeado de las bellezas naturales.”</h2>
-    <p>Arroyo de los Patos · Traslasierra · Córdoba</p>
+<!-- ============ FRANJA SENSORIAL ============ -->
+<section class="quote">
+  <p class="quote__txt reveal">«Despertar con el canto de los pájaros, el mate en el deck y la sierra de fondo. Acá el tiempo pasa distinto.»</p>
+  <span class="quote__by reveal">— A 200 m del Río Los Sauces, en el corazón de Traslasierra</span>
+</section>
+
+<!-- ============ EXPERIENCIA ============ -->
+<section class="split" id="experiencia">
+  <div class="split__media reveal" data-parallax>
+    <img src="assets/web/e8ef7d_358eda4b5aa04638a210ffaf87f3c11f.jpg" alt="Suite de Arroyo Suite House al atardecer" loading="lazy">
+  </div>
+  <div class="split__body reveal">
+    <p class="kicker">Un nuevo concepto</p>
+    <h2>Viví una experiencia<br>distinta en pareja</h2>
+    <p>Cada suite está pensada como un refugio íntimo: equipada con todo lo necesario para que tu estadía sea realmente única. Privacidad total, naturaleza a metros y el sonido del río de fondo.</p>
+    <ul class="ticks">
+      <li>A solo 200 m del Río Los Sauces</li>
+      <li>Pileta descubierta y solárium</li>
+      <li>Asador y deck privado en cada suite</li>
+      <li>Internet Starlink en todo el predio</li>
+    </ul>
+    <a class="link-arrow" href="#galeria">Ver la galería</a>
   </div>
 </section>
 
-<section class="amen" id="amenities">
-  <div class="wrap">
-    <div class="center reveal">
-      <div class="num">02 — Amenities</div>
-      <h2>Todo para una estadía única</h2>
-      <p class="lead">Cada suite está totalmente equipada. Estos son algunos de nuestros servicios.</p>
-    </div>
-    <div class="grid">
-      <div class="cell reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 16c2-2 4-2 6 0s4 2 6 0 4-2 6 0M2 11c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg><div><b>Pileta y solárium</b><span>Piscina descubierta con vista al río.</span></div></div>
-      <div class="cell reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c2 2 2 4 0 6s-2 4 0 6M8 22h8M6 13h12l-1 6H7z"/></svg><div><b>Asador y deck privado</b><span>En cada suite, con vista al Río Los Sauces.</span></div></div>
-      <div class="cell reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg><div><b>Aire frío / calor</b><span>Climatización y calefacción con termostato.</span></div></div>
-      <div class="cell reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 13a7 7 0 0 1 14 0M8.5 16a3.5 3.5 0 0 1 7 0M12 19v.01"/></svg><div><b>Starlink + WiFi</b><span>Internet de alta velocidad en todo el predio.</span></div></div>
-      <div class="cell reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8"/></svg><div><b>Smart TV 50"</b><span>Con Google TV en cada suite.</span></div></div>
-      <div class="cell reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9h12v4a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4zM16 10h2a2 2 0 0 1 0 4h-2M6 4v2M10 4v2M14 4v2"/></svg><div><b>Desayuno</b><span>Lo llevamos a tu suite cada mañana.</span></div></div>
-      <div class="cell reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M6 7l1.5 12h9L18 7M9 4h6"/></svg><div><b>Kitchenette</b><span>Heladera, cafetera, microondas, pava y más.</span></div></div>
-      <div class="cell reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l4-4 4 4M14 9l3-3 4 4M3 21h18"/></svg><div><b>Estacionamiento cubierto</b><span>Espacioso, con media sombra antigranizo.</span></div></div>
-      <div class="cell reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 21l-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg><div><b>Seguridad y confort</b><span>Alarma y ventanas con doble vidrio.</span></div></div>
+<!-- ============ SUITES / FEATURES ============ -->
+<section class="suites" id="suites">
+  <div class="section-head reveal">
+    <p class="kicker">Cada detalle, cuidado</p>
+    <h2>Suites equipadas para una estadía única</h2>
+  </div>
+
+  <div class="feat" data-num="01">
+    <div class="feat__img reveal"><img src="assets/web/e8ef7d_a4dc9979fbfd43dea928bb7726549a11.jpg" alt="Dormitorio con sommier King Size" loading="lazy"></div>
+    <div class="feat__txt reveal" data-num="01 — Interior">
+      <h3>Descanso de hotel</h3>
+      <p>Sommier King Size, climatización frío/calor, calefacción de tiro balanceado con termostato y ventilador de techo. Todas las ventanas con doble vidrio y mosquitero para tu confort en cualquier época.</p>
     </div>
   </div>
-</section>
 
-<section class="galeria-sec" id="galeria">
-  <div class="wrap">
-    <div class="center reveal">
-      <div class="num">03 — Galería</div>
-      <h2>Un anticipo de tu escapada</h2>
-      <p class="lead">Espacios pensados para dos, entre el río y las sierras.</p>
-    </div>
-    <div class="galeria reveal">
-      <a href="img/pileta2.jpg" target="_blank"><img src="img/pileta2.jpg" alt="Pileta" loading="lazy"></a>
-      <a href="img/suite.jpg" target="_blank"><img src="img/suite.jpg" alt="Suite" loading="lazy"></a>
-      <a href="img/exterior.jpg" target="_blank"><img src="img/exterior.jpg" alt="Exterior" loading="lazy"></a>
-      <a href="img/vista.jpg" target="_blank"><img src="img/vista.jpg" alt="Vista a las sierras" loading="lazy"></a>
-      <a href="img/loungers.jpg" target="_blank"><img src="img/loungers.jpg" alt="Solárium" loading="lazy"></a>
-      <a href="img/suite2.jpg" target="_blank"><img src="img/suite2.jpg" alt="Suite" loading="lazy"></a>
-      <a href="img/living.jpg" target="_blank"><img src="img/living.jpg" alt="Living de la suite" loading="lazy"></a>
-      <a href="img/kitchenette.jpg" target="_blank"><img src="img/kitchenette.jpg" alt="Kitchenette" loading="lazy"></a>
+  <div class="feat feat--rev" data-num="02">
+    <div class="feat__img reveal"><img src="assets/web/e8ef7d_af95c67ebf3b43d5af3b94ad72bf69b1.jpg" alt="Baño de la suite" loading="lazy"></div>
+    <div class="feat__txt reveal" data-num="02 — Equipamiento">
+      <h3>Confort y tecnología</h3>
+      <p>Smart TV 50" con Google TV, Internet Starlink, cafetera, tostadora, microondas, pava eléctrica, heladera bajo mesada y secador de pelo. Alarma propia en cada suite.</p>
     </div>
   </div>
-</section>
 
-<section class="resena">
-  <div class="wrap reveal">
-    <div class="puntaje">9,6</div>
-    <div class="stars">★★★★★</div>
-    <blockquote>“Un lugar soñado para desconectar en pareja. Impecable, con una vista increíble y una atención de primera.”</blockquote>
-    <div class="src">Traveller Review Awards · 4 años consecutivos</div>
-  </div>
-</section>
-
-<section class="ubic" id="ubicacion">
-  <div class="wrap">
-    <div class="center reveal">
-      <div class="num">04 — Ubicación</div>
-      <h2>En el corazón de Traslasierra</h2>
-      <p class="lead">Ruta 14 · Km 95,5 · frente al Nazareno · Arroyo de los Patos, Córdoba.</p>
-    </div>
-    <div class="cols">
-      <ul class="reveal">
-        <li><b>Río Los Sauces</b><span>200 m</span></li>
-        <li><b>Centro de Mina Clavero</b><span>2,5 km</span></li>
-        <li><b>Nono</b><span>5 km</span></li>
-        <li><b>Iglesia Cura Brochero</b><span>5,8 km</span></li>
-        <li><b>Villa Carlos Paz</b><span>115 km</span></li>
-        <li><b>Ciudad de Córdoba</b><span>150 km</span></li>
-      </ul>
-      <div class="map reveal"><a href="https://www.google.com/maps/search/?api=1&query=Arroyo+Suite+House+Arroyo+de+los+Patos+Mina+Clavero" target="_blank" rel="noopener">Ver en el mapa →</a></div>
+  <div class="feat" data-num="03">
+    <div class="feat__img reveal"><img src="assets/web/e8ef7d_219d386e377e4600bba8bfea6cc7797b.jpg" alt="Deck y asador privado con vista a la sierra" loading="lazy"></div>
+    <div class="feat__txt reveal" data-num="03 — Aire libre">
+      <h3>Tu propio rincón al aire libre</h3>
+      <p>Asador y deck en cada suite, con mesa, sillones y sombrilla para disfrutar del atardecer serrano. Estacionamiento cubierto con media sombra antigranizo.</p>
     </div>
   </div>
 </section>
 
-<section class="cont" id="contacto">
-  <div class="wrap">
-    <div class="center reveal">
-      <div class="num" style="color:var(--oro2)">05 — Reservas</div>
-      <h2>Escribinos y reservá tu escapada</h2>
-      <p class="lead">Te respondemos por WhatsApp y coordinamos tu estadía. También podés reservar directo por Booking.</p>
+<!-- ============ VIDEO ============ -->
+<section class="video" id="video">
+  <video autoplay muted loop playsinline poster="assets/web/e8ef7d_7b8ee549e8b24afab4a3f7eaf55e6e8e_d_3000_1987_s_2.jpg">
+    <source src="assets/video/quik_181827.mp4" type="video/mp4">
+  </video>
+  <div class="video__veil"></div>
+  <div class="video__txt reveal">
+    <h2>Naturaleza, en cada amanecer</h2>
+    <p>Desconectá del ruido y reconectá con el paisaje de Traslasierra.</p>
+  </div>
+</section>
+
+<!-- ============ GALERÍA ============ -->
+<section class="gallery" id="galeria">
+  <div class="section-head reveal">
+    <p class="kicker">Galería</p>
+    <h2>Un recorrido por el predio</h2>
+  </div>
+  <div class="grid" id="grid"><!-- JS --></div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section class="services" id="servicios">
+  <div class="section-head reveal">
+    <p class="kicker">Servicios del predio</p>
+    <h2>Todo listo para que solo disfrutes</h2>
+  </div>
+  <div class="services__grid">
+    <div class="svc reveal">
+      <span class="svc__i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><circle cx="16" cy="16" r="6"/><path d="M16 2v4M16 26v4M2 16h4M26 16h4M6 6l3 3M23 23l3 3M26 6l-3 3M9 23l-3 3"/></svg></span>
+      <h4>Pileta y solárium</h4><p>Piscina descubierta y solárium en un parque amplio.</p>
     </div>
-    <div class="botones reveal">
-      <a class="btn btn-wa" href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Arroyo%20Suite%20House" target="_blank" rel="noopener">Reservá por WhatsApp</a>
-      <a class="btn btn-line" href="https://www.booking.com/hotel/ar/arroyo-suite-house.es-ar.html" target="_blank" rel="noopener">Reservar en Booking</a>
+    <div class="svc reveal">
+      <span class="svc__i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M16 28c5 0 8-3.4 8-8 0-4-2.5-6.5-3.5-9-1.2 1.5-2.5 2-3.5 1.5C18.5 8 17 4 14 3c.8 3-1 5.5-3 7.5S8 15 8 20c0 4.6 3 8 8 8Z"/><path d="M16 28c2.5 0 4-1.8 4-4 0-2.2-1.6-3.2-2-5-1.3 1.6-3.4 1.8-4 0-1 1.5-2 2.6-2 5 0 2.2 1.5 4 4 4Z"/></svg></span>
+      <h4>Asador y deck</h4><p>Privado en cada suite, con mesa, sillones y sombrilla.</p>
     </div>
-    <div class="datos reveal">
-      <div><h4>WhatsApp</h4><p><a href="https://wa.me/5491162678709" target="_blank" rel="noopener">+54 9 11 6267-8709</a><br>+54 9 11 2325-4471</p></div>
-      <div><h4>Horarios</h4><p>Check-in: desde las 14 h<br>Check-out: hasta las 10 h</p></div>
-      <div><h4>Cómo pagar</h4><p>Efectivo · Transferencia<br>Débito y crédito (Mercado Pago)</p></div>
+    <div class="svc reveal">
+      <span class="svc__i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13h17v6a6 6 0 0 1-6 6h-5a6 6 0 0 1-6-6v-6Z"/><path d="M22 14h3.5a3 3 0 0 1 0 6H22"/><path d="M9 8c-.8-1.2-.8-2.3 0-3.5M14 8c-.8-1.2-.8-2.3 0-3.5"/></svg></span>
+      <h4>Desayuno a la suite</h4><p>Desayuno seco, lo llevamos a tu unidad.</p>
+    </div>
+    <div class="svc reveal">
+      <span class="svc__i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M16 24a8 8 0 0 0-8-8M16 24a8 8 0 0 1 8-8M16 24a14 14 0 0 0-14-14M16 24a14 14 0 0 1 14-14"/><circle cx="16" cy="24" r="1.6" fill="currentColor" stroke="none"/></svg></span>
+      <h4>Starlink + WiFi</h4><p>Internet de alta velocidad en todo el predio.</p>
+    </div>
+    <div class="svc reveal">
+      <span class="svc__i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22v3M26 22v3M4 22v-5l3-7a2 2 0 0 1 2-1.3h14A2 2 0 0 1 25 10l3 7v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"/><path d="M7 10h18"/><circle cx="9" cy="18" r="1.4" fill="currentColor" stroke="none"/><circle cx="23" cy="18" r="1.4" fill="currentColor" stroke="none"/></svg></span>
+      <h4>Estacionamiento</h4><p>Cubierto y espacioso, con media sombra antigranizo.</p>
+    </div>
+    <div class="svc reveal">
+      <span class="svc__i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14h20l-1.5 11a2 2 0 0 1-2 1.7H9.5a2 2 0 0 1-2-1.7L6 14Z"/><path d="M9 14l2.5-8 9 2.2"/><path d="M11 19v3M16 19v3M21 19v3"/></svg></span>
+      <h4>Servicio de limpieza</h4><p>Periódico, con recambio de toallas cada 2 días.</p>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="wrap">
-    <div class="social">
-      <a href="https://instagram.com/arroyosuitehouse/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.facebook.com/arroyosuitehouse" target="_blank" rel="noopener">Facebook</a>
-      <a href="mailto:arroyosuitehouse@gmail.com">Email</a>
+<!-- ============ UBICACIÓN ============ -->
+<section class="location" id="ubicacion">
+  <div class="location__body reveal">
+    <p class="kicker">Cómo llegar</p>
+    <h2>En el corazón de Traslasierra</h2>
+    <p class="addr">Ruta 14 S/N · km 95,5 — frente a Alfajores Nazareno<br>Arroyo de los Patos, Córdoba · Argentina</p>
+    <ul class="dist">
+      <li><b>200 m</b> Río Los Sauces</li>
+      <li><b>2,5 km</b> Centro de Mina Clavero</li>
+      <li><b>5,0 km</b> Nono</li>
+      <li><b>5,8 km</b> Iglesia Cura Brochero</li>
+      <li><b>28 km</b> Villa Las Rosas</li>
+      <li><b>80 km</b> Los Túneles</li>
+      <li><b>115 km</b> Villa Carlos Paz</li>
+      <li><b>150 km</b> Ciudad de Córdoba</li>
+    </ul>
+    <a class="btn btn--dark" href="https://www.google.com/maps/search/?api=1&query=Arroyo+de+los+Patos+Ruta+14+km+95.5+C%C3%B3rdoba" target="_blank" rel="noopener">Abrir en Google Maps</a>
+  </div>
+  <div class="location__map reveal">
+    <iframe title="Mapa Arroyo Suite House" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps?q=Arroyo%20de%20los%20Patos%2C%20Mina%20Clavero%2C%20C%C3%B3rdoba&output=embed"></iframe>
+  </div>
+</section>
+
+<!-- ============ INFO STRIP ============ -->
+<section class="info">
+  <div class="info__col reveal"><h5>Check-in</h5><p>A partir de las 14:00 h</p></div>
+  <div class="info__col reveal"><h5>Check-out</h5><p>Antes de las 10:00 h</p></div>
+  <div class="info__col reveal"><h5>Formas de pago</h5><p>Efectivo, transferencia, débito y crédito</p></div>
+  <div class="info__col reveal"><h5>Políticas</h5><p>No se permite fumar dentro de las suites · No se aceptan mascotas</p></div>
+</section>
+
+<!-- ============ CONTACTO / CTA ============ -->
+<section class="cta" id="contacto">
+  <div class="cta__inner reveal">
+    <p class="kicker kicker--light">Reservá tu escapada</p>
+    <h2>¿Listos para una escapada en pareja?</h2>
+    <p class="cta__lede">Escribinos y reservá las fechas que más te gusten. Te respondemos a la brevedad.</p>
+    <a class="btn btn--gold btn--lg" href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Arroyo%20Suite%20House" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+    <div class="cta__rows">
+      <a href="tel:+5491162678709">+54 9 11 6267-8709</a>
+      <a href="tel:+5491123254471">+54 9 11 2325-4471</a>
+      <a href="mailto:arroyosuitehouse@gmail.com">arroyosuitehouse@gmail.com</a>
     </div>
-    <div>© 2026 Arroyo Suite House · Arroyo de los Patos · Córdoba, Argentina</div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <img src="assets/img/logo-blanco.png" alt="Arroyo Suite House" class="footer__logo">
+    </div>
+    <div class="footer__social">
+      <a href="https://instagram.com/arroyosuitehouse" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://facebook.com/arroyosuitehouse" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://wa.me/5491162678709" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <p class="footer__legal">© <span id="year"></span> Arroyo Suite House · Arroyo de los Patos, Córdoba · Argentina</p>
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Arroyo%20Suite%20House" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg width="30" height="30" viewBox="0 0 24 24" fill="#0b3d20"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.2 14.8l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 0 1 12 4zm-2.7 4.2c-.2 0-.5 0-.7.3-.3.3-1 .9-1 2.2s1 2.6 1.2 2.8c.1.2 2 3.1 4.9 4.2 2.4.9 2.9.7 3.4.7.5 0 1.6-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.7 1c-.2.2-.3.3-.6.1-.3-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.1-.3 0-.4.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.5-.4-.4-.6-.4z"/></svg>
+<!-- Floating WhatsApp -->
+<a class="wa-float" href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.7L.5 31.5l8-2.1c2.2 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.2c-2.5 0-4.8-.7-6.8-1.9l-.5-.3-4.7 1.2 1.3-4.6-.3-.5C3.6 20.5 3 18.3 3 16 3 8.8 8.8 3 16 3s13 5.8 13 13-5.8 12.7-13 12.7zm7.1-9.5c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.6.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.2 0-.6.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.3 2.6 4 6.4 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.1-.3-.2-.7-.4z"/></svg>
 </a>
 
-<script>
-  var nav=document.getElementById('nav');
-  function onScroll(){ if(window.scrollY>40) nav.classList.add('solid'); else nav.classList.remove('solid'); }
-  window.addEventListener('scroll',onScroll); onScroll();
+<!-- Lightbox -->
+<div class="lb" id="lb" aria-hidden="true">
+  <button class="lb__close" id="lbClose" aria-label="Cerrar">✕</button>
+  <button class="lb__nav lb__prev" id="lbPrev" aria-label="Anterior">‹</button>
+  <img id="lbImg" alt="">
+  <button class="lb__nav lb__next" id="lbNext" aria-label="Siguiente">›</button>
+</div>
 
-  // Reveal al scrollear
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
-  document.querySelectorAll('.reveal').forEach(function(el,i){ el.style.transitionDelay=(i%4*0.06)+'s'; io.observe(el); });
-</script>
+<script src="js/main.js?v=161"></script>
 </body>
 </html>
