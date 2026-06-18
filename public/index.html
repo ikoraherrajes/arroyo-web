@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=167">
+<link rel="stylesheet" href="css/style.css?v=168">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -147,20 +147,12 @@
 </section>
 
 <!-- ============ DESDE EL AIRE ============ -->
-<section class="aerial" id="aerea">
-  <div class="section-head reveal">
-    <p class="kicker">Desde el aire</p>
-    <h2>Volá sobre el predio</h2>
-  </div>
-  <div class="aerial__grid">
-    <figure class="aerial__item reveal">
-      <video muted loop playsinline preload="none" poster="assets/video/drone-pileta-poster.jpg" data-src="assets/video/drone-pileta.mp4"></video>
-      <figcaption>La pileta y las suites</figcaption>
-    </figure>
-    <figure class="aerial__item reveal">
-      <video muted loop playsinline preload="none" poster="assets/video/drone-suite-poster.jpg" data-src="assets/video/drone-suite.mp4"></video>
-      <figcaption>Tu refugio en las sierras</figcaption>
-    </figure>
+<section class="video" id="aerea">
+  <video muted loop playsinline preload="none" poster="assets/video/drone-pileta-poster.jpg" data-src="assets/video/drone-pileta.mp4"></video>
+  <div class="video__veil"></div>
+  <div class="video__txt reveal">
+    <h2>Desde el aire</h2>
+    <p>La pileta, las suites y las sierras de Traslasierra.</p>
   </div>
 </section>
 
@@ -273,6 +265,6 @@
   <button class="lb__nav lb__next" id="lbNext" aria-label="Siguiente">›</button>
 </div>
 
-<script src="js/main.js?v=167"></script>
+<script src="js/main.js?v=168"></script>
 </body>
 </html>
