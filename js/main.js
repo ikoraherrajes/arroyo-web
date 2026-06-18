@@ -102,31 +102,35 @@
     }, { passive: true });
   }
 
-  // ---- Videos: cargar y reproducir solo cuando se ven (ahorra datos + autoplay mobile) ----
+  // ---- Videos: autoplay nativo + reproducir/pausar según visibilidad (robusto en mobile) ----
   var bandVideos = document.querySelectorAll('section.video video');
-  function tryPlay(v) {
-    v.muted = true; v.playsInline = true;           // iOS exige muted por propiedad para autoplay
-    if (!v.src && v.dataset.src) v.src = v.dataset.src;
-    var p = v.play(); if (p && p.catch) p.catch(function () {}); // reintenta en el primer gesto
+  function ensurePlay(v) {
+    v.muted = true; v.playsInline = true; v.setAttribute('muted', '');   // iOS exige muted real
+    if (!v.currentSrc && !v.src && v.dataset.src) {                      // lazy: asignar fuente
+      v.src = v.dataset.src;
+      v.load();
+      v.addEventListener('canplay', function () { var q = v.play(); if (q && q.catch) q.catch(function () {}); }, { once: true });
+    }
+    var p = v.play(); if (p && p.catch) p.catch(function () {});
   }
   var vio = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) {
       var v = en.target;
-      if (en.isIntersecting) tryPlay(v);
+      if (en.isIntersecting) ensurePlay(v);
       else if (!v.paused) v.pause();
     });
-  }, { threshold: 0.2 });
+  }, { threshold: 0.25 });
   bandVideos.forEach(function (v) { v.muted = true; v.playsInline = true; vio.observe(v); });
 
-  // Fallback: si el navegador bloquea el autoplay, reintentar al primer toque/scroll
+  // Fallback: si el navegador bloquea el autoplay sin interacción, reintentar al primer toque
   function kickVideos() {
     bandVideos.forEach(function (v) {
       var r = v.getBoundingClientRect();
-      if (v.paused && r.bottom > 0 && r.top < innerHeight) tryPlay(v);
+      if (v.paused && r.bottom > 0 && r.top < innerHeight) ensurePlay(v);
     });
   }
-  ['touchstart', 'scroll', 'click'].forEach(function (ev) {
-    window.addEventListener(ev, kickVideos, { once: true, passive: true });
+  ['touchstart', 'pointerdown', 'click'].forEach(function (ev) {
+    document.addEventListener(ev, kickVideos, { passive: true });
   });
 
   // ---- Slideshow de exteriores (crossfade automático) ----
