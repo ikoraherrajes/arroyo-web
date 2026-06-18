@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=168">
+<link rel="stylesheet" href="css/style.css?v=1611">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -76,8 +76,13 @@
 
 <!-- ============ EXPERIENCIA ============ -->
 <section class="split" id="experiencia">
-  <div class="split__media reveal" data-parallax>
-    <img src="assets/web/e8ef7d_358eda4b5aa04638a210ffaf87f3c11f.jpg" alt="Suite de Arroyo Suite House al atardecer" loading="lazy">
+  <div class="split__media reveal">
+    <div class="slideshow" id="expSlideshow">
+      <img class="slide is-active" src="assets/web/e8ef7d_358eda4b5aa04638a210ffaf87f3c11f.jpg" alt="Exterior de una suite al atardecer" loading="lazy">
+      <img class="slide" src="assets/web/exterior-01-atardecer.jpg" alt="Suites de Arroyo Suite House al atardecer" loading="lazy">
+      <img class="slide" src="assets/web/exterior-02-pileta.jpg" alt="Exterior de la suite con la pileta" loading="lazy">
+      <img class="slide" src="assets/web/exterior-03-dorada.jpg" alt="Suite con su deck privado en luz dorada" loading="lazy">
+    </div>
   </div>
   <div class="split__body reveal">
     <p class="kicker">Un nuevo concepto</p>
@@ -252,6 +257,11 @@
   </div>
 </footer>
 
+<!-- Botón subir -->
+<button class="to-top" id="toTop" aria-label="Subir al inicio">
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
 <!-- Floating WhatsApp -->
 <a class="wa-float" href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.7L.5 31.5l8-2.1c2.2 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.2c-2.5 0-4.8-.7-6.8-1.9l-.5-.3-4.7 1.2 1.3-4.6-.3-.5C3.6 20.5 3 18.3 3 16 3 8.8 8.8 3 16 3s13 5.8 13 13-5.8 12.7-13 12.7zm7.1-9.5c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.6.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.2 0-.6.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.3 2.6 4 6.4 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.1-.3-.2-.7-.4z"/></svg>
@@ -265,6 +275,6 @@
   <button class="lb__nav lb__next" id="lbNext" aria-label="Siguiente">›</button>
 </div>
 
-<script src="js/main.js?v=168"></script>
+<script src="js/main.js?v=1611"></script>
 </body>
 </html>

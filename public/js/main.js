@@ -110,6 +110,27 @@
   }, { threshold: 0.35 });
   document.querySelectorAll('video[data-src]').forEach(function (v) { vio.observe(v); });
 
+  // ---- Slideshow de exteriores (crossfade automático) ----
+  var ss = document.getElementById('expSlideshow');
+  if (ss) {
+    var slides = ss.querySelectorAll('.slide'), si = 0;
+    if (slides.length > 1) {
+      setInterval(function () {
+        slides[si].classList.remove('is-active');
+        si = (si + 1) % slides.length;
+        slides[si].classList.add('is-active');
+      }, 4500);
+    }
+  }
+
+  // ---- Botón subir ----
+  var toTop = document.getElementById('toTop');
+  if (toTop) {
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   // ---- Año footer ----
   document.getElementById('year').textContent = new Date().getFullYear();
 })();

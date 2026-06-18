@@ -89,10 +89,10 @@ section{position:relative}
 }
 .nav__links a:hover{opacity:1;color:var(--gold-l)}
 .nav__cta{
-  border:1px solid var(--gold);color:var(--gold-l)!important;
-  padding:.7em 1.4em;border-radius:2px;opacity:1!important;
+  background:var(--gold);border:1px solid var(--gold);color:var(--ink)!important;
+  padding:.7em 1.4em;border-radius:2px;opacity:1!important;font-weight:500!important;
 }
-.nav__cta:hover{background:var(--gold);color:var(--ink)!important}
+.nav__cta:hover{background:var(--gold-l);border-color:var(--gold-l);color:var(--ink)!important;transform:translateY(-1px)}
 .nav__burger{display:none;background:none;border:0;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
 .nav__burger span{width:26px;height:2px;background:#fff;transition:.3s}
 
@@ -142,6 +142,11 @@ section{position:relative}
 .split__media{overflow:hidden;border-radius:3px}
 .split__media img{width:100%;height:560px;object-fit:cover;transition:transform 1.2s ease}
 .split__media:hover img{transform:scale(1.05)}
+/* Slideshow de exteriores (crossfade + zoom suave) */
+.slideshow{position:relative;width:100%;height:560px}
+.slideshow .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease}
+.slideshow .slide.is-active{opacity:1;animation:slideZoom 7s ease-out forwards}
+@keyframes slideZoom{from{transform:scale(1.02)}to{transform:scale(1.1)}}
 .split__body{padding:0 0 0 4.5rem}
 .split__body h2{font-size:clamp(2rem,4vw,3.2rem);margin:.4rem 0 1.4rem}
 .split__body p{color:#5c5246;max-width:460px;font-size:1.05rem}
@@ -169,8 +174,11 @@ section{position:relative}
 .video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .video__veil{position:absolute;inset:0;background:rgba(21,17,13,.5)}
 .video__txt{position:relative;z-index:2;color:#fff;padding:0 1.5rem}
-.video__txt h2{font-size:clamp(2.2rem,5vw,4rem)}
-.video__txt p{margin-top:1rem;font-size:1.15rem;opacity:.9}
+.video__txt h2{font-size:clamp(2.2rem,5vw,4rem);text-shadow:0 2px 24px rgba(0,0,0,.5)}
+.video__txt p{margin-top:1rem;font-size:1.15rem;opacity:.9;text-shadow:0 1px 14px rgba(0,0,0,.5)}
+/* Sección río/sierras: realzar las altas cumbres (video de atardecer) */
+#video video{object-position:center 28%;filter:brightness(1.16) contrast(1.05) saturate(1.07)}
+#video .video__veil{background:linear-gradient(180deg,rgba(21,17,13,.08) 0%,rgba(21,17,13,.14) 30%,rgba(21,17,13,.5) 66%,rgba(21,17,13,.62) 100%)}
 
 /* ===================== GALLERY ===================== */
 .gallery{padding:6rem 1.5rem;max-width:1320px;margin:0 auto}
@@ -249,6 +257,12 @@ section{position:relative}
   box-shadow:0 8px 24px rgba(0,0,0,.3);transition:.3s;
 }
 .wa-float:hover{transform:scale(1.08)}
+.to-top{
+  position:fixed;right:20px;bottom:86px;z-index:60;width:56px;height:56px;border-radius:50%;
+  background:var(--gold);color:var(--ink);border:0;cursor:pointer;
+  display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:.3s;
+}
+.to-top:hover{background:var(--gold-l);transform:translateY(-3px)}
 
 /* ===================== LIGHTBOX ===================== */
 .lb{position:fixed;inset:0;z-index:100;background:rgba(15,12,9,.95);display:none;align-items:center;justify-content:center}
@@ -271,7 +285,7 @@ section{position:relative}
   .split,.feat,.feat--rev,.location{grid-template-columns:1fr}
   .feat--rev .feat__img{order:0}
   .split__body{padding:2.5rem 0 0}
-  .split__media img,.feat__img img{height:360px}
+  .split__media img,.feat__img img,.slideshow{height:360px}
   .services__grid{grid-template-columns:1fr 1fr}
   .grid{grid-template-columns:repeat(2,1fr)}
   .info{grid-template-columns:1fr 1fr}
@@ -289,7 +303,7 @@ section{position:relative}
   .quote{padding:3.8rem 1.3rem 2.6rem}
   .cta{padding:4.2rem 1.3rem}
   .feat{margin-bottom:3rem;gap:1.6rem}
-  .split__media img,.feat__img img{height:300px}
+  .split__media img,.feat__img img,.slideshow{height:300px}
   .section-head{margin-bottom:2.2rem}
   .feat__txt h3,.svc h4{font-size:1.7rem}
   .brand__logo{height:40px}
