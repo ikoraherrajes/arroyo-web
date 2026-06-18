@@ -108,7 +108,7 @@
       }
     });
   }, { threshold: 0.35 });
-  document.querySelectorAll('.aerial__item video').forEach(function (v) { vio.observe(v); });
+  document.querySelectorAll('video[data-src]').forEach(function (v) { vio.observe(v); });
 
   // ---- Año footer ----
   document.getElementById('year').textContent = new Date().getFullYear();

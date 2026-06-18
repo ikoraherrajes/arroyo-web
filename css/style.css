@@ -172,14 +172,6 @@ section{position:relative}
 .video__txt h2{font-size:clamp(2.2rem,5vw,4rem)}
 .video__txt p{margin-top:1rem;font-size:1.15rem;opacity:.9}
 
-/* ===================== DESDE EL AIRE (drone) ===================== */
-.aerial{padding:6rem 1.5rem;max-width:1320px;margin:0 auto}
-.aerial__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.aerial__item{margin:0;position:relative;overflow:hidden;border-radius:4px;background:#15110d}
-.aerial__item video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
-.aerial__item figcaption{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:1.4rem 1.3rem .9rem;color:#fff;font-family:var(--serif);font-size:1.3rem;background:linear-gradient(0deg,rgba(21,17,13,.72),rgba(21,17,13,0))}
-@media(max-width:720px){.aerial__grid{grid-template-columns:1fr}}
-
 /* ===================== GALLERY ===================== */
 .gallery{padding:6rem 1.5rem;max-width:1320px;margin:0 auto}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;grid-auto-flow:dense}
