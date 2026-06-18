@@ -5,16 +5,17 @@
   // ---- Galería curada (stem de archivo + clase de grilla opcional) ----
   var PHOTOS = [
     { f: 'arroyo-pileta-solarium', c: 'wide', a: 'Pileta y solárium con agua celeste' },
+    { f: 'predio-pileta-valle', c: 'wide', a: 'Pileta con vista al valle de Traslasierra' },
     { f: 'arroyo-pileta-suite', c: 'tall', a: 'La pileta con vista a la suite' },
-    { f: 'e8ef7d_219d386e377e4600bba8bfea6cc7797b', a: 'Deck privado al atardecer' },
+    { f: 'predio-suite-deck', a: 'Suite con su deck privado' },
     { f: 'e8ef7d_af95c67ebf3b43d5af3b94ad72bf69b1', a: 'Baño de la suite' },
-    { f: 'e8ef7d_56cabe4a45204e1eae80ba4b06e32a86', a: 'Kitchenette equipada' },
     { f: 'arroyo-bienvenidos', c: 'tall', a: 'Bienvenidos a Arroyo Suite House' },
     { f: 'e8ef7d_a4dc9979fbfd43dea928bb7726549a11', a: 'Dormitorio' },
-    { f: 'e8ef7d_5af4ffde1e5c462cbc863bcb72eff92a', a: 'Suite preparada' },
-    { f: 'e8ef7d_c89588c2eaa54c75957b82b3ca10f21c', a: 'Dormitorio' },
+    { f: 'e8ef7d_56cabe4a45204e1eae80ba4b06e32a86', a: 'Kitchenette equipada' },
+    { f: 'e8ef7d_219d386e377e4600bba8bfea6cc7797b', a: 'Deck privado al atardecer' },
     { f: 'arroyo-rio-sierras', c: 'tall', a: 'El Río Los Sauces y las sierras de Traslasierra' },
-    { f: 'e8ef7d_e7e52ebf71ae445ca300b50e035621e5_d_4928_3264_s_4_2', a: 'Paisaje al amanecer' }
+    { f: 'e8ef7d_5af4ffde1e5c462cbc863bcb72eff92a', a: 'Suite preparada' },
+    { f: 'predio-suites-dorada', c: 'wide', a: 'Las suites al atardecer' }
   ];
 
   var grid = document.getElementById('grid');
@@ -101,19 +102,32 @@
     }, { passive: true });
   }
 
-  // ---- Videos aéreos: cargar y reproducir solo cuando se ven (ahorra datos) ----
+  // ---- Videos: cargar y reproducir solo cuando se ven (ahorra datos + autoplay mobile) ----
+  var bandVideos = document.querySelectorAll('section.video video');
+  function tryPlay(v) {
+    v.muted = true; v.playsInline = true;           // iOS exige muted por propiedad para autoplay
+    if (!v.src && v.dataset.src) v.src = v.dataset.src;
+    var p = v.play(); if (p && p.catch) p.catch(function () {}); // reintenta en el primer gesto
+  }
   var vio = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) {
       var v = en.target;
-      if (en.isIntersecting) {
-        if (!v.src && v.dataset.src) v.src = v.dataset.src;
-        var p = v.play(); if (p && p.catch) p.catch(function () {});
-      } else if (!v.paused) {
-        v.pause();
-      }
+      if (en.isIntersecting) tryPlay(v);
+      else if (!v.paused) v.pause();
     });
-  }, { threshold: 0.35 });
-  document.querySelectorAll('video[data-src]').forEach(function (v) { vio.observe(v); });
+  }, { threshold: 0.2 });
+  bandVideos.forEach(function (v) { v.muted = true; v.playsInline = true; vio.observe(v); });
+
+  // Fallback: si el navegador bloquea el autoplay, reintentar al primer toque/scroll
+  function kickVideos() {
+    bandVideos.forEach(function (v) {
+      var r = v.getBoundingClientRect();
+      if (v.paused && r.bottom > 0 && r.top < innerHeight) tryPlay(v);
+    });
+  }
+  ['touchstart', 'scroll', 'click'].forEach(function (ev) {
+    window.addEventListener(ev, kickVideos, { once: true, passive: true });
+  });
 
   // ---- Slideshow de exteriores (crossfade automático) ----
   var ss = document.getElementById('expSlideshow');
