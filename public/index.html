@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1613">
+<link rel="stylesheet" href="css/style.css?v=1614">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -133,7 +133,9 @@
 
 <!-- ============ VIDEO ============ -->
 <section class="video" id="video">
-  <video muted loop playsinline preload="none" poster="assets/video/drone-rio-sierras-poster.jpg" data-src="assets/video/drone-rio-sierras.mp4"></video>
+  <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="assets/video/drone-rio-sierras-poster.jpg">
+    <source src="assets/video/drone-rio-sierras.mp4" type="video/mp4">
+  </video>
   <div class="video__veil"></div>
   <div class="video__txt reveal">
     <h2>Naturaleza, en cada amanecer</h2>
@@ -152,7 +154,7 @@
 
 <!-- ============ DESDE EL AIRE ============ -->
 <section class="video" id="aerea">
-  <video muted loop playsinline preload="none" poster="assets/video/drone-pileta-poster.jpg" data-src="assets/video/drone-pileta.mp4"></video>
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" poster="assets/video/drone-pileta-poster.jpg" data-src="assets/video/drone-pileta.mp4"></video>
   <div class="video__veil"></div>
   <div class="video__txt reveal">
     <h2>Desde el aire</h2>
@@ -274,6 +276,6 @@
   <button class="lb__nav lb__next" id="lbNext" aria-label="Siguiente">›</button>
 </div>
 
-<script src="js/main.js?v=1613"></script>
+<script src="js/main.js?v=1614"></script>
 </body>
 </html>
