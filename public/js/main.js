@@ -4,24 +4,17 @@
 
   // ---- Galería curada (stem de archivo + clase de grilla opcional) ----
   var PHOTOS = [
-    { f: 'e8ef7d_00caa26d94aa4844b218d52932a98368', c: 'wide', a: 'Suite al atardecer' },
-    { f: 'e8ef7d_3d9b89a618ba47128116596cc4012558', c: 'tall', a: 'Dormitorio King' },
-    { f: 'e8ef7d_588c6182f7244713a9d47ffd9c016307_d_3000_1987_s_2', a: 'Pileta y solárium' },
+    { f: 'arroyo-pileta-solarium', c: 'wide', a: 'Pileta y solárium con agua celeste' },
+    { f: 'arroyo-pileta-suite', c: 'tall', a: 'La pileta con vista a la suite' },
     { f: 'e8ef7d_219d386e377e4600bba8bfea6cc7797b', a: 'Deck privado al atardecer' },
-    { f: 'e8ef7d_1dc827110fd845e28948cd55bedd82c7', a: 'Suite con vista a la sierra' },
-    { f: 'e8ef7d_5137fee698204dd59bda0ffe79e30dc6_d_3000_2250_s_2', c: 'tall', a: 'Vista aérea del predio' },
     { f: 'e8ef7d_af95c67ebf3b43d5af3b94ad72bf69b1', a: 'Baño de la suite' },
-    { f: 'e8ef7d_4c7e7999f10344a496f166a2f59e0861_d_4928_3264_s_4_2', c: 'wide', a: 'Atardecer serrano' },
     { f: 'e8ef7d_56cabe4a45204e1eae80ba4b06e32a86', a: 'Kitchenette equipada' },
+    { f: 'arroyo-bienvenidos', c: 'tall', a: 'Bienvenidos a Arroyo Suite House' },
     { f: 'e8ef7d_a4dc9979fbfd43dea928bb7726549a11', a: 'Dormitorio' },
     { f: 'e8ef7d_5af4ffde1e5c462cbc863bcb72eff92a', a: 'Suite preparada' },
-    { f: 'e8ef7d_35a31051ec5e4d10b3f63ae49ddd2873', c: 'tall', a: 'Las sierras' },
-    { f: 'e8ef7d_fd52004d01f046cdbbd823a2ecfc6da1_d_3000_1987_s_2', c: 'wide', a: 'Pileta con vista al valle' },
-    { f: 'e8ef7d_908ad1448b3f49cba612ac731dd2e2e8', a: 'Exterior de la suite' },
     { f: 'e8ef7d_c89588c2eaa54c75957b82b3ca10f21c', a: 'Dormitorio' },
-    { f: 'e8ef7d_e7e52ebf71ae445ca300b50e035621e5_d_4928_3264_s_4_2', a: 'Paisaje al amanecer' },
-    { f: 'e8ef7d_fd7fbe17a9fc4c34bd364b8332fc6c5c_d_3000_2250_s_2', c: 'tall', a: 'Vista aérea' },
-    { f: 'e8ef7d_e343dc6240db435aa52365bb2400c1df', a: 'Living de la suite' }
+    { f: 'arroyo-rio-sierras', c: 'tall', a: 'El Río Los Sauces y las sierras de Traslasierra' },
+    { f: 'e8ef7d_e7e52ebf71ae445ca300b50e035621e5_d_4928_3264_s_4_2', a: 'Paisaje al amanecer' }
   ];
 
   var grid = document.getElementById('grid');
@@ -102,6 +95,20 @@
       }
     }, { passive: true });
   }
+
+  // ---- Videos aéreos: cargar y reproducir solo cuando se ven (ahorra datos) ----
+  var vio = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      var v = en.target;
+      if (en.isIntersecting) {
+        if (!v.src && v.dataset.src) v.src = v.dataset.src;
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
+      } else if (!v.paused) {
+        v.pause();
+      }
+    });
+  }, { threshold: 0.35 });
+  document.querySelectorAll('.aerial__item video').forEach(function (v) { vio.observe(v); });
 
   // ---- Año footer ----
   document.getElementById('year').textContent = new Date().getFullYear();

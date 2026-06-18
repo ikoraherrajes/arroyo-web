@@ -20,6 +20,8 @@ const MIME = {
   '.jpeg': 'image/jpeg',
   '.webp': 'image/webp',
   '.ico': 'image/x-icon',
+  '.mp4': 'video/mp4',
+  '.webm': 'video/webm',
   '.woff2': 'font/woff2',
   '.woff': 'font/woff',
 };
@@ -40,7 +42,10 @@ const server = http.createServer((req, res) => {
       }
       const ext = path.extname(file).toLowerCase();
       const headers = { 'Content-Type': MIME[ext] || 'application/octet-stream' };
-      if (ext !== '.html') headers['Cache-Control'] = 'public, max-age=86400';
+      // HTML/CSS/JS cambian en el lugar: revalidar siempre para que los cambios se vean al instante.
+      // Imágenes/fuentes tienen nombre estable: caché largo.
+      if (ext === '.css' || ext === '.js') headers['Cache-Control'] = 'no-cache';
+      else if (ext !== '.html') headers['Cache-Control'] = 'public, max-age=604800';
       res.writeHead(200, headers);
       fs.createReadStream(file).pipe(res);
     });

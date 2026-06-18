@@ -5,3 +5,6 @@ Thumbs.db
 # Archivo de fotos/videos originales full-res (no se publica)
 media-originals/
 public/assets/montage_*.jpg
+
+# Config local de preview
+.claude/
