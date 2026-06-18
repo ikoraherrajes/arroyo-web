@@ -75,6 +75,11 @@
   links.addEventListener('click', function (e) {
     if (e.target.tagName === 'A') links.classList.remove('open');
   });
+  var navClose = document.getElementById('navClose');
+  if (navClose) navClose.addEventListener('click', function () { links.classList.remove('open'); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') links.classList.remove('open');
+  });
 
   // ---- Reveal on scroll ----
   var io = new IntersectionObserver(function (entries) {
@@ -109,6 +114,27 @@
     });
   }, { threshold: 0.35 });
   document.querySelectorAll('video[data-src]').forEach(function (v) { vio.observe(v); });
+
+  // ---- Slideshow de exteriores (crossfade automático) ----
+  var ss = document.getElementById('expSlideshow');
+  if (ss) {
+    var slides = ss.querySelectorAll('.slide'), si = 0;
+    if (slides.length > 1) {
+      setInterval(function () {
+        slides[si].classList.remove('is-active');
+        si = (si + 1) % slides.length;
+        slides[si].classList.add('is-active');
+      }, 4500);
+    }
+  }
+
+  // ---- Botón subir ----
+  var toTop = document.getElementById('toTop');
+  if (toTop) {
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   // ---- Año footer ----
   document.getElementById('year').textContent = new Date().getFullYear();
