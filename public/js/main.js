@@ -75,6 +75,11 @@
   links.addEventListener('click', function (e) {
     if (e.target.tagName === 'A') links.classList.remove('open');
   });
+  var navClose = document.getElementById('navClose');
+  if (navClose) navClose.addEventListener('click', function () { links.classList.remove('open'); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') links.classList.remove('open');
+  });
 
   // ---- Reveal on scroll ----
   var io = new IntersectionObserver(function (entries) {
