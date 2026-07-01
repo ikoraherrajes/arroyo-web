@@ -1,6 +1,6 @@
 {
   "name": "arroyo-suite-house-web",
-  "version": "1.6.15",
+  "version": "1.6.16",
   "description": "Sitio web de Arroyo Suite House — suites para parejas en Traslasierra, Córdoba",
   "main": "server.js",
   "scripts": {
