@@ -15,7 +15,21 @@
     { f: 'e8ef7d_219d386e377e4600bba8bfea6cc7797b', a: 'Deck privado al atardecer' },
     { f: 'arroyo-rio-sierras', c: 'tall', a: 'El Río Los Sauces y las sierras de Traslasierra' },
     { f: 'e8ef7d_5af4ffde1e5c462cbc863bcb72eff92a', a: 'Suite preparada' },
-    { f: 'predio-suites-dorada', c: 'wide', a: 'Las suites al atardecer' }
+    { f: 'predio-suites-dorada', c: 'wide', a: 'Las suites al atardecer' },
+    { f: 'gal-ext-01', c: 'wide', a: 'Frente de la suite con deck y sombrilla' },
+    { f: 'gal-pileta-01', a: 'Pileta y reposeras' },
+    { f: 'gal-vista-01', c: 'tall', a: 'Las sierras y el Río Los Sauces' },
+    { f: 'gal-dorm-01', a: 'Suite con cama King y cabecera capitoné' },
+    { f: 'gal-deck-01', c: 'tall', a: 'Deck con vista a la pileta y las sierras' },
+    { f: 'gal-ext-02', c: 'wide', a: 'Las suites y la pileta' },
+    { f: 'gal-cocina-01', a: 'Kitchenette con cafetera' },
+    { f: 'gal-pileta-02', a: 'Pileta con pérgola y vista a las sierras' },
+    { f: 'gal-ext-03', c: 'tall', a: 'La suite al amanecer' },
+    { f: 'gal-dorm-02', a: 'Dormitorio cálido para parejas' },
+    { f: 'gal-pileta-03', c: 'wide', a: 'Pileta con vista al valle' },
+    { f: 'gal-ext-04', c: 'tall', a: 'El predio entre los árboles' },
+    { f: 'gal-dorm-03', a: 'Detalles de bienvenida en la suite' },
+    { f: 'gal-suite-01', a: 'Exterior de la suite' }
   ];
 
   var grid = document.getElementById('grid');
