@@ -133,18 +133,17 @@
     document.addEventListener(ev, kickVideos, { passive: true });
   });
 
-  // ---- Slideshow de exteriores (crossfade automático) ----
-  var ss = document.getElementById('expSlideshow');
-  if (ss) {
+  // ---- Slideshows con crossfade automático (exteriores + features) ----
+  document.querySelectorAll('.slideshow').forEach(function (ss, k) {
     var slides = ss.querySelectorAll('.slide'), si = 0;
-    if (slides.length > 1) {
-      setInterval(function () {
-        slides[si].classList.remove('is-active');
-        si = (si + 1) % slides.length;
-        slides[si].classList.add('is-active');
-      }, 4500);
-    }
-  }
+    if (slides.length < 2) return;
+    if (!slides[0].classList.contains('is-active')) slides[0].classList.add('is-active');
+    setInterval(function () {
+      slides[si].classList.remove('is-active');
+      si = (si + 1) % slides.length;
+      slides[si].classList.add('is-active');
+    }, 4500 + k * 700); // desfasar para que no cambien todas al mismo tiempo
+  });
 
   // ---- Botón subir ----
   var toTop = document.getElementById('toTop');

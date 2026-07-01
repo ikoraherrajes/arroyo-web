@@ -161,6 +161,7 @@ section{position:relative}
 .feat--rev .feat__img{order:2}
 .feat__img{overflow:hidden;border-radius:3px;box-shadow:0 30px 60px -30px rgba(21,17,13,.45)}
 .feat__img img{width:100%;height:460px;object-fit:cover;transition:transform 1.2s}
+.feat__img .slideshow{height:460px}
 .feat__img:hover img{transform:scale(1.06)}
 .feat__txt{position:relative}
 .feat__txt::before{
