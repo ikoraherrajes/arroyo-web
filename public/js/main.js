@@ -29,7 +29,19 @@
     { f: 'gal-pileta-03', c: 'wide', a: 'Pileta con vista al valle' },
     { f: 'gal-ext-04', c: 'tall', a: 'El predio entre los árboles' },
     { f: 'gal-dorm-03', a: 'Detalles de bienvenida en la suite' },
-    { f: 'gal-suite-01', a: 'Exterior de la suite' }
+    { f: 'gal-suite-01', a: 'Exterior de la suite' },
+    { f: 'gal-pileta-04', c: 'wide', a: 'Pileta con pérgola y las sierras de fondo' },
+    { f: 'gal-dorm-04', a: 'Suite con cabecera y pared de color' },
+    { f: 'gal-ext-05', c: 'wide', a: 'Las suites con sus decks privados' },
+    { f: 'gal-dorm-05', a: 'Dormitorio con Smart TV y estar' },
+    { f: 'gal-deck-02', c: 'tall', a: 'Deck con vista a la pileta y el valle' },
+    { f: 'gal-pileta-05', a: 'Solárium con reposeras junto a la pileta' },
+    { f: 'gal-dorm-06', a: 'Suite luminosa con cama King' },
+    { f: 'gal-ext-06', c: 'tall', a: 'Exterior de la suite y el jardín' },
+    { f: 'gal-pileta-06', a: 'La pileta y el solárium del predio' },
+    { f: 'gal-dorm-07', a: 'Dormitorio con cortinados y climatización' },
+    { f: 'gal-deck-03', c: 'wide', a: 'Deck privado con vista a la pileta' },
+    { f: 'gal-ext-07', c: 'tall', a: 'El predio rodeado de arboleda' }
   ];
 
   var grid = document.getElementById('grid');
