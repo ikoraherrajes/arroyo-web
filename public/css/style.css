@@ -132,6 +132,8 @@ section{position:relative}
 }
 .award__txt strong{display:block;font-size:1.15rem;letter-spacing:.04em;margin-bottom:.2rem}
 .award__txt span{font-size:.95rem;color:var(--muted)}
+.award__link{display:inline-block;margin-top:.55rem;color:var(--cream);font-size:.9rem;letter-spacing:.03em;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.45);padding-bottom:1px;transition:border-color .3s}
+.award__link:hover{border-color:var(--cream)}
 
 /* ===================== QUOTE (franja sensorial) ===================== */
 .quote{max-width:920px;margin:0 auto;padding:6.5rem 1.5rem 4.5rem;text-align:center}
