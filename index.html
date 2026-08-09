@@ -7,12 +7,70 @@
 <meta name="description" content="Suites premium para parejas en Arroyo de los Patos, Traslasierra (Córdoba). A 200 m del río, con pileta, asador privado, desayuno y Starlink. Una experiencia distinta todo el año.">
 <meta name="theme-color" content="#15110d">
 
-<!-- Open Graph -->
+<link rel="canonical" href="https://www.arroyosuitehouse.com/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="geo.region" content="AR-X">
+<meta name="geo.placename" content="Arroyo de los Patos, Traslasierra, Córdoba">
+
+<!-- Open Graph. La imagen va con URL absoluta: las redes no resuelven rutas
+     relativas, y con "assets/web/..." la vista previa salia sin foto. -->
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Arroyo Suite House">
+<meta property="og:locale" content="es_AR">
 <meta property="og:title" content="Arroyo Suite House · Suites Premium para parejas">
 <meta property="og:description" content="Un nuevo concepto para disfrutar en pareja, muy cerca del río y rodeado de las bellezas naturales de Traslasierra.">
-<meta property="og:image" content="assets/web/portada-suite.jpg">
-<meta property="og:url" content="https://www.arroyosuitehouse.com">
+<meta property="og:image" content="https://www.arroyosuitehouse.com/assets/web/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Una suite de Arroyo Suite House con su deck privado, al atardecer">
+<meta property="og:url" content="https://www.arroyosuitehouse.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Arroyo Suite House · Suites Premium para parejas">
+<meta name="twitter:description" content="A 200 m del Río Los Sauces, con pileta, asador privado en cada suite, desayuno y Starlink. Traslasierra, Córdoba.">
+<meta name="twitter:image" content="https://www.arroyosuitehouse.com/assets/web/og.jpg">
+
+<!-- Datos estructurados. Sin esto Google no entiende que es un alojamiento en
+     Traslasierra: no entra al pack local ni a resultados enriquecidos. Todo lo
+     de aca abajo sale del contenido real de la pagina. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BedAndBreakfast",
+  "@id": "https://www.arroyosuitehouse.com/#alojamiento",
+  "name": "Arroyo Suite House",
+  "description": "Suites premium para parejas en Arroyo de los Patos, Traslasierra, Córdoba. A 200 m del Río Los Sauces, con pileta descubierta, asador y deck privado en cada suite, desayuno e internet Starlink.",
+  "url": "https://www.arroyosuitehouse.com/",
+  "image": [
+    "https://www.arroyosuitehouse.com/assets/web/og.jpg",
+    "https://www.arroyosuitehouse.com/assets/web/portada-suite.jpg"
+  ],
+  "telephone": "+5491162678709",
+  "priceRange": "$$",
+  "currenciesAccepted": "ARS",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Arroyo de los Patos",
+    "addressRegion": "Córdoba",
+    "addressCountry": "AR"
+  },
+  "areaServed": "Valle de Traslasierra, Córdoba, Argentina",
+  "sameAs": [
+    "https://instagram.com/arroyosuitehouse",
+    "https://facebook.com/arroyosuitehouse",
+    "https://www.booking.com/hotel/ar/arroyo-suite-house.es.html"
+  ],
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Piscina descubierta y solárium", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Asador y deck privado en cada suite", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Desayuno", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "WiFi Starlink en todo el predio", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Aire acondicionado frío/calor", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Sommier King Size", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Ventanas con doble vidrio y mosquitero", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Vista al Río Los Sauces y las Sierras de Pocho", "value": true }
+  ]
+}
+</script>
 
 <link rel="icon" href="assets/img/e8ef7d_ef93f556585a4207a95e641afa9b6c5c_7Emv2.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -215,6 +273,58 @@
       <span class="svc__i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14h20l-1.5 11a2 2 0 0 1-2 1.7H9.5a2 2 0 0 1-2-1.7L6 14Z"/><path d="M9 14l2.5-8 9 2.2"/><path d="M11 19v3M16 19v3M21 19v3"/></svg></span>
       <h4>Servicio de limpieza</h4><p>Periódico, con recambio de toallas cada 2 días.</p>
     </div>
+  </div>
+</section>
+
+<!-- ============ FICHA: EQUIPAMIENTO Y SERVICIOS ============ -->
+<!-- Los bloques de arriba venden en prosa; esto es para el que escanea buscando
+     si hay aire, wifi o pava. Son trabajos distintos, por eso conviven. -->
+<section class="amen" id="equipamiento">
+  <div class="section-head reveal">
+    <p class="kicker">La ficha completa</p>
+    <h2>Equipamiento y servicios</h2>
+  </div>
+
+  <div class="amen__grid">
+    <div class="amen__col reveal">
+      <h3 class="amen__t">En cada suite</h3>
+      <ul class="amen__list">
+        <li>Sommier King Size</li>
+        <li>Aire acondicionado frío/calor</li>
+        <li>Calefacción de tiro balanceado con termostato</li>
+        <li>Ventilador de techo</li>
+        <li>Ventanas con doble vidrio y mosquitero</li>
+        <li>Smart TV 50" con Google TV</li>
+        <li>Alarma propia</li>
+        <li>Heladera bajo mesada</li>
+        <li>Cafetera, tostadora y microondas</li>
+        <li>Pava eléctrica</li>
+        <li>Secador de pelo</li>
+        <li>Asador y deck propio, con mesa, sillones y sombrilla</li>
+      </ul>
+    </div>
+
+    <div class="amen__col reveal">
+      <h3 class="amen__t">En el predio</h3>
+      <ul class="amen__list">
+        <li>Desayuno seco, lo llevamos a tu suite</li>
+        <li>Internet Starlink de alta velocidad, WiFi en todo el predio</li>
+        <li>Piscina descubierta y solárium</li>
+        <li>Vista al Río Los Sauces y las Sierras de Pocho</li>
+        <li>Parque</li>
+        <li>Estacionamiento cubierto con media sombra antigranizo</li>
+        <li>Servicio de limpieza periódico</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Letra chica: acá se aclara lo que si no se dice, termina en reclamo -->
+  <div class="amen__note reveal">
+    <h4>Para que llegues sin sorpresas</h4>
+    <ul>
+      <li><b>La limpieza no es diaria.</b> Cada 2 noches pasamos con cambio de toallas; cada 4 noches, toallas y sábanas.</li>
+      <li><b>Las toallas son solo para la suite.</b> No proveemos toallas para la pileta ni para el río — traé las tuyas.</li>
+    </ul>
   </div>
 </section>
 

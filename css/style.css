@@ -212,6 +212,45 @@ section{position:relative}
 .svc h4{font-size:1.4rem;margin-bottom:.5rem;color:var(--gold-l)}
 .svc p{color:var(--muted);font-size:.96rem}
 
+/* ===================== AMENITIES / FICHA ===================== */
+/* Va entre SERVICIOS (oscuro) y UBICACIÓN (claro): arranca en crema para cortar
+   el bloque oscuro y no encadenar dos secciones densas seguidas. */
+.amen{background:var(--cream);padding:6rem 1.5rem}
+.amen__grid{
+  max-width:var(--maxw);margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:3rem 4rem;
+}
+.amen__t{
+  font-size:1.5rem;color:var(--clay-d);
+  padding-bottom:.9rem;margin-bottom:1.4rem;
+  border-bottom:1px solid rgba(187,107,67,.22);
+}
+.amen__list{list-style:none;display:grid;gap:.75rem}
+.amen__list li{
+  position:relative;padding-left:1.7rem;
+  color:#5c5246;font-size:1rem;line-height:1.45;
+}
+/* Tilde dibujado, no un carácter: se alinea igual en todos los navegadores */
+.amen__list li::before{
+  content:"";position:absolute;left:0;top:.4em;
+  width:.6rem;height:.32rem;
+  border-left:1.5px solid var(--gold);border-bottom:1.5px solid var(--gold);
+  transform:rotate(-45deg);
+}
+.amen__note{
+  max-width:var(--maxw);margin:3.5rem auto 0;
+  background:var(--sand);border-left:3px solid var(--clay);
+  border-radius:3px;padding:1.8rem 2rem;
+}
+.amen__note h4{
+  font-family:var(--sans);font-size:.72rem;font-weight:600;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--clay-d);
+  margin-bottom:.9rem;
+}
+.amen__note ul{list-style:none;display:grid;gap:.6rem}
+.amen__note li{color:#5c5246;font-size:.96rem;line-height:1.5}
+.amen__note b{color:var(--ink);font-weight:600}
+
 /* ===================== LOCATION ===================== */
 .location{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
 .location__body{padding:6rem clamp(1.5rem,5vw,5rem)}
@@ -286,7 +325,7 @@ section{position:relative}
   .nav__links.open{transform:none}
   .nav__close{display:block;position:absolute;top:1.1rem;right:1.3rem;font-size:1.9rem;line-height:1;padding:.2rem .4rem}
   .nav__burger{display:flex}
-  .split,.feat,.feat--rev,.location{grid-template-columns:1fr}
+  .split,.feat,.feat--rev,.location,.amen__grid{grid-template-columns:1fr}
   .feat--rev .feat__img{order:0}
   .split__body{padding:2.5rem 0 0}
   .split__media img,.feat__img img,.slideshow{height:360px}
@@ -298,7 +337,11 @@ section{position:relative}
   .cta{background-attachment:scroll}
 }
 @media(max-width:520px){
-  .services__grid{grid-template-columns:1fr}
+  /* Seis tarjetas de servicio apiladas eran casi dos pantallas de alto. En dos
+     columnas se leen igual y la pagina se acorta a la mitad en ese tramo.
+     Va minmax(0,1fr) y no 1fr: con 1fr las columnas no bajan del ancho minimo
+     del contenido y quedaban desparejas (257px contra 153px), desbordando. */
+  .services__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.1rem}
   .dist{grid-template-columns:1fr}
   .grid{column-count:2}
   .hero__actions .btn{width:100%}
