@@ -24,6 +24,10 @@ const MIME = {
   '.webm': 'video/webm',
   '.woff2': 'font/woff2',
   '.woff': 'font/woff',
+  // robots.txt y sitemap.xml: sin su tipo real salen como octet-stream y los
+  // buscadores no los leen.
+  '.txt': 'text/plain; charset=utf-8',
+  '.xml': 'application/xml; charset=utf-8',
 };
 
 const server = http.createServer((req, res) => {

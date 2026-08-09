@@ -337,7 +337,11 @@ section{position:relative}
   .cta{background-attachment:scroll}
 }
 @media(max-width:520px){
-  .services__grid{grid-template-columns:1fr}
+  /* Seis tarjetas de servicio apiladas eran casi dos pantallas de alto. En dos
+     columnas se leen igual y la pagina se acorta a la mitad en ese tramo.
+     Va minmax(0,1fr) y no 1fr: con 1fr las columnas no bajan del ancho minimo
+     del contenido y quedaban desparejas (257px contra 153px), desbordando. */
+  .services__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.1rem}
   .dist{grid-template-columns:1fr}
   .grid{column-count:2}
   .hero__actions .btn{width:100%}
