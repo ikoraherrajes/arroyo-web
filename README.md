@@ -9,12 +9,29 @@ npm start        # http://localhost:3000  (sirve /public)
 ```
 
 ## Deploy
-- **Railway / Render:** conectar el repo. Build: ninguno. Start: `node server.js`.
-- **Link de prueba (GitHub Pages):** rama `gh-pages` (contenido de `/public` en la raíz).
-  URL: https://ikoraherrajes.github.io/arroyo-web/
+
+> **El sitio en vivo lo sirve GitHub Pages, no Railway.** Pushear a `master` NO
+> actualiza `arroyosuitehouse.com`. Hay que publicar el contenido de `/public`
+> en la raíz de la rama `gh-pages`:
+>
+> ```
+> git worktree add --detach /tmp/ghp origin/gh-pages
+> cp -r public/. /tmp/ghp/
+> cd /tmp/ghp && git add -A && git commit -m "Deploy: ..." && git push origin HEAD:gh-pages
+> cd - && git worktree remove --force /tmp/ghp
+> ```
+>
+> Ojo: la rama `gh-pages` local está divergida de `origin/gh-pages` (historias
+> distintas). Siempre partir de `origin/gh-pages`, nunca de la local.
+
+- **GitHub Pages (producción):** rama `gh-pages`, `/public` en la raíz, con
+  `CNAME` → `arroyosuitehouse.com` y `.nojekyll`.
+- **Railway / Render (alternativa, no en uso):** conectar el repo. Build:
+  ninguno. Start: `node server.js`.
 
 ## Dominio
-Apuntar `arroyosuitehouse.com` al servicio cuando esté en Railway (DNS).
+`arroyosuitehouse.com` y `www` apuntan a GitHub Pages
+(`ikoraherrajes.github.io`, A a 185.199.108-111.153).
 
 ## Estructura
 - `server.js` — server estático sin dependencias.
