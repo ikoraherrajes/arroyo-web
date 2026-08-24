@@ -5,19 +5,19 @@
   // ---- Galería curada (stem de archivo + clase de grilla opcional) ----
   var PHOTOS = [
     { f: 'gal-ext-01', a: 'Frente de la suite con deck y sombrilla' },
-    { f: 'gal-pileta-04', a: 'Pileta con pérgola y las sierras de fondo' },
+    { f: 'gal-pileta-04', a: 'Piscina con pérgola y las sierras de fondo' },
     { f: 'gal-dorm-02', a: 'Dormitorio cálido para parejas' },
-    { f: 'gal-deck-01', a: 'Deck con vista a la pileta y las sierras' },
+    { f: 'gal-deck-01', a: 'Deck con vista a la piscina y las sierras' },
     { f: 'gal-ext-05', a: 'Las suites con sus decks privados' },
     { f: 'gal-dorm-04', a: 'Suite con cabecera y pared de color' },
-    { f: 'gal-pileta-01', a: 'Pileta y reposeras' },
+    { f: 'gal-pileta-01', a: 'Piscina y reposeras' },
     { f: 'gal-ext-03', a: 'La suite al amanecer' },
     { f: 'gal-dorm-05', a: 'Dormitorio con Smart TV y estar' },
-    { f: 'gal-deck-02', a: 'Deck con vista a la pileta y el valle' },
-    { f: 'gal-pileta-03', a: 'Pileta con vista al valle' },
+    { f: 'gal-deck-02', a: 'Deck con vista a la piscina y el valle' },
+    { f: 'gal-pileta-03', a: 'Piscina con vista al valle' },
     { f: 'gal-ext-04', a: 'El predio entre los árboles' },
     { f: 'gal-dorm-06', a: 'Suite luminosa con cama King' },
-    { f: 'gal-pileta-06', a: 'La pileta y el solárium del predio' },
+    { f: 'gal-pileta-06', a: 'La piscina y el solárium del predio' },
     { f: 'gal-ext-06', a: 'Exterior de la suite y el jardín' },
     { f: 'gal-dorm-07', a: 'Dormitorio con cortinados y climatización' }
   ];
