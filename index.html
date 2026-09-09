@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="es-AR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Arroyo Suite House · Suites Premium para parejas · Córdoba</title>
 <meta name="description" content="Suites premium para parejas en Arroyo de los Patos, Traslasierra (Córdoba). A 200 m del río, con piscina, asador privado, desayuno y Starlink. Una experiencia distinta todo el año.">
-<meta name="theme-color" content="#15110d">
-
+<meta name="theme-color" content="#1B2521">
 <link rel="canonical" href="https://www.arroyosuitehouse.com/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="geo.region" content="AR-X">
 <meta name="geo.placename" content="Arroyo de los Patos, Traslasierra, Córdoba">
-
-<!-- Open Graph. La imagen va con URL absoluta: las redes no resuelven rutas
-     relativas, y con "assets/web/..." la vista previa salia sin foto. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Arroyo Suite House">
 <meta property="og:locale" content="es_AR">
@@ -28,10 +24,7 @@
 <meta name="twitter:title" content="Arroyo Suite House · Suites Premium para parejas">
 <meta name="twitter:description" content="A 200 m del Río Los Sauces, con piscina, asador privado en cada suite, desayuno y Starlink. Traslasierra, Córdoba.">
 <meta name="twitter:image" content="https://www.arroyosuitehouse.com/assets/web/og.jpg">
-
-<!-- Datos estructurados. Sin esto Google no entiende que es un alojamiento en
-     Traslasierra: no entra al pack local ni a resultados enriquecidos. Todo lo
-     de aca abajo sale del contenido real de la pagina. -->
+<link rel="icon" href="assets/img/e8ef7d_ef93f556585a4207a95e641afa9b6c5c_7Emv2.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -45,7 +38,7 @@
     "https://www.arroyosuitehouse.com/assets/web/portada-suite.jpg"
   ],
   "telephone": "+5491162678709",
-  "priceRange": "$$",
+  "priceRange": "$",
   "currenciesAccepted": "ARS",
   "address": {
     "@type": "PostalAddress",
@@ -71,420 +64,518 @@
   ]
 }
 </script>
-
-<link rel="icon" href="assets/img/e8ef7d_ef93f556585a4207a95e641afa9b6c5c_7Emv2.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1614">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;800&family=Montserrat:wght@200;300&family=Allura&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Sacada de las historias: el verde salvia de la chapa, el monte de noche,
+     el papel. Las 110 fotos ponen todo el color; el resto se queda callado. */
+  --crema:#E9DBBF;      /* ocre suave: el tono real de la pared de la suite */
+  --crema-2:#DDCCAA;
+  --tinta:#1E1712;
+  --tinta-2:#4A403A;
+  --sobre-foto:#F2EDE4;  /* texto encima de fotos: siempre claro */
+  --acento:#714233;      /* la madera del deck y del cartel de la entrada */
+  --acento-cl:#A3785F;   /* la version clara, para cuando va sobre fondo oscuro */
+  --dorado:#C9A35A;
+  --display:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+  --script:"Allura",cursive;
+  --maxw:1280px;
+  --gut:clamp(20px,5vw,72px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--crema);color:var(--tinta);
+  font-family:var(--display);font-weight:300;font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+
+/* ── Voces tipográficas ─────────────────────────────────────────────
+   Una sola familia en 3 registros + la cursiva de las historias como
+   segunda voz. El contraste lo dan la escala y la caja, no una cuarta fuente. */
+.display{
+  font-weight:800;letter-spacing:-.045em;line-height:.92;
+  font-size:clamp(52px,10.5vw,148px);margin:0;text-wrap:balance;
+}
+.script{font-family:var(--script);font-weight:400;letter-spacing:0;
+  font-size:clamp(58px,11.5vw,164px);line-height:.86;display:block;
+  color:var(--tinta);margin-top:.06em}
+.kicker{
+  font-weight:500;text-transform:uppercase;letter-spacing:.24em;
+  font-size:clamp(10px,1.1vw,12px);color:var(--acento-cl);margin:0 0 22px;
+}
+.lead{font-size:clamp(17px,1.5vw,20px);max-width:46ch;color:var(--tinta-2);margin:26px 0 0}
+h2{font-weight:800;letter-spacing:-.035em;line-height:.98;
+  font-size:clamp(34px,5.4vw,68px);margin:0 0 18px;text-wrap:balance}
+h3{font-weight:800;letter-spacing:-.02em;font-size:19px;margin:0 0 8px}
+p{margin:0 0 14px}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut)}
+section{padding-block:clamp(76px,11vw,150px)}
+
+/* ══ EL LOGO ════════════════════════════════════════════════════════
+   Texto vivo, no imagen: escala sin pixelarse y toma el color de donde
+   esté. Las proporciones salen de medir el PNG oficial (1064×340):
+     ARROYO ....... caja 139 px · ancho 937 px  → ancho/caja = 6,74
+     SUITE HOUSE .. caja  27 px · ancho 750 px  → 0,194 de la caja
+     separación entre manchas de tinta: 10 px = 0,072 de la caja
+   Montserrat 200 tiene caja 0,70 del cuerpo; todo deriva de --u.
+   El margen negativo recupera el aire que mete line-height:1. */
+.ash{--u:96px;display:inline-block;line-height:1;
+  font-family:"Montserrat",system-ui,sans-serif;font-weight:200;color:currentColor}
+.ash .n{display:block;font-size:var(--u);letter-spacing:.059em;text-indent:.059em}
+.ash .s{display:block;font-size:calc(var(--u)*.194);letter-spacing:1.142em;
+  text-indent:1.142em;margin-top:calc(var(--u)*-.1166)}
+.ash .loc{display:flex;align-items:center;justify-content:center;
+  gap:calc(var(--u)*.10);margin-top:calc(var(--u)*.085);
+  width:calc(var(--u)*3.77);margin-inline:auto}
+.ash .loc i{height:1px;flex:1;background:currentColor;opacity:.55}
+.ash .loc span{font-size:calc(var(--u)*.10);letter-spacing:.30em;text-indent:.30em;
+  white-space:nowrap;font-weight:300;opacity:.92}
+.ash.solo .loc{display:none}   /* sin la línea del lugar, para tamaños chicos */
+
+/* ── Nav ──────────────────────────────────────────────────────────── */
+.nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;
+  justify-content:space-between;gap:20px;padding:18px var(--gut);
+  transition:background .3s ease,backdrop-filter .3s ease}
+.nav.solid{background:rgba(233,219,191,.94);backdrop-filter:blur(14px);color:var(--tinta)}
+/* El PNG del logo es blanco: sobre la barra crema hay que darlo vuelta. */
+.nav.solid img{filter:invert(1) brightness(.16)}
+.nav img{height:44px;width:auto}
+.nav-links{display:flex;gap:30px;align-items:center;
+  font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.16em}
+.nav-links a{text-decoration:none;opacity:.82}
+.nav-links a:hover,.nav-links a:focus-visible{opacity:1}
+
+/* La pastilla blanca de WhatsApp: es el único botón del sitio, igual que
+   en las historias. Un solo CTA, siempre con el mismo texto. */
+.pill{display:inline-flex;align-items:center;gap:11px;background:var(--tinta);
+  color:var(--crema);border-radius:999px;padding:13px 24px;text-decoration:none;
+  font-weight:800;font-size:13px;letter-spacing:.03em;white-space:nowrap;
+  transition:transform .18s ease,background .18s ease}
+.pill:hover,.pill:focus-visible{background:#fff;transform:translateY(-2px)}
+.pill svg{width:17px;height:17px;flex:none}
+.pill.lg{padding:18px 34px;font-size:15px}
+
+/* ── Hero ─────────────────────────────────────────────────────────── */
+.hero{position:relative;min-height:96svh;display:flex;align-items:flex-end;
+  padding-bottom:0;padding-top:0}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+/* Ken Burns lento: 40 s de ida y vuelta. A esa velocidad no se "ve" el
+   movimiento, se siente que la foto respira. Infinito y alternado para que
+   no quede congelada si alguien se queda mirando. */
+.hero-bg img{width:100%;height:100%;object-fit:cover;
+  transform-origin:58% 62%;                 /* pivota sobre la pileta, no sobre el centro */
+  animation:respirar 40s ease-in-out infinite alternate}
+@keyframes respirar{
+  from{transform:scale(1.02) translate3d(0,0,0)}
+  to{transform:scale(1.11) translate3d(-1.2%,-.8%,0)}
+}
+
+/* Entrada del hero: sube en cascada una sola vez, al cargar. No espera scroll,
+   asi que la primera vista de la pagina ya se ve completa. */
+@keyframes entrar{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.hero-inner>*{animation:entrar .85s cubic-bezier(.2,.7,.3,1) both}
+.hero-inner>.kicker{animation-delay:.06s}
+.hero-inner>.display{animation-delay:.16s}
+.hero-inner>.lead{animation-delay:.26s}
+.hero-inner>.pill{animation-delay:.34s}
+.hero-inner>.strip{animation-delay:.42s}
+/* El velo tiene que dejar ver la pileta y las dos suites arriba, pero cerrar
+   fuerte desde el kicker para abajo: ahí el hormigón claro se comía el texto. */
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(20,30,26,.78) 0%,
+    rgba(20,30,26,.30) 24%,
+    rgba(20,30,26,.58) 48%,
+    rgba(20,30,26,.88) 76%,
+    rgba(20,30,26,.95) 100%)}
+.hero-inner{position:relative;z-index:1;width:100%;
+  max-width:var(--maxw);margin:0 auto;padding:0 var(--gut) clamp(30px,5vw,54px)}
+/* Sin margen arriba del titular: como los márgenes de hermanos se fusionan,
+   ese empuje separaba el kicker del título y lo dejaba colgado a media foto.
+   El bloque ya se apoya abajo por el align-items:flex-end del hero. */
+.hero .display{margin-top:0}
+/* Sobre foto el salvia pierde contra el hormigón claro: acá el kicker va casi blanco. */
+.hero .kicker{color:#E6EADF;text-shadow:0 1px 12px rgba(20,30,26,.55)}
+.hero,.film-epic{color:var(--sobre-foto)}
+/* La cursiva y los iconos traen color propio, asi que la herencia no les llega. */
+.hero .script,.film-epic .script{color:var(--sobre-foto)}
+.hero .strip svg{stroke:var(--sobre-foto)}
+.hero .lead,.film-epic .lead{color:#DED6C7}
+.nav:not(.solid){color:var(--sobre-foto)}
+.hero .lead{margin-bottom:32px}
+
+/* ── Franja de servicios: el device más reconocible de las historias ── */
+.strip{border-top:1px solid rgba(242,237,228,.22);margin-top:clamp(40px,6vw,66px);
+  display:grid;grid-template-columns:repeat(5,1fr)}
+.strip .it{padding:22px 14px 4px;text-align:center;position:relative}
+.strip .it+.it::before{content:"";position:absolute;left:0;top:26px;bottom:10px;
+  width:1px;background:rgba(242,237,228,.22)}
+.strip svg{width:30px;height:30px;margin:0 auto 10px;display:block;
+  stroke:var(--tinta);stroke-width:1.3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.strip span{display:block;font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;line-height:1.45;color:#DED6C7}
+
+/* ── Foto vertical + chapa ─────────────────────────────────────────
+   Antes esto era un círculo. Dos problemas: recortaba la habitación por
+   la mitad y, como la chapa vivía dentro del contenedor que enmascara,
+   quedaba cortada. Ahora la foto va vertical y entera, y la chapa cuelga
+   del envoltorio, que no recorta: puede salirse del borde. */
+.round{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(28px,5vw,76px);
+  align-items:center}
+.round.flip>.shot{order:2}
+.shot{position:relative}
+.shot .ph{aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:var(--crema-2)}
+.shot .ph img{width:100%;height:100%;object-fit:cover}
+.round-txt{position:relative;z-index:2}
+.round.flip .round-txt{text-align:right}
+.round.flip .round-txt .kicker{color:var(--acento)}
+.badge{position:absolute;z-index:3;width:clamp(116px,13vw,152px);aspect-ratio:1;
+  border-radius:50%;background:var(--acento);color:var(--tinta);
+  display:grid;place-content:center;text-align:center;
+  font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;line-height:1.75;
+  right:clamp(-26px,-2vw,-14px);bottom:38px;
+  box-shadow:0 14px 34px rgba(20,30,26,.45)}
+.round.flip .badge{right:auto;left:clamp(-26px,-2vw,-14px)}
+
+/* ── Listas de ficha ──────────────────────────────────────────────── */
+.specs{list-style:none;margin:28px 0 0;padding:0;
+  border-top:1px solid rgba(30,23,18,.16)}
+.specs li{padding:13px 0;border-bottom:1px solid rgba(30,23,18,.16);
+  display:flex;gap:14px;align-items:baseline;font-size:15.5px;color:var(--tinta-2)}
+.specs b{font-weight:800;color:var(--tinta);flex:none;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;min-width:88px}
+.round.flip .specs li{flex-direction:row-reverse}
+
+/* ── Bloque claro ─────────────────────────────────────────────────── */
+.light{background:#1B2521;color:var(--sobre-foto)}
+.light .kicker{color:var(--acento-cl)}
+.light .lead{color:#C7CFC5}
+.light .specs{border-color:rgba(242,237,228,.18)}
+.light .specs li{border-color:rgba(242,237,228,.18);color:#C7CFC5}
+.light .specs b{color:var(--sobre-foto)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,70px);margin-top:44px}
+
+/* ── Galería ──────────────────────────────────────────────────────── */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:46px}
+.grid a{display:block;overflow:hidden;border-radius:18px;background:var(--crema-2)}
+.grid img{width:100%;height:100%;object-fit:cover;aspect-ratio:1;
+  transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.grid a:hover img{transform:scale(1.06)}
+/* grilla pareja: con 24 fotos la fila alta rompia el ritmo */
+
+/* ── Video a sangre ────────────────────────────────────────────────
+   Las tomas de drone son VERTICALES (1152×2048). Metidas en una caja
+   16:9 se perdía casi todo el cuadro, así que la sección ocupa el alto
+   de la pantalla y el video la cubre: en el celular calza casi exacto. */
+.film-epic{position:relative;min-height:92svh;display:flex;align-items:flex-end;
+  overflow:hidden;padding:0}
+.film-epic video,.film-epic .poster{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:0}
+.film-epic::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(20,30,26,.55) 0%,rgba(20,30,26,.12) 38%,
+    rgba(20,30,26,.82) 84%,rgba(20,30,26,.96) 100%)}
+.film-txt{position:relative;z-index:2;width:100%;max-width:var(--maxw);
+  margin:0 auto;padding:0 var(--gut) clamp(48px,7vw,88px)}
+.film-txt .display{font-size:clamp(44px,8.5vw,118px)}
+.film-txt .script{font-size:clamp(48px,9vw,128px)}
+
+/* ── Opiniones ────────────────────────────────────────────────────── */
+.scores{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+.score{border:1px solid rgba(30,23,18,.22);border-radius:14px;padding:16px 24px}
+.score b{display:block;font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.score span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acento)}
+.quotes{columns:3;column-gap:26px}
+.quote{break-inside:avoid;margin:0 0 26px;padding-left:16px;
+  border-left:1px solid var(--acento);font-size:15.5px;color:var(--tinta-2)}
+
+/* ── Cierre ───────────────────────────────────────────────────────── */
+.close{text-align:center}
+.close .display{font-size:clamp(44px,8vw,110px)}
+.sign{font-family:var(--script);font-size:clamp(30px,4.4vw,54px);
+  color:var(--acento-cl);line-height:1;margin:0}
+footer{border-top:1px solid rgba(30,23,18,.16);padding:44px 0 56px;text-align:center}
+footer img{height:52px;margin:0 auto 24px}
+.legal{font-size:12.5px;color:var(--tinta-2);letter-spacing:.02em;margin-top:22px}
+.legal a{text-decoration:none;border-bottom:1px solid rgba(30,23,18,.35)}
+
+/* ── Flotantes: los mismos de siempre, verde abajo y dorado arriba ── */
+.wa-float{position:fixed;right:20px;bottom:20px;z-index:60;width:56px;height:56px;
+  border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.3);transition:transform .3s ease}
+.wa-float:hover{transform:scale(1.08)}
+.to-top{position:fixed;right:20px;bottom:86px;z-index:60;width:56px;height:56px;
+  border-radius:50%;background:var(--dorado);color:#1E1712;border:0;cursor:pointer;
+  display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.3);
+  transition:transform .3s ease,background .3s ease;opacity:0;pointer-events:none}
+.to-top.ver{opacity:1;pointer-events:auto}
+.to-top:hover{background:#DCC08A;transform:translateY(-3px)}
+
+:focus-visible{outline:2px solid var(--dorado);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+@media (max-width:900px){
+  .nav-links{display:none}
+  .round,.cols{grid-template-columns:1fr}
+  .round.flip>.shot{order:0}
+  .round.flip .round-txt,.round.flip .specs li{text-align:left;flex-direction:row}
+  .badge{width:104px;right:4px;top:auto;bottom:-14px}
+  .round.flip .badge{left:auto;right:4px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .grid .tall{grid-row:span 1}
+  .grid .tall img{aspect-ratio:1}
+  .quotes{columns:1}
+  .strip{grid-template-columns:repeat(5,1fr)}
+  .strip span{font-size:8.5px;letter-spacing:.08em}
+  .strip svg{width:22px;height:22px}
+  .strip .it{padding:16px 5px 4px}
+}
+</style>
 </head>
 <body>
-<div class="grain" aria-hidden="true"></div>
 
-<!-- ============ NAV ============ -->
-<header class="nav" id="nav">
-  <div class="nav__inner">
-    <a href="#inicio" class="brand" aria-label="Arroyo Suite House">
-      <img src="assets/img/logo-blanco.png" alt="Arroyo Suite House" class="brand__logo">
+<nav class="nav" id="nav">
+  <a href="#inicio" aria-label="Arroyo Suite House, inicio"><img src="assets/img/logo-blanco.png" alt="Arroyo Suite House"></a>
+  <div class="nav-links">
+    <a href="#suites">Las suites</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#galeria">Galería</a>
+    <a href="#opiniones">Opiniones</a>
+    <a href="#llegar">Cómo llegar</a>
+  </div>
+  <a class="pill" href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Arroyo%20Suite%20House" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.4.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4 0-.1-.2-.2-.4-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>
+    Reservá tu escapada
+  </a>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────────────
+     La tesis: no es un complejo, son dos suites. La escasez ES el producto,
+     y una huésped ya lo dijo mejor que nosotros en su reseña. -->
+<header class="hero" id="inicio">
+  <div class="hero-bg">
+    <img src="assets/web/arroyo-pileta-suite.jpg" alt="La piscina de Arroyo Suite House con las dos suites detrás" fetchpriority="high">
+  </div>
+  <div class="hero-inner">
+    <p class="kicker">Arroyo de los Patos · Traslasierra · Córdoba</p>
+    <h1 class="display">Solo dos suites,<span class="script">toda la sierra.</span></h1>
+    <p class="lead">Privacidad de verdad a 150 km de Córdoba capital. La piscina enfrente, asador y deck propio, y el desayuno que llega a tu puerta.</p>
+    <a class="pill lg" href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Arroyo%20Suite%20House" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.4.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4 0-.1-.2-.2-.4-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>
+      Reservá tu escapada
     </a>
-    <nav class="nav__links" id="navLinks">
-      <button class="nav__close" id="navClose" aria-label="Cerrar menú">✕</button>
-      <a href="#experiencia">Experiencia</a>
-      <a href="#suites">Suites</a>
-      <a href="#galeria">Galería</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#opiniones">Opiniones</a>
-      <a href="#ubicacion">Ubicación</a>
-      <a href="#contacto" class="nav__cta">Reservar</a>
-    </nav>
-    <button class="nav__burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+
+    <div class="strip">
+      <div class="it"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-9.3A3.7 3.7 0 0 1 12 8a3.7 3.7 0 0 1 7 2.7C19 15.4 12 20 12 20z"/></svg><span>Pensado<br>para parejas</span></div>
+      <div class="it"><svg viewBox="0 0 24 24"><path d="M3 8c2-1.6 4-1.6 6 0s4 1.6 6 0 4-1.6 6 0M3 13c2-1.6 4-1.6 6 0s4 1.6 6 0 4-1.6 6 0M3 18c2-1.6 4-1.6 6 0s4 1.6 6 0 4-1.6 6 0"/></svg><span>Piscina<br>y solárium</span></div>
+      <div class="it"><svg viewBox="0 0 24 24"><path d="M2 19l6.5-10L13 16l2.5-4L22 19z"/></svg><span>Vista a<br>las sierras</span></div>
+      <div class="it"><svg viewBox="0 0 24 24"><path d="M5 11h14M6.5 11a5.5 5.5 0 0 0 11 0M9 19l1.5-3M15 19l-1.5-3M9 7.5c0-1 1-1.3 1-2.3M12 7.5c0-1 1-1.3 1-2.3M15 7.5c0-1 1-1.3 1-2.3"/></svg><span>Asador<br>privado</span></div>
+      <div class="it"><svg viewBox="0 0 24 24"><path d="M4 10h13v4a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM17 11h1.8a2.2 2.2 0 0 1 0 4.4H17M8 6c0-1 1-1.4 1-2.4M12 6c0-1 1-1.4 1-2.4"/></svg><span>Desayuno<br>en la suite</span></div>
+    </div>
   </div>
 </header>
 
-<!-- ============ HERO ============ -->
-<section class="hero" id="inicio">
-  <div class="hero__media"></div>
-  <div class="hero__veil"></div>
-  <div class="hero__content">
-    <p class="hero__eyebrow reveal">Arroyo de los Patos · Traslasierra · Córdoba</p>
-    <h1 class="hero__title reveal">Suites premium<br><em>para parejas</em></h1>
-    <p class="hero__lede reveal">El sonido del río, el cielo serrano y la privacidad de un refugio pensado solo para dos. Una experiencia distinta, durante todo el año.</p>
-    <div class="hero__actions reveal">
-      <a class="btn btn--gold" href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Arroyo%20Suite%20House" target="_blank" rel="noopener">Reservar por WhatsApp</a>
-      <a class="btn btn--ghost" href="#suites">Conocé las suites</a>
+<!-- ── LAS SUITES ───────────────────────────────────────────────── -->
+<section id="suites">
+  <div class="wrap round">
+    <div class="shot">
+      <div class="ph"><img src="assets/web/gal-suite-01.jpg" alt="Interior de la suite, con cama king size y ventanal a las sierras" loading="lazy"></div>
+      <div class="badge">Parejas<br>Naturaleza<br>Descanso</div>
     </div>
-  </div>
-  <a href="#award" class="hero__scroll" aria-label="Bajar">↓</a>
-</section>
-
-<!-- ============ AWARD STRIP ============ -->
-<section class="award" id="award">
-  <div class="award__inner reveal">
-    <div class="award__score">9,7</div>
-    <div class="award__txt">
-      <strong>Traveller Review Awards 2026</strong>
-      <span>5.º año consecutivo. Hoy 9,7 sobre 10 según las reseñas de nuestros huéspedes.</span>
-      <a class="award__link" href="https://www.booking.com/hotel/ar/arroyo-suite-house.es.html" target="_blank" rel="noopener">Ver las reseñas en Booking →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FRANJA SENSORIAL ============ -->
-<section class="quote">
-  <p class="quote__txt reveal">«Despertar con el canto de los pájaros, el mate en el deck y la sierra de fondo. Acá el tiempo pasa distinto.»</p>
-  <span class="quote__by reveal">— A 200 m del Río Los Sauces, en el corazón de Traslasierra</span>
-</section>
-
-<!-- ============ EXPERIENCIA ============ -->
-<section class="split" id="experiencia">
-  <div class="split__media reveal">
-    <div class="slideshow" id="expSlideshow">
-      <img class="slide is-active" src="assets/web/e8ef7d_358eda4b5aa04638a210ffaf87f3c11f.jpg" alt="Exterior de una suite al atardecer" loading="lazy">
-      <img class="slide" src="assets/web/exterior-01-atardecer.jpg" alt="Suites de Arroyo Suite House al atardecer" loading="lazy">
-      <img class="slide" src="assets/web/exterior-02-pileta.jpg" alt="Exterior de la suite con la piscina" loading="lazy">
-      <img class="slide" src="assets/web/exterior-03-dorada.jpg" alt="Suite con su deck privado en luz dorada" loading="lazy">
-    </div>
-  </div>
-  <div class="split__body reveal">
-    <p class="kicker">Un nuevo concepto</p>
-    <h2>Viví una experiencia<br>distinta en pareja</h2>
-    <p>Cada suite está pensada como un refugio íntimo: equipada con todo lo necesario para que tu estadía sea realmente única. Privacidad total, naturaleza a metros y el sonido del río de fondo.</p>
-    <ul class="ticks">
-      <li>A solo 200 m del Río Los Sauces</li>
-      <li>Piscina descubierta y solárium</li>
-      <li>Asador y deck privado en cada suite</li>
-      <li>Internet Starlink en todo el predio</li>
-    </ul>
-    <a class="link-arrow" href="#galeria">Ver la galería</a>
-  </div>
-</section>
-
-<!-- ============ SUITES / FEATURES ============ -->
-<section class="suites" id="suites">
-  <div class="section-head reveal">
-    <p class="kicker">Cada detalle, cuidado</p>
-    <h2>Suites equipadas para una estadía única</h2>
-  </div>
-
-  <div class="feat" data-num="01">
-    <div class="feat__img reveal">
-      <div class="slideshow">
-        <img class="slide is-active" src="assets/web/e8ef7d_a4dc9979fbfd43dea928bb7726549a11.jpg" alt="Dormitorio con sommier King Size" loading="lazy">
-        <img class="slide" src="assets/web/interior-01.jpg" alt="Suite con cabecera capitoné y ropa de cama premium" loading="lazy">
-        <img class="slide" src="assets/web/interior-02.jpg" alt="Dormitorio cálido con detalles de bienvenida" loading="lazy">
-        <img class="slide" src="assets/web/interior-03.jpg" alt="Suite para parejas climatizada" loading="lazy">
-      </div>
-    </div>
-    <div class="feat__txt reveal" data-num="01 — Interior">
-      <h3>Descanso de hotel</h3>
-      <p>Sommier King Size, climatización frío/calor, calefacción de tiro balanceado con termostato y ventilador de techo. Todas las ventanas con doble vidrio y mosquitero para tu confort en cualquier época.</p>
-    </div>
-  </div>
-
-  <div class="feat feat--rev" data-num="02">
-    <div class="feat__img reveal">
-      <div class="slideshow">
-        <img class="slide is-active" src="assets/web/equip-01.jpg" alt="Cocina equipada con cafetera y microondas" loading="lazy">
-        <img class="slide" src="assets/web/equip-02.jpg" alt="Smart TV 50 pulgadas con Google TV en la suite" loading="lazy">
-        <img class="slide" src="assets/web/equip-03.jpg" alt="Kitchenette completa con heladera bajo mesada" loading="lazy">
-        <img class="slide" src="assets/web/e8ef7d_af95c67ebf3b43d5af3b94ad72bf69b1.jpg" alt="Baño de la suite con doble bacha" loading="lazy">
-      </div>
-    </div>
-    <div class="feat__txt reveal" data-num="02 — Equipamiento">
-      <h3>Confort y tecnología</h3>
-      <p>Smart TV 50" con Google TV, Internet Starlink, cafetera, tostadora, microondas, pava eléctrica, heladera bajo mesada y secador de pelo. Alarma propia en cada suite.</p>
-    </div>
-  </div>
-
-  <div class="feat" data-num="03">
-    <div class="feat__img reveal">
-      <div class="slideshow">
-        <img class="slide is-active" src="assets/web/e8ef7d_219d386e377e4600bba8bfea6cc7797b.jpg" alt="Deck privado con vista al atardecer serrano" loading="lazy">
-        <img class="slide" src="assets/web/aire-01.jpg" alt="Deck de la suite y jardín del predio" loading="lazy">
-        <img class="slide" src="assets/web/aire-02.jpg" alt="Piscina con pérgola y vista a las sierras" loading="lazy">
-        <img class="slide" src="assets/web/aire-03.jpg" alt="Vista panorámica de las sierras y el río de Traslasierra" loading="lazy">
-      </div>
-    </div>
-    <div class="feat__txt reveal" data-num="03 — Aire libre">
-      <h3>Tu propio rincón al aire libre</h3>
-      <p>Asador y deck en cada suite, con mesa, sillones y sombrilla para disfrutar del atardecer serrano. Estacionamiento cubierto con media sombra antigranizo.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ VIDEO ============ -->
-<section class="video" id="video">
-  <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="assets/video/drone-rio-sierras-poster.jpg">
-    <source src="assets/video/drone-rio-sierras.mp4" type="video/mp4">
-  </video>
-  <div class="video__veil"></div>
-  <div class="video__txt reveal">
-    <h2>Naturaleza, en cada amanecer</h2>
-    <p>Desconectá del ruido y reconectá con el paisaje de Traslasierra.</p>
-  </div>
-</section>
-
-<!-- ============ GALERÍA ============ -->
-<section class="gallery" id="galeria">
-  <div class="section-head reveal">
-    <p class="kicker">Galería</p>
-    <h2>Un recorrido por el predio</h2>
-  </div>
-  <div class="grid" id="grid"><!-- JS --></div>
-</section>
-
-<!-- ============ DESDE EL AIRE ============ -->
-<section class="video" id="aerea">
-  <video autoplay muted loop playsinline webkit-playsinline preload="none" poster="assets/video/drone-pileta-poster.jpg" data-src="assets/video/drone-pileta.mp4"></video>
-  <div class="video__veil"></div>
-  <div class="video__txt reveal">
-    <h2>Desde el aire</h2>
-    <p>La piscina, las suites y las sierras de Traslasierra.</p>
-  </div>
-</section>
-
-<!-- ============ SERVICIOS ============ -->
-<section class="services" id="servicios">
-  <div class="section-head reveal">
-    <p class="kicker">Servicios del predio</p>
-    <h2>Todo listo para que solo disfrutes</h2>
-  </div>
-  <div class="services__grid">
-    <div class="svc reveal">
-      <span class="svc__i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><circle cx="16" cy="16" r="6"/><path d="M16 2v4M16 26v4M2 16h4M26 16h4M6 6l3 3M23 23l3 3M26 6l-3 3M9 23l-3 3"/></svg></span>
-      <h4>Piscina y solárium</h4><p>Piscina descubierta y solárium en un parque amplio.</p>
-    </div>
-    <div class="svc reveal">
-      <span class="svc__i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M16 28c5 0 8-3.4 8-8 0-4-2.5-6.5-3.5-9-1.2 1.5-2.5 2-3.5 1.5C18.5 8 17 4 14 3c.8 3-1 5.5-3 7.5S8 15 8 20c0 4.6 3 8 8 8Z"/><path d="M16 28c2.5 0 4-1.8 4-4 0-2.2-1.6-3.2-2-5-1.3 1.6-3.4 1.8-4 0-1 1.5-2 2.6-2 5 0 2.2 1.5 4 4 4Z"/></svg></span>
-      <h4>Asador y deck</h4><p>Privado en cada suite, con mesa, sillones y sombrilla.</p>
-    </div>
-    <div class="svc reveal">
-      <span class="svc__i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13h17v6a6 6 0 0 1-6 6h-5a6 6 0 0 1-6-6v-6Z"/><path d="M22 14h3.5a3 3 0 0 1 0 6H22"/><path d="M9 8c-.8-1.2-.8-2.3 0-3.5M14 8c-.8-1.2-.8-2.3 0-3.5"/></svg></span>
-      <h4>Desayuno a la suite</h4><p>Desayuno seco, lo llevamos a tu unidad.</p>
-    </div>
-    <div class="svc reveal">
-      <span class="svc__i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M16 24a8 8 0 0 0-8-8M16 24a8 8 0 0 1 8-8M16 24a14 14 0 0 0-14-14M16 24a14 14 0 0 1 14-14"/><circle cx="16" cy="24" r="1.6" fill="currentColor" stroke="none"/></svg></span>
-      <h4>Starlink + WiFi</h4><p>Internet de alta velocidad en todo el predio.</p>
-    </div>
-    <div class="svc reveal">
-      <span class="svc__i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22v3M26 22v3M4 22v-5l3-7a2 2 0 0 1 2-1.3h14A2 2 0 0 1 25 10l3 7v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"/><path d="M7 10h18"/><circle cx="9" cy="18" r="1.4" fill="currentColor" stroke="none"/><circle cx="23" cy="18" r="1.4" fill="currentColor" stroke="none"/></svg></span>
-      <h4>Estacionamiento</h4><p>Cubierto y espacioso, con media sombra antigranizo.</p>
-    </div>
-    <div class="svc reveal">
-      <span class="svc__i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14h20l-1.5 11a2 2 0 0 1-2 1.7H9.5a2 2 0 0 1-2-1.7L6 14Z"/><path d="M9 14l2.5-8 9 2.2"/><path d="M11 19v3M16 19v3M21 19v3"/></svg></span>
-      <h4>Servicio de limpieza</h4><p>Periódico, con recambio de toallas cada 2 días.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FICHA: EQUIPAMIENTO Y SERVICIOS ============ -->
-<!-- Los bloques de arriba venden en prosa; esto es para el que escanea buscando
-     si hay aire, wifi o pava. Son trabajos distintos, por eso conviven. -->
-<section class="amen" id="equipamiento">
-  <div class="section-head reveal">
-    <p class="kicker">La ficha completa</p>
-    <h2>Equipamiento y servicios</h2>
-  </div>
-
-  <div class="amen__grid">
-    <div class="amen__col reveal">
-      <h3 class="amen__t">En cada suite</h3>
-      <ul class="amen__list">
-        <li>Sommier King Size</li>
-        <li>Aire acondicionado frío/calor</li>
-        <li>Calefacción de tiro balanceado con termostato</li>
-        <li>Ventilador de techo</li>
-        <li>Ventanas con doble vidrio y mosquitero</li>
-        <li>Smart TV 50" con Google TV</li>
-        <li>Alarma propia</li>
-        <li>Heladera bajo mesada</li>
-        <li>Cafetera, tostadora y microondas</li>
-        <li>Pava eléctrica</li>
-        <li>Secador de pelo</li>
-        <li>Asador y deck propio, con mesa, sillones y sombrilla</li>
-      </ul>
-    </div>
-
-    <div class="amen__col reveal">
-      <h3 class="amen__t">En el predio</h3>
-      <ul class="amen__list">
-        <li>Desayuno seco, lo llevamos a tu suite</li>
-        <li>Internet Starlink de alta velocidad, WiFi en todo el predio</li>
-        <li>Piscina descubierta y solárium</li>
-        <li>Vista al Río Los Sauces y las Sierras de Pocho</li>
-        <li>Parque</li>
-        <li>Estacionamiento cubierto con media sombra antigranizo</li>
-        <li>Servicio de limpieza periódico</li>
+    <div class="round-txt">
+      <p class="kicker">Las suites</p>
+      <h2>Dos, iguales, y para dos.</h2>
+      <p class="lead">Cada una con su deck, su asador y su vista. No compartís pared con nadie más que con la otra suite, y no hay una tercera.</p>
+      <ul class="specs">
+        <li><b>Cama</b> King size de 180 × 200</li>
+        <li><b>Clima</b> Aire frío/calor y estufa de tiro balanceado</li>
+        <li><b>Cocina</b> Kitchenette con cafetera, tostadora y microondas</li>
+        <li><b>Tele</b> Smart TV 50" con Google TV</li>
+        <li><b>Internet</b> WiFi Starlink en todo el predio</li>
       </ul>
     </div>
   </div>
+</section>
 
-  <!-- Letra chica: acá se aclara lo que si no se dice, termina en reclamo -->
-  <div class="amen__note reveal">
-    <h4>Para que llegues sin sorpresas</h4>
-    <ul>
-      <li><b>La limpieza no es diaria.</b> Cada 2 noches pasamos con cambio de toallas; cada 4 noches, toallas y sábanas.</li>
-      <li><b>Las toallas son solo para la suite.</b> No proveemos toallas para la piscina ni para el río — traé las tuyas.</li>
-    </ul>
+<!-- ── EL PREDIO ────────────────────────────────────────────────── -->
+<section id="servicios">
+  <div class="wrap round flip">
+    <div class="shot">
+      <div class="ph"><img src="assets/web/gal-deck-03.jpg" alt="Piscina descubierta y solárium en el parque de Arroyo Suite House" loading="lazy"></div>
+      <div class="badge">A 200 m<br>del río<br>Los Sauces</div>
+    </div>
+    <div class="round-txt">
+      <p class="kicker">El predio</p>
+      <h2>No hay que caminar para llegar al agua.</h2>
+      <p class="lead">La piscina está enfrente de las suites, en un parque amplio con solárium. A doscientos metros, el río Los Sauces.</p>
+      <ul class="specs">
+        <li><b>Piscina</b> Descubierta, con solárium</li>
+        <li><b>Deck</b> Privado en cada suite, con mesa, sillones y sombrilla</li>
+        <li><b>Asador</b> Cubierto y espacioso, con media sombra antigranizo</li>
+        <li><b>Desayuno</b> Seco, lo llevamos a tu unidad</li>
+        <li><b>Limpieza</b> Periódica, con recambio de toallas cada 2 días</li>
+      </ul>
+    </div>
   </div>
 </section>
 
-<!-- ============ UBICACIÓN ============ -->
-<section class="location" id="ubicacion">
-  <div class="location__body reveal">
-    <p class="kicker">Cómo llegar</p>
-    <h2>En el corazón de Traslasierra</h2>
-    <p class="addr">Ruta 14 S/N · km 95,5 — frente a Alfajores Nazareno<br>Arroyo de los Patos, Córdoba · Argentina</p>
-    <ul class="dist">
-      <li><b>200 m</b> Río Los Sauces</li>
-      <li><b>2,5 km</b> Centro de Mina Clavero</li>
-      <li><b>5,0 km</b> Nono</li>
-      <li><b>5,8 km</b> Iglesia Cura Brochero</li>
-      <li><b>28 km</b> Villa Las Rosas</li>
-      <li><b>80 km</b> Los Túneles</li>
-      <li><b>115 km</b> Villa Carlos Paz</li>
-      <li><b>150 km</b> Ciudad de Córdoba</li>
-    </ul>
-    <a class="btn btn--dark" href="https://www.google.com/maps/place/arroyo+suite+house/data=!4m2!3m1!1s0x942d27eeeb7f00ad:0x9ad0e0bc603c8da5" target="_blank" rel="noopener">Abrir en Google Maps</a>
-  </div>
-  <div class="location__map reveal">
-    <iframe title="Mapa Arroyo Suite House" loading="lazy"
-      src="https://www.openstreetmap.org/export/embed.html?bbox=-65.021%2C-31.782%2C-64.981%2C-31.757&layer=mapnik&marker=-31.7695%2C-65.0009"></iframe>
+<!-- ── GALERÍA ──────────────────────────────────────────────────── -->
+<section id="galeria" class="light">
+  <div class="wrap">
+    <p class="kicker">Un recorrido por el predio</p>
+    <h2>La piscina, las suites<br>y las sierras.</h2>
+    <div class="grid">
+      <a href="assets/web/gal-dorm-01.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-dorm-01.jpg" alt="Dormitorio de la suite" loading="lazy"></a>
+      <a href="assets/web/gal-pileta-01.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-pileta-01.jpg" alt="La piscina de Arroyo Suite House" loading="lazy"></a>
+      <a href="assets/web/gal-ext-01.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-ext-01.jpg" alt="Las suites y el parque" loading="lazy"></a>
+      <a href="assets/web/gal-deck-01.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-deck-01.jpg" alt="El deck privado de la suite" loading="lazy"></a>
+      <a href="assets/web/gal-dorm-02.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-dorm-02.jpg" alt="Dormitorio de la suite" loading="lazy"></a>
+      <a href="assets/web/gal-pileta-02.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-pileta-02.jpg" alt="La piscina de Arroyo Suite House" loading="lazy"></a>
+      <a href="assets/web/gal-ext-02.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-ext-02.jpg" alt="Las suites y el parque" loading="lazy"></a>
+      <a href="assets/web/gal-cocina-01.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-cocina-01.jpg" alt="La kitchenette equipada" loading="lazy"></a>
+      <a href="assets/web/gal-dorm-03.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-dorm-03.jpg" alt="Dormitorio de la suite" loading="lazy"></a>
+      <a href="assets/web/gal-pileta-03.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-pileta-03.jpg" alt="La piscina de Arroyo Suite House" loading="lazy"></a>
+      <a href="assets/web/gal-ext-03.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-ext-03.jpg" alt="Las suites y el parque" loading="lazy"></a>
+      <a href="assets/web/gal-vista-01.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-vista-01.jpg" alt="La vista a las sierras desde el predio" loading="lazy"></a>
+      <a href="assets/web/gal-dorm-04.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-dorm-04.jpg" alt="Dormitorio de la suite" loading="lazy"></a>
+      <a href="assets/web/gal-pileta-04.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-pileta-04.jpg" alt="La piscina de Arroyo Suite House" loading="lazy"></a>
+      <a href="assets/web/gal-ext-04.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-ext-04.jpg" alt="Las suites y el parque" loading="lazy"></a>
+      <a href="assets/web/gal-deck-02.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-deck-02.jpg" alt="El deck privado de la suite" loading="lazy"></a>
+      <a href="assets/web/gal-dorm-05.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-dorm-05.jpg" alt="Dormitorio de la suite" loading="lazy"></a>
+      <a href="assets/web/gal-pileta-05.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-pileta-05.jpg" alt="La piscina de Arroyo Suite House" loading="lazy"></a>
+      <a href="assets/web/gal-ext-05.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-ext-05.jpg" alt="Las suites y el parque" loading="lazy"></a>
+      <a href="assets/web/gal-dorm-06.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-dorm-06.jpg" alt="Dormitorio de la suite" loading="lazy"></a>
+      <a href="assets/web/gal-pileta-06.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-pileta-06.jpg" alt="La piscina de Arroyo Suite House" loading="lazy"></a>
+      <a href="assets/web/gal-ext-06.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-ext-06.jpg" alt="Las suites y el parque" loading="lazy"></a>
+      <a href="assets/web/gal-dorm-07.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-dorm-07.jpg" alt="Dormitorio de la suite" loading="lazy"></a>
+      <a href="assets/web/gal-ext-07.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-ext-07.jpg" alt="Las suites y el parque" loading="lazy"></a>
+    </div>
   </div>
 </section>
 
-<!-- ============ OPINIONES ============ -->
-<section class="op" id="opiniones">
-  <div class="op__head reveal">
+<!-- ── DESDE EL AIRE ────────────────────────────────────────────── -->
+<!-- El video no arranca hasta que la sección se acerca: son 3,4 MB y no
+     tiene sentido bajárselos a alguien que nunca llega hasta acá. -->
+<section id="aire" class="film-epic">
+  <img class="poster" src="assets/video/drone-rio-sierras-poster.jpg" alt="El río Los Sauces desde el aire, con las sierras de fondo">
+  <video id="drone" data-src="assets/video/drone-rio-sierras.mp4"
+         poster="assets/video/drone-rio-sierras-poster.jpg"
+         muted loop playsinline preload="none" aria-hidden="true"></video>
+  <div class="film-txt">
+    <p class="kicker">Desde el aire</p>
+    <h2 class="display">El río Los Sauces,<span class="script">a 200 metros.</span></h2>
+    <p class="lead">La zona vista desde arriba, con las sierras de fondo.</p>
+  </div>
+</section>
+
+<!-- ── OPINIONES ────────────────────────────────────────────────── -->
+<section id="opiniones">
+  <div class="wrap">
     <p class="kicker">Lo que dicen quienes ya vinieron</p>
-    <h2 class="op__title">Opiniones de nuestros <em>huéspedes</em></h2>
-    <div class="op__scores">
-      <a class="op__score" href="https://www.booking.com/hotel/ar/arroyo-suite-house.es.html" target="_blank" rel="noopener">
-        <span class="op__num">9,7</span>
-        <span class="op__lbl">Booking<br><small>26 comentarios</small></span>
-      </a>
-      <a class="op__score" href="https://www.google.com/maps/place/Arroyo+Suite+House" target="_blank" rel="noopener">
-        <span class="op__num">4,9</span>
-        <span class="op__lbl">Google<br><small>56 reseñas</small></span>
-      </a>
+    <h2>82 opiniones, dos números.</h2>
+    <div class="scores">
+      <div class="score"><b>9,7</b><span>Booking · 26 opiniones</span></div>
+      <div class="score"><b>4,9</b><span>Google · 56 reseñas</span></div>
     </div>
-  </div>
-  <div class="op__grid">
-      <figure class="op__card reveal">
-        <blockquote class="op__txt">«No podría decir que fue lo q me gustó más porque todo fue excelente, realmente Jorge muy amable y atento, el lugar es soñado, recomiendo…»</blockquote>
-        <figcaption class="op__meta">
-          <span class="op__name">Marcelo</span>
-          <span class="op__src">Booking</span>
-        </figcaption>
-      </figure>
-      <figure class="op__card reveal">
-        <blockquote class="op__txt">«Excelentes anfitriones Lii y Jorge. Cabaña moderna y confortable. Desayuno espectacular, rico y variado!!»</blockquote>
-        <figcaption class="op__meta">
-          <span class="op__name">Marta</span>
-          <span class="op__src">Booking</span>
-        </figcaption>
-      </figure>
-      <figure class="op__card reveal">
-        <blockquote class="op__txt">«Me gusto mucho la vista y la tranquilidad del lugar. Esta bueno que sean pocos espacios de alquiler porque te deja estar en el espacio muy tranquila.»</blockquote>
-        <figcaption class="op__meta">
-          <span class="op__name">María</span>
-          <span class="op__src">Booking</span>
-        </figcaption>
-      </figure>
-      <figure class="op__card reveal">
-        <blockquote class="op__txt">«Hermoso espacio, extremo cuidado del detalle para el confort del viajero. Fresco, luminoso y amplio.»</blockquote>
-        <figcaption class="op__meta">
-          <span class="op__name">Huésped de Google</span>
-          <span class="op__src">Google</span>
-        </figcaption>
-      </figure>
-      <figure class="op__card reveal">
-        <blockquote class="op__txt">«Excelente y hermoso lugar con una hermosa vista, la atención de sus dueños muy calida y atentos en todo.»</blockquote>
-        <figcaption class="op__meta">
-          <span class="op__name">Bulla</span>
-          <span class="op__src">Booking</span>
-        </figcaption>
-      </figure>
-      <figure class="op__card reveal">
-        <blockquote class="op__txt">«Los dueños muy amables, todo bien limpio, la cama super cómoda, se nota que le hacen el mantenimiento que se necesita.»</blockquote>
-        <figcaption class="op__meta">
-          <span class="op__name">Natalia</span>
-          <span class="op__src">Booking</span>
-        </figcaption>
-      </figure>
-      <figure class="op__card reveal">
-        <blockquote class="op__txt">«La ubicación muy buena el anfitrión muy amable y la instalación muy limpia y ordenada.»</blockquote>
-        <figcaption class="op__meta">
-          <span class="op__name">Tatiana</span>
-          <span class="op__src">Booking</span>
-        </figcaption>
-      </figure>
-      <figure class="op__card reveal">
-        <blockquote class="op__txt">«La hospitalidad y el trato del dueño, además de la comodidad de las instalaciones.»</blockquote>
-        <figcaption class="op__meta">
-          <span class="op__name">Dorregaray</span>
-          <span class="op__src">Booking</span>
-        </figcaption>
-      </figure>
-  </div>
-</section>
-
-<!-- ============ INFO STRIP ============ -->
-<section class="info">
-  <div class="info__col reveal"><h5>Check-in</h5><p>A partir de las 14:00 h</p></div>
-  <div class="info__col reveal"><h5>Check-out</h5><p>Antes de las 10:00 h</p></div>
-  <div class="info__col reveal"><h5>Formas de pago</h5><p>Efectivo, transferencia, débito y crédito</p></div>
-  <div class="info__col reveal"><h5>Políticas</h5><p>No se permite fumar dentro de las suites · No se aceptan mascotas</p></div>
-</section>
-
-<!-- ============ CONTACTO / CTA ============ -->
-<section class="cta" id="contacto">
-  <div class="cta__inner reveal">
-    <p class="kicker kicker--light">Reservá tu escapada</p>
-    <h2>¿Listos para una escapada en pareja?</h2>
-    <p class="cta__lede">Escribinos y reservá las fechas que más te gusten. Te respondemos a la brevedad.</p>
-    <a class="btn btn--gold btn--lg" href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Arroyo%20Suite%20House" target="_blank" rel="noopener">Reservar por WhatsApp</a>
-    <div class="cta__rows">
-      <a href="tel:+5491162678709">+54 9 11 6267-8709</a>
-      <a href="tel:+5491123254471">+54 9 11 2325-4471</a>
-      <a href="mailto:arroyosuitehouse@gmail.com">arroyosuitehouse@gmail.com</a>
+    <div class="quotes">
+      <p class="quote">«Me gusto mucho la vista y la tranquilidad del lugar. Esta bueno que sean pocos espacios de alquiler porque te deja estar en el espacio muy tranquila.»</p>
+      <p class="quote">«Excelentes anfitriones Lii y Jorge. Cabaña moderna y confortable. Desayuno espectacular, rico y variado!!»</p>
+      <p class="quote">«Hermoso espacio, extremo cuidado del detalle para el confort del viajero. Fresco, luminoso y amplio.»</p>
+      <p class="quote">«No podría decir que fue lo q me gustó más porque todo fue excelente, realmente Jorge muy amable y atento, el lugar es soñado, recomiendo…»</p>
+      <p class="quote">«Los dueños muy amables, todo bien limpio, la cama super cómoda, se nota que le hacen el mantenimiento que se necesita.»</p>
+      <p class="quote">«Excelente y hermoso lugar con una hermosa vista, la atención de sus dueños muy calida y atentos en todo.»</p>
     </div>
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <div class="footer__inner">
-    <div class="footer__brand">
-      <img src="assets/img/logo-blanco.png" alt="Arroyo Suite House" class="footer__logo">
+<!-- ── CÓMO LLEGAR + CIERRE ─────────────────────────────────────── -->
+<section id="llegar" class="light">
+  <div class="wrap cols">
+    <div>
+      <p class="kicker">Cómo llegar</p>
+      <h2>A 150 km de Córdoba capital.</h2>
+      <p class="lead">Arroyo de los Patos, Traslasierra. Cruzando las Altas Cumbres, con las sierras alrededor.</p>
     </div>
-    <div class="footer__social">
-      <a href="https://instagram.com/arroyosuitehouse" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://facebook.com/arroyosuitehouse" target="_blank" rel="noopener">Facebook</a>
-      <a href="https://wa.me/5491162678709" target="_blank" rel="noopener">WhatsApp</a>
+    <div>
+      <ul class="specs" style="margin-top:0">
+        <li><b>Check-in</b> A partir de las 14:00 h</li>
+        <li><b>Check-out</b> Antes de las 10:00 h</li>
+        <li><b>Pagos</b> Efectivo, transferencia, débito y crédito</li>
+        <li><b>Normas</b> No se fuma dentro de las suites · No se aceptan mascotas</li>
+      </ul>
     </div>
-    <p class="footer__legal">© <span id="year"></span> Arroyo Suite House · Arroyo de los Patos, Córdoba · Argentina</p>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap">
+    <p class="kicker">Reservas por WhatsApp</p>
+    <h2 class="display">¿Vienen<span class="script">los dos?</span></h2>
+    <p class="lead" style="margin:30px auto 34px">Contanos las fechas y te confirmamos disponibilidad en el momento.</p>
+    <a class="pill lg" href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Arroyo%20Suite%20House" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.4.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4 0-.1-.2-.2-.4-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>
+      Reservá tu escapada
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="ash" style="--u:52px;margin-bottom:26px"><span class="n">ARROYO</span><span class="s">SUITE HOUSE</span>
+      <span class="loc"><i></i><span>TRASLASIERRA · CÓRDOBA</span><i></i></span></span>
+    <p class="sign">Pequeños momentos, grandes historias</p>
+    <!-- La ubicación ya la dice el logo acá arriba: repetirla sonaba a relleno. -->
+    <p class="legal"><a href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Arroyo%20Suite%20House" target="_blank" rel="noopener">Escribinos por WhatsApp</a></p>
   </div>
 </footer>
 
-<!-- Botón subir -->
 <button class="to-top" id="toTop" aria-label="Subir al inicio">
   <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
-<!-- Floating WhatsApp -->
-<a class="wa-float" href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad" target="_blank" rel="noopener" aria-label="WhatsApp">
+<a class="wa-float" href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Arroyo%20Suite%20House" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.7L.5 31.5l8-2.1c2.2 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.2c-2.5 0-4.8-.7-6.8-1.9l-.5-.3-4.7 1.2 1.3-4.6-.3-.5C3.6 20.5 3 18.3 3 16 3 8.8 8.8 3 16 3s13 5.8 13 13-5.8 12.7-13 12.7zm7.1-9.5c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.6.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.2 0-.6.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.3 2.6 4 6.4 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.1-.3-.2-.7-.4z"/></svg>
 </a>
 
-<!-- Lightbox -->
-<div class="lb" id="lb" aria-hidden="true">
-  <button class="lb__close" id="lbClose" aria-label="Cerrar">✕</button>
-  <button class="lb__nav lb__prev" id="lbPrev" aria-label="Anterior">‹</button>
-  <img id="lbImg" alt="">
-  <button class="lb__nav lb__next" id="lbNext" aria-label="Siguiente">›</button>
-</div>
+<script>
+// La barra se opaca apenas se sale del hero: sobre la foto va transparente.
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('solid', window.scrollY > 80);
+onScroll();
+addEventListener('scroll', onScroll, { passive: true });
 
-<script src="js/main.js?v=1614"></script>
+// El boton dorado de subir solo aparece cuando ya bajaste una pantalla.
+const top = document.getElementById('toTop');
+if (top) {
+  const verTop = () => top.classList.toggle('ver', scrollY > innerHeight * .8);
+  verTop();
+  addEventListener('scroll', verTop, { passive: true });
+  top.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+}
+
+// El drone pesa 3,4 MB: no se baja hasta que la sección está por entrar en
+// pantalla. Si el visitante nunca llega hasta ahí, no gasta datos. Y si tiene
+// el sistema en "reducir movimiento", se queda la foto fija y listo.
+(() => {
+  const v = document.getElementById('drone');
+  if (!v) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const io = new IntersectionObserver((entradas) => {
+    for (const e of entradas) {
+      if (!e.isIntersecting) { v.pause(); continue; }
+      if (!v.src) { v.src = v.dataset.src; }
+      v.play().catch(() => {});          // si el navegador lo bloquea, queda el póster
+    }
+  }, { rootMargin: '300px 0px' });
+  io.observe(v.closest('.film-epic'));
+})();
+</script>
 </body>
 </html>
