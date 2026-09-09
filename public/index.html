@@ -146,6 +146,13 @@ section{padding-block:clamp(76px,11vw,150px)}
 /* El PNG del logo es blanco: sobre la barra crema hay que darlo vuelta. */
 .nav.solid img{filter:invert(1) brightness(.16)}
 .nav img{height:44px;width:auto}
+/* El boton de arriba vive en dos fondos opuestos: encima de la foto del hero
+   (oscura) y encima de la barra ocre cuando ya bajaste. Ningun color sirve para
+   los dos —el negro da 1,36:1 sobre la foto y el ocre da 1,00:1 sobre la barra—
+   asi que se da vuelta junto con la barra. Arriba vuelve la pastilla blanca de
+   las historias, que ahi rinde 11,18:1. */
+.nav:not(.solid) .pill{background:var(--sobre-foto);color:#1B2521}
+.nav:not(.solid) .pill:hover,.nav:not(.solid) .pill:focus-visible{background:#fff}
 .nav-links{display:flex;gap:30px;align-items:center;
   font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.16em}
 .nav-links a{text-decoration:none;opacity:.82}
@@ -235,12 +242,15 @@ section{padding-block:clamp(76px,11vw,150px)}
 .round-txt{position:relative;z-index:2}
 .round.flip .round-txt{text-align:right}
 .round.flip .round-txt .kicker{color:var(--acento)}
-.badge{position:absolute;z-index:3;width:clamp(116px,13vw,152px);aspect-ratio:1;
-  border-radius:50%;background:var(--acento);color:var(--tinta);
+.badge{position:absolute;z-index:3;width:clamp(124px,14vw,162px);aspect-ratio:1;
+  border-radius:50%;background:var(--acento);color:#fff;
   display:grid;place-content:center;text-align:center;
-  font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;line-height:1.75;
+  /* Lo que costaba leer no era el color (ya daba 7,12:1) sino el cuerpo:
+     11 px, peso liviano y letras muy abiertas. Sube a 12, engorda a 600 y
+     se cierra el tracking. */
+  font-size:12px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;line-height:1.72;
   right:clamp(-26px,-2vw,-14px);bottom:38px;
-  box-shadow:0 14px 34px rgba(20,30,26,.45)}
+  box-shadow:0 14px 34px rgba(30,23,18,.38)}
 .round.flip .badge{right:auto;left:clamp(-26px,-2vw,-14px)}
 
 /* ── Listas de ficha ──────────────────────────────────────────────── */
@@ -552,12 +562,14 @@ onScroll();
 addEventListener('scroll', onScroll, { passive: true });
 
 // El boton dorado de subir solo aparece cuando ya bajaste una pantalla.
-const top = document.getElementById('toTop');
-if (top) {
-  const verTop = () => top.classList.toggle('ver', scrollY > innerHeight * .8);
+// OJO: no llamar 'top' a esta variable — window.top es global no configurable
+// y 'const top' tira SyntaxError que mata el script entero, sin aviso visible.
+const btnTop = document.getElementById('toTop');
+if (btnTop) {
+  const verTop = () => btnTop.classList.toggle('ver', scrollY > innerHeight * .8);
   verTop();
   addEventListener('scroll', verTop, { passive: true });
-  top.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+  btnTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
 // El drone pesa 3,4 MB: no se baja hasta que la sección está por entrar en
