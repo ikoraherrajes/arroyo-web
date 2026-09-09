@@ -175,9 +175,13 @@ section{padding-block:clamp(76px,11vw,150px)}
 /* Ken Burns lento: 40 s de ida y vuelta. A esa velocidad no se "ve" el
    movimiento, se siente que la foto respira. Infinito y alternado para que
    no quede congelada si alguien se queda mirando. */
-.hero-bg img{width:100%;height:100%;object-fit:cover;
+/* Tres fotos apiladas: solo la que tiene .on esta visible, y el cambio es un
+   fundido de casi dos segundos. La pagina no pasa diapositivas: cambia de luz. */
+.hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   transform-origin:58% 62%;                 /* pivota sobre la pileta, no sobre el centro */
+  opacity:0;transition:opacity 1.8s ease-in-out;
   animation:respirar 40s ease-in-out infinite alternate}
+.hero-bg img.on{opacity:1}
 @keyframes respirar{
   from{transform:scale(1.02) translate3d(0,0,0)}
   to{transform:scale(1.11) translate3d(-1.2%,-.8%,0)}
@@ -371,7 +375,9 @@ footer img{height:52px;margin:0 auto 24px}
      y una huésped ya lo dijo mejor que nosotros en su reseña. -->
 <header class="hero" id="inicio">
   <div class="hero-bg">
-    <img src="assets/web/arroyo-pileta-suite.jpg" alt="La piscina de Arroyo Suite House con las dos suites detrás" fetchpriority="high">
+    <img class="on" src="assets/web/n-suite-farol.jpg" alt="La suite y el parque con la luz del atardecer" fetchpriority="high">
+    <img src="assets/web/arroyo-pileta-suite.jpg" alt="La piscina de Arroyo Suite House con las dos suites detrás" loading="lazy">
+    <img src="assets/web/n-suites-parque.jpg" alt="Las dos suites y el parque con el pasto verde" loading="lazy">
   </div>
   <div class="hero-inner">
     <p class="kicker">Arroyo de los Patos · Traslasierra · Córdoba</p>
@@ -406,7 +412,7 @@ footer img{height:52px;margin:0 auto 24px}
       <ul class="specs">
         <li><b>Cama</b> King size de 180 × 200</li>
         <li><b>Clima</b> Aire frío/calor y estufa de tiro balanceado</li>
-        <li><b>Cocina</b> Kitchenette con cafetera, tostadora y microondas</li>
+        <li><b>Cocina</b> Kitchenette con heladera bajo mesada, cafetera, tostadora y microondas</li>
         <li><b>Tele</b> Smart TV 50" con Google TV</li>
         <li><b>Internet</b> WiFi Starlink en todo el predio</li>
       </ul>
@@ -418,7 +424,7 @@ footer img{height:52px;margin:0 auto 24px}
 <section id="servicios">
   <div class="wrap round flip">
     <div class="shot">
-      <div class="ph"><img src="assets/web/gal-deck-03.jpg" alt="Piscina descubierta y solárium en el parque de Arroyo Suite House" loading="lazy"></div>
+      <div class="ph"><img src="assets/web/n-pileta-suites.jpg" alt="La piscina descubierta con las dos suites al fondo" loading="lazy"></div>
       <div class="badge">A 200 m<br>del río<br>Los Sauces</div>
     </div>
     <div class="round-txt">
@@ -428,7 +434,7 @@ footer img{height:52px;margin:0 auto 24px}
       <ul class="specs">
         <li><b>Piscina</b> Descubierta, con solárium</li>
         <li><b>Deck</b> Privado en cada suite, con mesa, sillones y sombrilla</li>
-        <li><b>Asador</b> Cubierto y espacioso, con media sombra antigranizo</li>
+        <li><b>Estacionamiento</b> Cubierto y espacioso, con media sombra antigranizo</li>
         <li><b>Desayuno</b> Seco, lo llevamos a tu unidad</li>
         <li><b>Limpieza</b> Periódica, con recambio de toallas cada 2 días</li>
       </ul>
@@ -442,12 +448,14 @@ footer img{height:52px;margin:0 auto 24px}
     <p class="kicker">Un recorrido por el predio</p>
     <h2>La piscina, las suites<br>y las sierras.</h2>
     <div class="grid">
+      <a href="assets/web/n-atardecer-wide.jpg" target="_blank" rel="noopener"><img src="assets/web/n-atardecer-wide.jpg" alt="Las dos suites al atardecer, con los decks y las sombrillas" loading="lazy"></a>
       <a href="assets/web/gal-dorm-01.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-dorm-01.jpg" alt="Dormitorio de la suite" loading="lazy"></a>
       <a href="assets/web/gal-pileta-01.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-pileta-01.jpg" alt="La piscina de Arroyo Suite House" loading="lazy"></a>
       <a href="assets/web/gal-ext-01.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-ext-01.jpg" alt="Las suites y el parque" loading="lazy"></a>
       <a href="assets/web/gal-deck-01.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-deck-01.jpg" alt="El deck privado de la suite" loading="lazy"></a>
       <a href="assets/web/gal-dorm-02.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-dorm-02.jpg" alt="Dormitorio de la suite" loading="lazy"></a>
-      <a href="assets/web/gal-pileta-02.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-pileta-02.jpg" alt="La piscina de Arroyo Suite House" loading="lazy"></a>
+      <a href="assets/web/n-reposeras.jpg" target="_blank" rel="noopener"><img src="assets/web/n-reposeras.jpg" alt="Reposeras al sol junto a la piscina" loading="lazy"></a>
+      <a href="assets/web/n-durazno.jpg" target="_blank" rel="noopener"><img src="assets/web/n-durazno.jpg" alt="Un durazno en flor frente a la suite" loading="lazy"></a>
       <a href="assets/web/gal-ext-02.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-ext-02.jpg" alt="Las suites y el parque" loading="lazy"></a>
       <a href="assets/web/gal-cocina-01.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-cocina-01.jpg" alt="La kitchenette equipada" loading="lazy"></a>
       <a href="assets/web/gal-dorm-03.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-dorm-03.jpg" alt="Dormitorio de la suite" loading="lazy"></a>
@@ -455,14 +463,16 @@ footer img{height:52px;margin:0 auto 24px}
       <a href="assets/web/gal-ext-03.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-ext-03.jpg" alt="Las suites y el parque" loading="lazy"></a>
       <a href="assets/web/gal-vista-01.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-vista-01.jpg" alt="La vista a las sierras desde el predio" loading="lazy"></a>
       <a href="assets/web/gal-dorm-04.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-dorm-04.jpg" alt="Dormitorio de la suite" loading="lazy"></a>
-      <a href="assets/web/gal-pileta-04.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-pileta-04.jpg" alt="La piscina de Arroyo Suite House" loading="lazy"></a>
+      <a href="assets/web/n-pileta-frente.jpg" target="_blank" rel="noopener"><img src="assets/web/n-pileta-frente.jpg" alt="Las suites vistas desde el borde de la piscina" loading="lazy"></a>
+      <a href="assets/web/n-deck-frontal.jpg" target="_blank" rel="noopener"><img src="assets/web/n-deck-frontal.jpg" alt="El deck privado de la suite, con mesa y sombrilla" loading="lazy"></a>
       <a href="assets/web/gal-ext-04.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-ext-04.jpg" alt="Las suites y el parque" loading="lazy"></a>
       <a href="assets/web/gal-deck-02.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-deck-02.jpg" alt="El deck privado de la suite" loading="lazy"></a>
       <a href="assets/web/gal-dorm-05.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-dorm-05.jpg" alt="Dormitorio de la suite" loading="lazy"></a>
       <a href="assets/web/gal-pileta-05.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-pileta-05.jpg" alt="La piscina de Arroyo Suite House" loading="lazy"></a>
       <a href="assets/web/gal-ext-05.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-ext-05.jpg" alt="Las suites y el parque" loading="lazy"></a>
       <a href="assets/web/gal-dorm-06.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-dorm-06.jpg" alt="Dormitorio de la suite" loading="lazy"></a>
-      <a href="assets/web/gal-pileta-06.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-pileta-06.jpg" alt="La piscina de Arroyo Suite House" loading="lazy"></a>
+      <a href="assets/web/n-sombra-galeria.jpg" target="_blank" rel="noopener"><img src="assets/web/n-sombra-galeria.jpg" alt="Sillones bajo la media sombra, con las suites al fondo" loading="lazy"></a>
+      <a href="assets/web/n-atardecer-suites.jpg" target="_blank" rel="noopener"><img src="assets/web/n-atardecer-suites.jpg" alt="Las dos suites con la luz del atardecer" loading="lazy"></a>
       <a href="assets/web/gal-ext-06.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-ext-06.jpg" alt="Las suites y el parque" loading="lazy"></a>
       <a href="assets/web/gal-dorm-07.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-dorm-07.jpg" alt="Dormitorio de la suite" loading="lazy"></a>
       <a href="assets/web/gal-ext-07.jpg" target="_blank" rel="noopener"><img src="assets/web/gal-ext-07.jpg" alt="Las suites y el parque" loading="lazy"></a>
@@ -587,6 +597,26 @@ if (btnTop) {
     }
   }, { rootMargin: '300px 0px' });
   io.observe(v.closest('.film-epic'));
+})();
+
+// El hero cambia de foto cada 8 s con un fundido largo. Es el mismo predio a
+// distintas horas: atardecer, mediodia junto a la pileta, y la tarde cayendo.
+// Se frena si la pestania esta oculta, para no gastar bateria de fondo.
+(() => {
+  const fotos = document.querySelectorAll('.hero-bg img');
+  if (fotos.length < 2) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let i = 0, reloj = null;
+  const pasar = () => {
+    fotos[i].classList.remove('on');
+    i = (i + 1) % fotos.length;
+    fotos[i].classList.add('on');
+  };
+  const arrancar = () => { if (!reloj) reloj = setInterval(pasar, 8000); };
+  const frenar = () => { clearInterval(reloj); reloj = null; };
+  document.addEventListener('visibilitychange',
+    () => document.hidden ? frenar() : arrancar());
+  arrancar();
 })();
 </script>
 </body>
