@@ -85,14 +85,16 @@
   --gut:clamp(20px,5vw,72px);
 }
 *{box-sizing:border-box}
-/* El rebote de scroll del celular seguia pintando el crema del fondo mas alla
-   del pie, y la pagina parecia no terminar nunca. Con esto corta donde termina
-   el contenido. */
-html{scroll-behavior:smooth;overscroll-behavior-y:none;background:var(--crema)}
+/* El rebote del celular pintaba crema mas alla del pie y la pagina parecia no
+   terminar nunca. Cortarlo con overscroll-behavior mataba el tirar-para-
+   actualizar, que vive en el mismo rebote. Asi que el rebote queda, pero se ve
+   oscuro: el <html> pinta el lienzo y el <body> solo su caja, que llega hasta
+   el final del contenido. Debajo del pie aparece la tinta y ahi se ve el corte. */
+html{scroll-behavior:smooth;background:#1B2521}   /* mismo tono que el theme-color y que el bloque oscuro */
 body{
   margin:0;background:var(--crema);color:var(--tinta);
   font-family:var(--display);font-weight:300;font-size:17px;line-height:1.62;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;overscroll-behavior-y:none;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 img,video{display:block;max-width:100%}
 a{color:inherit}
