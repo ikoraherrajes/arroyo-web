@@ -174,7 +174,7 @@ section{padding-block:clamp(76px,11vw,150px)}
 .pill.lg{padding:18px 34px;font-size:15px}
 
 /* ── Hero ─────────────────────────────────────────────────────────── */
-.hero{position:relative;min-height:96svh;display:flex;align-items:flex-end;
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;
   padding-bottom:0;padding-top:0}
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
 /* Ken Burns lento: 40 s de ida y vuelta. A esa velocidad no se "ve" el
@@ -328,7 +328,7 @@ body.visor-abierto{overflow:hidden}
    Las tomas de drone son VERTICALES (1152×2048). Metidas en una caja
    16:9 se perdía casi todo el cuadro, así que la sección ocupa el alto
    de la pantalla y el video la cubre: en el celular calza casi exacto. */
-.film-epic{position:relative;min-height:92svh;display:flex;align-items:flex-end;
+.film-epic{position:relative;min-height:100svh;display:flex;align-items:flex-end;
   overflow:hidden;padding:0}
 .film-epic video,.film-epic .poster{position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;z-index:0}
@@ -391,11 +391,6 @@ footer img{height:52px;margin:0 auto 24px}
   .strip span{font-size:8.5px;letter-spacing:.08em}
   .strip svg{width:22px;height:22px}
   .strip .it{padding:16px 5px 4px}
-  /* En el escritorio el hero mide 96svh a proposito: ese 4% que asoma invita a
-     seguir bajando. En el celular ese mismo 4% cae justo debajo de la franja de
-     iconos y se lee como un corte de crema plano, asi que ahi llena la pantalla. */
-  .hero{min-height:100svh}
-  .film-epic{min-height:100svh}
 }
 </style>
 </head>
