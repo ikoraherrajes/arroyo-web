@@ -85,11 +85,14 @@
   --gut:clamp(20px,5vw,72px);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+/* El rebote de scroll del celular seguia pintando el crema del fondo mas alla
+   del pie, y la pagina parecia no terminar nunca. Con esto corta donde termina
+   el contenido. */
+html{scroll-behavior:smooth;overscroll-behavior-y:none;background:var(--crema)}
 body{
   margin:0;background:var(--crema);color:var(--tinta);
   font-family:var(--display);font-weight:300;font-size:17px;line-height:1.62;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;overscroll-behavior-y:none;
 }
 img,video{display:block;max-width:100%}
 a{color:inherit}
