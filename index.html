@@ -40,6 +40,12 @@
   "telephone": "+5491162678709",
   "priceRange": "$",
   "currenciesAccepted": "ARS",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -31.7531709,
+    "longitude": -65.0033202
+  },
+  "hasMap": "https://www.google.com/maps/place/Arroyo+Suite+House/@-31.7531709,-65.0033202,17z",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Arroyo de los Patos",
@@ -238,6 +244,22 @@ section{padding-block:clamp(76px,11vw,150px)}
 .strip span{display:block;font-size:11px;font-weight:500;letter-spacing:.14em;
   text-transform:uppercase;line-height:1.45;color:#DED6C7}
 
+/* El corazon es el unico icono de la franja que se puede apretar: arranca
+   apagado, igual que los demas, y al tocarlo se llena de rojo y late. Es un
+   <button> de verdad para que ande con teclado y lo anuncie el lector. */
+.strip .corazon{font:inherit;color:inherit;background:none;border:0;cursor:pointer;
+  width:100%;-webkit-tap-highlight-color:transparent}
+.strip .corazon svg{transition:stroke .25s ease,fill .25s ease,transform .25s ease}
+.strip .corazon:hover svg{transform:scale(1.12)}
+.strip .corazon[aria-pressed="true"] svg{stroke:#E0483C;fill:#E0483C;
+  animation:latir 1.15s ease-in-out infinite}
+@keyframes latir{
+  0%,100%{transform:scale(1)}
+  18%{transform:scale(1.22)}
+  32%{transform:scale(1.02)}
+  48%{transform:scale(1.16)}
+}
+
 /* ── Foto vertical + chapa ─────────────────────────────────────────
    Antes esto era un círculo. Dos problemas: recortaba la habitación por
    la mitad y, como la chapa vivía dentro del contenedor que enmascara,
@@ -281,6 +303,29 @@ section{padding-block:clamp(76px,11vw,150px)}
 .light .specs li{border-color:rgba(242,237,228,.18);color:#C7CFC5}
 .light .specs b{color:var(--sobre-foto)}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,70px);margin-top:44px}
+
+/* ── Mapa ──────────────────────────────────────────────────────────
+   El mapa manda, y al costado va el QR: en la compu nadie escribe la
+   direccion a mano, la escanea y sigue viaje en el telefono. */
+.mapa{display:grid;grid-template-columns:1fr 210px;gap:24px;align-items:stretch;
+  margin-top:clamp(30px,4vw,46px)}
+.mapa-marco{border-radius:18px;overflow:hidden;background:rgba(242,237,228,.08);
+  min-height:330px}
+.mapa-marco iframe{width:100%;height:100%;min-height:330px;border:0;display:block;
+  filter:saturate(.9)}
+.qr{background:var(--sobre-foto);border-radius:18px;padding:18px 16px 16px;
+  text-align:center;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.qr img{width:100%;max-width:150px;margin:0 auto;border-radius:8px;display:block}
+.qr p{margin:0;font-size:11.5px;line-height:1.5;letter-spacing:.08em;
+  text-transform:uppercase;font-weight:500;color:#4A403A}
+.mapa-ir{display:none}
+@media (max-width:900px){
+  /* En el celular el QR no sirve —es el mismo aparato— y en su lugar va el
+     boton, que abre la app de mapas con el destino ya puesto. */
+  .mapa{grid-template-columns:1fr}
+  .qr{display:none}
+  .mapa-ir{display:inline-flex;margin-top:16px}
+}
 
 /* ── Galería ──────────────────────────────────────────────────────── */
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:46px}
@@ -433,7 +478,7 @@ footer img{height:52px;margin:0 auto 24px}
     </a>
 
     <div class="strip">
-      <div class="it"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-9.3A3.7 3.7 0 0 1 12 8a3.7 3.7 0 0 1 7 2.7C19 15.4 12 20 12 20z"/></svg><span>Pensado<br>para parejas</span></div>
+      <button class="it corazon" id="corazon" type="button" aria-pressed="false" aria-label="Prender el corazón"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-9.3A3.7 3.7 0 0 1 12 8a3.7 3.7 0 0 1 7 2.7C19 15.4 12 20 12 20z"/></svg><span>Pensado<br>para parejas</span></button>
       <div class="it"><svg viewBox="0 0 24 24"><path d="M3 8c2-1.6 4-1.6 6 0s4 1.6 6 0 4-1.6 6 0M3 13c2-1.6 4-1.6 6 0s4 1.6 6 0 4-1.6 6 0M3 18c2-1.6 4-1.6 6 0s4 1.6 6 0 4-1.6 6 0"/></svg><span>Piscina<br>y solárium</span></div>
       <div class="it"><svg viewBox="0 0 24 24"><path d="M2 19l6.5-10L13 16l2.5-4L22 19z"/></svg><span>Vista a<br>las sierras</span></div>
       <div class="it"><svg viewBox="0 0 24 24"><path d="M5 11h14M6.5 11a5.5 5.5 0 0 0 11 0M9 19l1.5-3M15 19l-1.5-3M9 7.5c0-1 1-1.3 1-2.3M12 7.5c0-1 1-1.3 1-2.3M15 7.5c0-1 1-1.3 1-2.3"/></svg><span>Asador<br>privado</span></div>
@@ -454,9 +499,9 @@ footer img{height:52px;margin:0 auto 24px}
       <h2>Dos, iguales, y para dos.</h2>
       <p class="lead">Cada una con su deck, su asador y su vista. No compartís pared con nadie más que con la otra suite, y no hay una tercera.</p>
       <ul class="specs">
-        <li><b>Cama</b> King size de 180 × 200</li>
+        <li><b>Sommier</b> King size de 180 × 200</li>
         <li><b>Clima</b> Aire frío/calor y estufa de tiro balanceado</li>
-        <li><b>Cocina</b> Kitchenette con heladera bajo mesada, cafetera, tostadora y microondas</li>
+        <li><b>Cocina</b> Kitchenette con heladera bajo mesada, cafetera, tostadora, microondas y vajilla completa</li>
         <li><b>Tele</b> Smart TV 50" con Google TV</li>
         <li><b>Internet</b> WiFi Starlink en todo el predio</li>
       </ul>
@@ -480,7 +525,7 @@ footer img{height:52px;margin:0 auto 24px}
         <li><b>Deck</b> Privado en cada suite, con mesa, sillones y sombrilla</li>
         <li><b>Cochera</b> Cubierta y espaciosa, con media sombra antigranizo</li>
         <li><b>Desayuno</b> Seco, lo llevamos a tu unidad</li>
-        <li><b>Limpieza</b> Periódica, con recambio de toallas cada 2 días</li>
+        <li><b>Limpieza</b> Cada 2 días, limpieza y toallas. Al cuarto día, limpieza completa con recambio de toallas y sábanas</li>
       </ul>
     </div>
   </div>
@@ -519,7 +564,7 @@ footer img{height:52px;margin:0 auto 24px}
       <a href="assets/web/gal-dorm-06.jpg"><img src="assets/web/gal-dorm-06.jpg" alt="El dormitorio visto desde el ventanal" loading="lazy"></a>
       <a href="assets/web/gal-dorm-07.jpg"><img src="assets/web/gal-dorm-07.jpg" alt="El dormitorio de la suite" loading="lazy"></a>
       <a href="assets/web/gal-cocina-01.jpg"><img src="assets/web/gal-cocina-01.jpg" alt="La kitchenette equipada" loading="lazy"></a>
-      <a href="assets/web/equip-03.jpg"><img src="assets/web/equip-03.jpg" alt="La kitchenette con heladera bajo mesada, y el paso al baño" loading="lazy"></a>
+      <a href="assets/web/equip-03.jpg"><img src="assets/web/equip-03.jpg" alt="La kitchenette con heladera bajo mesada, vajilla completa y el paso al baño" loading="lazy"></a>
       <a href="assets/web/n-placard.jpg"><img src="assets/web/n-placard.jpg" alt="El placard de la suite, con perchas y estantes" loading="lazy"></a>
       <a href="assets/web/n-bano-puertas.jpg"><img src="assets/web/n-bano-puertas.jpg" alt="El baño dividido: el inodoro en un ambiente y la ducha en otro" loading="lazy"></a>
       <a href="assets/web/n-bano-bacha.jpg"><img src="assets/web/n-bano-bacha.jpg" alt="El baño de la suite, con bacha doble y espejo" loading="lazy"></a>
@@ -536,7 +581,7 @@ footer img{height:52px;margin:0 auto 24px}
   <img class="poster" src="assets/video/drone-rio-sierras-poster.jpg" alt="El río Los Sauces desde el aire, con las sierras de fondo">
   <video id="drone" data-src="assets/video/drone-rio-sierras.mp4"
          poster="assets/video/drone-rio-sierras-poster.jpg"
-         muted loop playsinline preload="none" aria-hidden="true"></video>
+         muted loop playsinline autoplay preload="none" aria-hidden="true"></video>
   <div class="film-txt">
     <p class="kicker">Desde el aire</p>
     <h2 class="display">El río Los Sauces,<span class="script">a 200 metros.</span></h2>
@@ -576,10 +621,29 @@ footer img{height:52px;margin:0 auto 24px}
       <ul class="specs" style="margin-top:0">
         <li><b>Check-in</b> A partir de las 14:00 h</li>
         <li><b>Check-out</b> Antes de las 10:00 h</li>
+        <li><b>Teléfono</b> <a href="tel:+5491162678709">+54 9 11 6267-8709</a></li>
         <li><b>Pagos</b> Efectivo, transferencia, débito y crédito</li>
         <li><b>Normas</b> No se fuma dentro de las suites · No se aceptan mascotas</li>
       </ul>
     </div>
+  </div>
+
+  <div class="wrap">
+    <div class="mapa">
+      <div class="mapa-marco">
+        <iframe src="https://www.google.com/maps?q=-31.7531709,-65.0033202&amp;hl=es&amp;z=15&amp;output=embed"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                title="Mapa con la ubicación de Arroyo Suite House"></iframe>
+      </div>
+      <div class="qr">
+        <img src="assets/web/qr-como-llegar.png" alt="Código QR con la ubicación de Arroyo Suite House" width="640" height="640">
+        <p>Escaneá y<br>seguí en tu celular</p>
+      </div>
+    </div>
+    <a class="pill mapa-ir" href="https://www.google.com/maps/dir/?api=1&amp;destination=-31.7531709,-65.0033202" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.4-7-11a7 7 0 0 1 14 0c0 4.6-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+      Cómo llegar en Maps
+    </a>
   </div>
 </section>
 
@@ -601,7 +665,7 @@ footer img{height:52px;margin:0 auto 24px}
       <span class="loc"><i></i><span>TRASLASIERRA · CÓRDOBA</span><i></i></span></span>
     <p class="sign">Pequeños momentos, grandes historias</p>
     <!-- La ubicación ya la dice el logo acá arriba: repetirla sonaba a relleno. -->
-    <p class="legal"><a href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Arroyo%20Suite%20House" target="_blank" rel="noopener">Escribinos por WhatsApp</a></p>
+    <p class="legal"><a href="https://wa.me/5491162678709?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Arroyo%20Suite%20House" target="_blank" rel="noopener">Escribinos por WhatsApp</a> · <a href="tel:+5491162678709">+54 9 11 6267-8709</a></p>
   </div>
 </footer>
 
@@ -652,14 +716,83 @@ if (btnTop) {
   const v = document.getElementById('drone');
   if (!v) return;
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const io = new IntersectionObserver((entradas) => {
-    for (const e of entradas) {
-      if (!e.isIntersecting) { v.pause(); continue; }
-      if (!v.src) { v.src = v.dataset.src; }
-      v.play().catch(() => {});          // si el navegador lo bloquea, queda el póster
+  // Safari no arranca un video que todavia no tiene datos: hay que pedirle
+  // play() recien cuando avisa que puede reproducir. Y como en iOS el primer
+  // intento igual puede salir rechazado, se reintenta con el primer toque en
+  // cualquier lado de la pagina, que ya cuenta como gesto del visitante.
+  const arrancar = () => {
+    const intento = v.play();
+    if (intento && intento.catch) intento.catch(() => {});
+  };
+  const prender = () => {
+    if (!v.src) {
+      v.src = v.dataset.src;
+      v.load();
+      v.addEventListener('canplay', arrancar, { once: true });
     }
-  }, { rootMargin: '300px 0px' });
-  io.observe(v.closest('.film-epic'));
+    arrancar();
+  };
+  addEventListener('touchstart', () => { if (!v.paused || !v.src) return; arrancar(); },
+    { once: true, passive: true });
+
+  // Dos disparadores para lo mismo, porque uno solo no alcanza: el observer
+  // es el que menos cuesta, pero hay navegadores donde no dispara nunca. El
+  // repaso en el scroll es tosco y funciona siempre. Los dos llaman a prender(),
+  // que ya se protege de bajar el archivo dos veces.
+  const seccion = v.closest('.film-epic');
+  const cerca = () => {
+    const r = seccion.getBoundingClientRect();
+    return r.top < innerHeight + 300 && r.bottom > -300;
+  };
+  let pedido = false;
+  const revisar = () => {
+    pedido = false;
+    if (cerca()) prender();
+    else if (!v.paused) v.pause();
+  };
+  // El scroll dispara decenas de veces por segundo: se junta con un timer.
+  // Va setTimeout y no requestAnimationFrame a proposito: con la pestania en
+  // segundo plano el navegador congela rAF (y tambien el observer), y el video
+  // se quedaba sin arrancar al volver.
+  const alScroll = () => {
+    if (pedido) return;
+    pedido = true;
+    setTimeout(revisar, 80);
+  };
+  addEventListener('scroll', alScroll, { passive: true });
+  addEventListener('resize', alScroll, { passive: true });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) alScroll(); });
+  revisar();
+
+  if (typeof IntersectionObserver === 'function') {
+    const io = new IntersectionObserver((entradas) => {
+      for (const e of entradas) {
+        if (!e.isIntersecting) { v.pause(); continue; }
+        prender();
+      }
+    }, { rootMargin: '300px 0px' });
+    io.observe(seccion);
+  }
+})();
+
+// El corazon de la franja se prende y se apaga al apretarlo, y se acuerda
+// de como quedo en ese telefono. localStorage puede tirar excepcion (ventana
+// privada, cookies bloqueadas), asi que nunca puede voltear la pagina.
+(() => {
+  const c = document.getElementById('corazon');
+  if (!c) return;
+  const pintar = (v) => {
+    c.setAttribute('aria-pressed', v ? 'true' : 'false');
+    c.setAttribute('aria-label', v ? 'Apagar el corazón' : 'Prender el corazón');
+  };
+  let prendido = false;
+  try { prendido = localStorage.getItem('arroyo-corazon') === '1'; } catch (e) {}
+  pintar(prendido);
+  c.addEventListener('click', () => {
+    prendido = !prendido;
+    pintar(prendido);
+    try { localStorage.setItem('arroyo-corazon', prendido ? '1' : '0'); } catch (e) {}
+  });
 })();
 
 // Visor de fotos. El <a href> sigue apuntando al archivo, asi que sin JS
