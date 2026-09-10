@@ -312,10 +312,11 @@ section{padding-block:clamp(76px,11vw,150px)}
 .mapa-marco{border-radius:18px;overflow:hidden;background:rgba(242,237,228,.08);
   min-height:330px}
 .mapa-marco iframe{width:100%;height:100%;min-height:330px;border:0;display:block;
-  filter:saturate(.9)}
+  filter:invert(1) hue-rotate(180deg) saturate(.75) brightness(.92) contrast(1.05)}
 .qr{background:var(--sobre-foto);border-radius:18px;padding:18px 16px 16px;
   text-align:center;display:flex;flex-direction:column;justify-content:center;gap:12px}
-.qr img{width:100%;max-width:150px;margin:0 auto;border-radius:8px;display:block}
+.qr img{width:100%;max-width:150px;height:auto;aspect-ratio:1;margin:0 auto;
+  border-radius:8px;display:block}
 .qr p{margin:0;font-size:11.5px;line-height:1.5;letter-spacing:.08em;
   text-transform:uppercase;font-weight:500;color:#4A403A}
 .mapa-ir{display:none}
@@ -374,6 +375,17 @@ body.visor-abierto{overflow:hidden}
    Las tomas de drone son VERTICALES (1152×2048). Metidas en una caja
    16:9 se perdía casi todo el cuadro, así que la sección ocupa el alto
    de la pantalla y el video la cubre: en el celular calza casi exacto. */
+/* iOS no deja arrancar un video solo cuando el telefono esta en modo de bajo
+   consumo, y no hay forma de sortearlo. Entonces, si despues de pedirlo el
+   video sigue quieto, aparece este boton: un toque ya cuenta como permiso. */
+.play-video{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  z-index:2;display:none;place-items:center;width:74px;height:74px;border:0;
+  border-radius:50%;cursor:pointer;background:rgba(242,237,228,.92);
+  color:#1B2521;box-shadow:0 8px 30px rgba(0,0,0,.35);
+  transition:transform .18s ease,background .18s ease}
+.play-video.ver{display:grid}
+.play-video:hover{transform:translate(-50%,-50%) scale(1.07);background:#fff}
+.play-video svg{width:28px;height:28px;margin-left:4px}
 .film-epic{position:relative;min-height:100svh;min-height:100dvh;display:flex;align-items:flex-end;
   overflow:hidden;padding:0}
 .film-epic video,.film-epic .poster{position:absolute;inset:0;width:100%;height:100%;
@@ -545,11 +557,11 @@ footer img{height:52px;margin:0 auto 24px}
       <a href="assets/web/n-pileta-frente.jpg"><img src="assets/web/n-pileta-frente.jpg" alt="Las suites vistas desde el borde de la piscina" loading="lazy"></a>
       <a href="assets/web/gal-pileta-03.jpg"><img src="assets/web/gal-pileta-03.jpg" alt="La piscina descubierta" loading="lazy"></a>
       <a href="assets/web/n-galeria-valle.jpg"><img src="assets/web/n-galeria-valle.jpg" alt="La galería con media sombra, la piscina y el valle al fondo" loading="lazy"></a>
-      <a href="assets/web/gal-pileta-05.jpg"><img src="assets/web/gal-pileta-05.jpg" alt="El solárium junto a la piscina" loading="lazy"></a>
+      <a href="assets/web/gal-pileta-06.jpg"><img src="assets/web/gal-pileta-06.jpg" alt="El solárium junto a la piscina" loading="lazy"></a>
       <a href="assets/web/n-sombra-galeria.jpg"><img src="assets/web/n-sombra-galeria.jpg" alt="Sillones bajo la media sombra, con las suites al fondo" loading="lazy"></a>
       <a href="assets/web/gal-ext-03.jpg"><img src="assets/web/gal-ext-03.jpg" alt="El parque entre las suites y la piscina" loading="lazy"></a>
       <a href="assets/web/n-durazno.jpg"><img src="assets/web/n-durazno.jpg" alt="Un durazno en flor frente a la suite" loading="lazy"></a>
-      <a href="assets/web/gal-ext-04.jpg"><img src="assets/web/gal-ext-04.jpg" alt="El predio con las sierras de fondo" loading="lazy"></a>
+      <a href="assets/web/predio-pileta-valle.jpg"><img src="assets/web/predio-pileta-valle.jpg" alt="La piscina y el valle desde el predio" loading="lazy"></a>
       <a href="assets/web/gal-deck-03.jpg"><img src="assets/web/gal-deck-03.jpg" alt="La piscina descubierta y el solárium" loading="lazy"></a>
       <a href="assets/web/gal-ext-07.jpg"><img src="assets/web/gal-ext-07.jpg" alt="Las suites desde el camino de entrada" loading="lazy"></a>
       <a href="assets/web/n-atardecer-suites.jpg"><img src="assets/web/n-atardecer-suites.jpg" alt="Las dos suites con la luz del atardecer" loading="lazy"></a>
@@ -582,6 +594,9 @@ footer img{height:52px;margin:0 auto 24px}
   <video id="drone" data-src="assets/video/drone-rio-sierras.mp4"
          poster="assets/video/drone-rio-sierras-poster.jpg"
          muted loop playsinline autoplay preload="none" aria-hidden="true"></video>
+  <button class="play-video" id="playVideo" type="button" aria-label="Reproducir el video">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+  </button>
   <div class="film-txt">
     <p class="kicker">Desde el aire</p>
     <h2 class="display">El río Los Sauces,<span class="script">a 200 metros.</span></h2>
@@ -631,7 +646,7 @@ footer img{height:52px;margin:0 auto 24px}
   <div class="wrap">
     <div class="mapa">
       <div class="mapa-marco">
-        <iframe src="https://www.google.com/maps?q=-31.7531709,-65.0033202&amp;hl=es&amp;z=15&amp;output=embed"
+        <iframe src="https://www.google.com/maps?q=-31.7531709,-65.0033202(Arroyo%20Suite%20House)&amp;hl=es&amp;z=15&amp;output=embed"
                 loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                 title="Mapa con la ubicación de Arroyo Suite House"></iframe>
       </div>
@@ -720,10 +735,21 @@ if (btnTop) {
   // play() recien cuando avisa que puede reproducir. Y como en iOS el primer
   // intento igual puede salir rechazado, se reintenta con el primer toque en
   // cualquier lado de la pagina, que ya cuenta como gesto del visitante.
+  const boton = document.getElementById('playVideo');
+  const mostrarBoton = (si) => { if (boton) boton.classList.toggle('ver', si); };
   const arrancar = () => {
     const intento = v.play();
-    if (intento && intento.catch) intento.catch(() => {});
+    if (intento && intento.then) {
+      intento.then(() => mostrarBoton(false)).catch(() => mostrarBoton(true));
+    }
   };
+  if (boton) {
+    boton.addEventListener('click', () => {
+      if (!v.src) { v.src = v.dataset.src; v.load(); }
+      // Aca hay gesto del visitante, asi que este play() no lo rechaza nadie.
+      v.play().then(() => mostrarBoton(false)).catch(() => {});
+    });
+  }
   const prender = () => {
     if (!v.src) {
       v.src = v.dataset.src;
