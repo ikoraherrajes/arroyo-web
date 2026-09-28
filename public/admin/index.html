@@ -38,7 +38,7 @@ body { font-family: var(--sans); font-weight: 300; background: var(--bg); color:
 .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
 .btn-outline:hover { background: #f5f0ea; }
 .btn-sm { padding: 6px 12px; font-size: 13px; }
-.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 16px; }
 .stat { background: var(--bg); border-radius: 8px; padding: 12px; text-align: center; }
 .stat .num { font-family: var(--serif); font-size: 26px; font-weight: 500; color: var(--accent); }
 .stat .label { font-size: 11px; color: var(--text2); text-transform: uppercase; margin-top: 2px; }
@@ -50,7 +50,7 @@ body { font-family: var(--sans); font-weight: 300; background: var(--bg); color:
 .lead-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: middle; }
 .lead-table tr:hover { background: #f9f6f2; }
 .lead-table tr.sent { background: var(--green-bg); }
-.lead-table tr.skipped { opacity: 0.4; }
+.lead-table tr.skipped { display: none; }
 .username { font-weight: 600; color: var(--accent); }
 .snippet { color: var(--text2); max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; }
@@ -122,7 +122,6 @@ body { font-family: var(--sans); font-weight: 300; background: var(--bg); color:
       <div class="stat"><div class="num" id="totalCount">0</div><div class="label">Total</div></div>
       <div class="stat"><div class="num" id="sentCount" style="color:var(--green)">0</div><div class="label">Enviados</div></div>
       <div class="stat"><div class="num" id="pendingCount" style="color:var(--yellow)">0</div><div class="label">Pendientes</div></div>
-      <div class="stat"><div class="num" id="skippedCount" style="color:#888">0</div><div class="label">Omitidos</div></div>
     </div>
 
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
@@ -158,7 +157,6 @@ body { font-family: var(--sans); font-weight: 300; background: var(--bg); color:
         <option value="all">Todos</option>
         <option value="pending">Pendientes</option>
         <option value="sent">Enviados</option>
-        <option value="skipped">Omitidos</option>
       </select>
       <div class="year-filter" id="yearFilter"></div>
     </div>
@@ -346,11 +344,10 @@ function renderTable() {
       <td>${l.lastContact}</td>
       <td>${l.totalMessages}</td>
       <td class="snippet" title="${esc(snippet)}">${esc(snippet)}</td>
-      <td><span class="badge badge-${st}">${st === 'sent' ? 'Enviado' : st === 'skipped' ? 'Omitido' : 'Pendiente'}</span></td>
+      <td><span class="badge badge-${st}">${st === 'sent' ? 'Enviado' : 'Pendiente'}</span></td>
       <td class="actions">
         <button class="btn btn-primary btn-sm" onclick="sendTo('${esc(l.folder)}', '${esc(l.username)}')" title="Copiar msg + abrir DM">Enviar</button>
         <button class="btn btn-outline btn-sm" onclick="markSent('${esc(l.folder)}')" title="Marcar como enviado">✓</button>
-        <button class="btn btn-outline btn-sm" onclick="markSkipped('${esc(l.folder)}')" title="Omitir">✕</button>
       </td>
     `;
     tbody.appendChild(tr);
@@ -367,7 +364,6 @@ function renderTable() {
       <div class="lc-actions">
         <button class="btn btn-primary btn-sm" onclick="sendTo('${esc(l.folder)}', '${esc(l.username)}')">Enviar</button>
         <button class="btn btn-outline btn-sm" onclick="markSent('${esc(l.folder)}')">✓ Enviado</button>
-        <button class="btn btn-outline btn-sm" onclick="markSkipped('${esc(l.folder)}')">✕</button>
       </div>
     `;
     cards.appendChild(card);
@@ -415,28 +411,20 @@ function markSent(folder) {
   renderTable();
 }
 
-function markSkipped(folder) {
-  progress[folder] = 'skipped';
-  saveProgress();
-  renderTable();
-}
-
 function saveProgress() {
   localStorage.setItem('arroyo-promo-progress', JSON.stringify(progress));
 }
 
 function updateStats() {
-  let total = leads.length, sent = 0, skipped = 0, pending = 0;
+  let total = leads.length, sent = 0, pending = 0;
   for (const l of leads) {
     const st = progress[l.folder] || 'pending';
     if (st === 'sent') sent++;
-    else if (st === 'skipped') skipped++;
     else pending++;
   }
   document.getElementById('totalCount').textContent = total;
   document.getElementById('sentCount').textContent = sent;
   document.getElementById('pendingCount').textContent = pending;
-  document.getElementById('skippedCount').textContent = skipped;
   document.getElementById('progressFill').style.width = total ? ((sent / total) * 100) + '%' : '0%';
 }
 
