@@ -88,6 +88,46 @@ body { font-family: var(--sans); font-weight: 300; background: var(--bg); color:
 /* Scroll horizontal en mobile */
 .cal-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
+/* Panorama 3 meses */
+.panorama { margin-top: 28px; }
+.panorama-title { font-family: var(--serif); font-size: 17px; font-weight: 500; margin-bottom: 14px; color: var(--text2); }
+.panorama-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.mini-month { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px; cursor: pointer; transition: box-shadow .15s; }
+.mini-month:hover { box-shadow: 0 2px 12px rgba(21,17,13,.08); }
+.mini-month.is-current { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.mini-label { font-family: var(--serif); font-size: 14px; font-weight: 500; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+.mini-label .mini-count { font-family: var(--sans); font-size: 11px; font-weight: 400; color: var(--text2); }
+.mini-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; margin-bottom: 6px; }
+.mini-day-hdr { font-size: 9px; text-align: center; color: var(--text2); font-weight: 500; padding: 2px 0; }
+.mini-day { font-size: 9px; text-align: center; padding: 3px 1px; border-radius: 3px; color: var(--text); position: relative; }
+.mini-day.empty { visibility: hidden; }
+.mini-day.today { background: var(--accent); color: #fff; font-weight: 600; }
+.mini-day.weekend { color: var(--text2); }
+.mini-lanes { display: flex; flex-direction: column; gap: 3px; margin-top: 4px; }
+.mini-lane { display: flex; gap: 1px; height: 6px; position: relative; }
+.mini-lane-label { font-size: 8px; color: var(--text2); width: 18px; flex-shrink: 0; line-height: 6px; }
+.mini-lane-cells { display: flex; flex: 1; gap: 0; }
+.mini-cell { flex: 1; height: 6px; border-radius: 1px; }
+.mini-cell.occupied { border-radius: 0; }
+.mini-cell.occupied.canal-instagram { background: #e1306c; }
+.mini-cell.occupied.canal-whatsapp { background: #25d366; }
+.mini-cell.occupied.canal-web { background: var(--accent); }
+.mini-cell.occupied.canal-booking { background: #003580; }
+.mini-cell.occupied.canal-expedia { background: #f5b731; }
+.mini-cell.occupied.canal-alquilerargentina { background: #2ecc71; }
+.mini-cell.occupied.canal-airbnb { background: #ff5a5f; }
+.mini-cell.occupied.estado-pendiente { opacity: 0.55; }
+.mini-cell.occupied.estado-cancelada { opacity: 0.2; }
+.mini-cell.occupied.start { border-radius: 2px 0 0 2px; }
+.mini-cell.occupied.end { border-radius: 0 2px 2px 0; }
+.mini-cell.occupied.single { border-radius: 2px; }
+.mini-summary { display: flex; gap: 10px; margin-top: 8px; padding-top: 6px; border-top: 1px solid var(--border); font-size: 10px; color: var(--text2); }
+.mini-summary span { display: flex; align-items: center; gap: 3px; }
+.mini-summary .dot { width: 6px; height: 6px; border-radius: 50%; }
+.dot-conf { background: var(--green); }
+.dot-pend { background: #e8a838; }
+.dot-noches { background: var(--accent); }
+
 @media (max-width: 768px) {
   .header { flex-direction: column; align-items: flex-start; gap: 10px; padding: 12px 16px; }
   .container { padding: 12px 8px; }
@@ -99,6 +139,7 @@ body { font-family: var(--sans); font-weight: 300; background: var(--bg); color:
   .modal { padding: 20px; }
   .form-row { grid-template-columns: 1fr; }
   .cal-unit { font-size: 11px; padding: 8px 4px; }
+  .panorama-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -137,6 +178,11 @@ body { font-family: var(--sans); font-weight: 300; background: var(--bg); color:
 
   <div class="cal-scroll">
     <div class="calendar" id="calendar"></div>
+  </div>
+
+  <div class="panorama">
+    <div class="panorama-title">Panorama 3 meses</div>
+    <div class="panorama-grid" id="panorama"></div>
   </div>
 </div>
 
@@ -337,6 +383,96 @@ function render() {
   }
 
   updateStats();
+  renderPanorama();
+}
+
+function renderPanorama() {
+  const container = document.getElementById('panorama');
+  container.innerHTML = '';
+  const todayStr = new Date().toISOString().split('T')[0];
+  const DIAS_CORTO = ['L','M','X','J','V','S','D'];
+
+  for (let offset = 0; offset < 3; offset++) {
+    let pYear = currentYear, pMonth = currentMonth + offset;
+    if (pMonth > 11) { pMonth -= 12; pYear++; }
+
+    const daysInMonth = new Date(pYear, pMonth + 1, 0).getDate();
+    const firstDow = (new Date(pYear, pMonth, 1).getDay() + 6) % 7;
+    const isCurrent = pYear === currentYear && pMonth === currentMonth;
+
+    const monthStart = `${pYear}-${String(pMonth+1).padStart(2,'0')}-01`;
+    const nextM = pMonth === 11 ? `${pYear+1}-01-01` : `${pYear}-${String(pMonth+2).padStart(2,'0')}-01`;
+    const monthRes = reservas.filter(r => r.hasta > monthStart && r.desde < nextM && r.estado !== 'cancelada');
+    const conf = monthRes.filter(r => r.estado === 'confirmada').length;
+    const pend = monthRes.filter(r => r.estado === 'pendiente').length;
+    let totalNights = 0;
+    for (const r of monthRes) {
+      const d0 = new Date(Math.max(new Date(r.desde+'T12:00:00'), new Date(monthStart+'T12:00:00')));
+      const d1 = new Date(Math.min(new Date(r.hasta+'T12:00:00'), new Date(nextM+'T12:00:00')));
+      totalNights += Math.max(0, Math.round((d1 - d0) / 86400000));
+    }
+
+    const card = document.createElement('div');
+    card.className = 'mini-month' + (isCurrent ? ' is-current' : '');
+    card.onclick = () => { currentYear = pYear; currentMonth = pMonth; render(); window.scrollTo({top:0,behavior:'smooth'}); };
+
+    card.innerHTML = `
+      <div class="mini-label">
+        ${MESES[pMonth]} ${pYear}
+        <span class="mini-count">${monthRes.length} reservas</span>
+      </div>
+      <div class="mini-days">
+        ${DIAS_CORTO.map(d => `<div class="mini-day-hdr">${d}</div>`).join('')}
+        ${Array(firstDow).fill('<div class="mini-day empty"></div>').join('')}
+        ${Array.from({length: daysInMonth}, (_, i) => {
+          const d = i + 1;
+          const ds = `${pYear}-${String(pMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+          const dow = (firstDow + i) % 7;
+          const cls = ds === todayStr ? ' today' : (dow >= 5 ? ' weekend' : '');
+          return `<div class="mini-day${cls}">${d}</div>`;
+        }).join('')}
+      </div>
+      <div class="mini-lanes" id="lanes-${offset}"></div>
+      <div class="mini-summary">
+        <span><span class="dot dot-conf"></span>${conf} conf.</span>
+        <span><span class="dot dot-pend"></span>${pend} pend.</span>
+        <span><span class="dot dot-noches"></span>${totalNights} noches</span>
+      </div>
+    `;
+    container.appendChild(card);
+
+    const lanesEl = card.querySelector(`#lanes-${offset}`);
+    for (const unit of UNITS) {
+      const lane = document.createElement('div');
+      lane.className = 'mini-lane';
+      lane.innerHTML = `<span class="mini-lane-label">${unit.name.replace('Suite ','S')}</span>`;
+      const cells = document.createElement('div');
+      cells.className = 'mini-lane-cells';
+
+      const unitRes = reservas.filter(r => r.unidadId === unit.id);
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const ds = `${pYear}-${String(pMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+        const cell = document.createElement('div');
+        cell.className = 'mini-cell';
+
+        const hit = unitRes.find(r => r.desde <= ds && r.hasta > ds);
+        if (hit) {
+          const isStart = hit.desde === ds;
+          const prevDs = `${pYear}-${String(pMonth+1).padStart(2,'0')}-${String(d-1).padStart(2,'0')}`;
+          const nextDs = `${pYear}-${String(pMonth+1).padStart(2,'0')}-${String(d+1).padStart(2,'0')}`;
+          const isEnd = hit.hasta === nextDs || d === daysInMonth;
+          cell.classList.add('occupied', `canal-${hit.canal}`, `estado-${hit.estado}`);
+          if (isStart && isEnd) cell.classList.add('single');
+          else if (isStart) cell.classList.add('start');
+          else if (isEnd || d === daysInMonth) cell.classList.add('end');
+        }
+        cells.appendChild(cell);
+      }
+      lane.appendChild(cells);
+      lanesEl.appendChild(lane);
+    }
+  }
 }
 
 function updateStats() {
