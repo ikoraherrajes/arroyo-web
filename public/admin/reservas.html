@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reservas — Arroyo Suite House</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f6efe3; --card: #fff; --border: #e7dac4; --text: #15110d;
+  --text2: #a59a89; --accent: #bb6b43; --accent2: #9a5430;
+  --green: #7e8a6f; --green-bg: #e8f0e4; --red: #c44b3b;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Hanken Grotesk', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans); font-weight: 300; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+.header { background: var(--card); border-bottom: 1px solid var(--border); padding: 16px 24px; position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; }
+.header-left { display: flex; align-items: center; gap: 16px; }
+.header h1 { font-family: var(--serif); font-size: 22px; font-weight: 500; letter-spacing: -.012em; }
+.header .sub { color: var(--text2); font-size: 13px; }
+.nav { display: flex; gap: 8px; }
+.nav a { padding: 8px 14px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 500; color: var(--text2); border: 1px solid var(--border); }
+.nav a.active, .nav a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px 16px; }
+.toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+.month-nav { display: flex; align-items: center; gap: 12px; }
+.month-nav button { background: var(--card); border: 1px solid var(--border); border-radius: 8px; width: 36px; height: 36px; cursor: pointer; font-size: 18px; }
+.month-nav button:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+.month-label { font-family: var(--serif); font-size: 20px; font-weight: 500; min-width: 200px; text-align: center; }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: inherit; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent2); }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-sm { padding: 6px 10px; font-size: 12px; }
+
+/* Calendar grid */
+.calendar { display: grid; grid-template-columns: 100px repeat(var(--days), 1fr); background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.cal-header { background: var(--bg); padding: 8px 4px; text-align: center; font-size: 11px; font-weight: 500; color: var(--text2); border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); }
+.cal-header.today { background: var(--accent); color: #fff; border-radius: 0; }
+.cal-header.weekend { background: #ede5d6; }
+.cal-unit { background: var(--card); padding: 12px 8px; font-size: 13px; font-weight: 600; color: var(--accent); border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); display: flex; align-items: center; }
+.cal-cell { border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); min-height: 48px; position: relative; cursor: pointer; }
+.cal-cell:hover { background: #faf6f0; }
+.cal-cell.weekend { background: #faf7f2; }
+
+/* Reservation bars */
+.res-bar { position: absolute; top: 6px; bottom: 6px; border-radius: 6px; font-size: 11px; font-weight: 500; color: #fff; padding: 0 8px; display: flex; align-items: center; overflow: hidden; white-space: nowrap; cursor: pointer; z-index: 2; min-width: 20px; }
+.res-bar:hover { filter: brightness(1.1); box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.res-bar.canal-instagram { background: #e1306c; }
+.res-bar.canal-whatsapp { background: #25d366; color: #fff; }
+.res-bar.canal-web { background: var(--accent); }
+.res-bar.canal-booking { background: #003580; }
+.res-bar.canal-expedia { background: #f5b731; color: #15110d; }
+.res-bar.canal-alquilerargentina { background: #2ecc71; }
+.res-bar.canal-airbnb { background: #ff5a5f; }
+
+/* Estado */
+.estado-confirmada { opacity: 1; }
+.estado-pendiente { opacity: 0.7; border: 2px dashed rgba(255,255,255,.5); }
+.estado-cancelada { opacity: 0.35; text-decoration: line-through; }
+
+/* Modal */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(21,17,13,.4); z-index: 50; align-items: center; justify-content: center; }
+.modal-overlay.open { display: flex; }
+.modal { background: var(--card); border-radius: 16px; padding: 32px; width: 420px; max-width: 95vw; max-height: 90vh; overflow-y: auto; box-shadow: 0 8px 32px rgba(21,17,13,.12); }
+.modal h2 { font-family: var(--serif); font-size: 20px; font-weight: 500; margin-bottom: 20px; }
+.form-group { margin-bottom: 14px; }
+.form-group label { display: block; font-size: 12px; font-weight: 500; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: inherit; background: var(--bg); }
+.form-group input:focus, .form-group select:focus { outline: 2px solid var(--accent); border-color: transparent; background: #fff; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-actions { display: flex; gap: 8px; margin-top: 20px; }
+.form-actions .btn { flex: 1; justify-content: center; }
+.btn-danger { background: var(--red); color: #fff; }
+.btn-danger:hover { background: #a33d2f; }
+
+/* Stats */
+.stats-bar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+.stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; min-width: 120px; }
+.stat-card .num { font-family: var(--serif); font-size: 24px; font-weight: 500; color: var(--accent); }
+.stat-card .label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; }
+
+/* Toast */
+.toast { position: fixed; bottom: 20px; right: 20px; background: var(--green); color: #fff; padding: 12px 20px; border-radius: 8px; font-size: 14px; opacity: 0; transition: opacity .3s; z-index: 100; }
+.toast.show { opacity: 1; }
+
+/* Scroll horizontal en mobile */
+.cal-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+@media (max-width: 768px) {
+  .header { flex-direction: column; align-items: flex-start; gap: 10px; padding: 12px 16px; }
+  .container { padding: 12px 8px; }
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .month-nav { justify-content: center; }
+  .stats-bar { flex-direction: column; }
+  .stat-card { display: flex; justify-content: space-between; align-items: center; }
+  .stat-card .num { font-size: 20px; }
+  .modal { padding: 20px; }
+  .form-row { grid-template-columns: 1fr; }
+  .cal-unit { font-size: 11px; padding: 8px 4px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <img src="/assets/img/logo-negro.png" alt="Arroyo" style="height:32px">
+    <div>
+      <h1>Reservas</h1>
+      <div class="sub">Suite 1 · Suite 2</div>
+    </div>
+  </div>
+  <div class="nav">
+    <a href="/admin/">Promo</a>
+    <a href="/admin/reservas.html" class="active">Reservas</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="stats-bar">
+    <div class="stat-card"><div class="num" id="statTotal">0</div><div class="label">Este mes</div></div>
+    <div class="stat-card"><div class="num" id="statConfirm">0</div><div class="label">Confirmadas</div></div>
+    <div class="stat-card"><div class="num" id="statPending">0</div><div class="label">Pendientes</div></div>
+    <div class="stat-card"><div class="num" id="statNights">0</div><div class="label">Noches</div></div>
+  </div>
+
+  <div class="toolbar">
+    <div class="month-nav">
+      <button onclick="changeMonth(-1)">&larr;</button>
+      <div class="month-label" id="monthLabel"></div>
+      <button onclick="changeMonth(1)">&rarr;</button>
+    </div>
+    <button class="btn btn-primary" onclick="openModal()">+ Nueva reserva</button>
+  </div>
+
+  <div class="cal-scroll">
+    <div class="calendar" id="calendar"></div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <h2 id="modalTitle">Nueva reserva</h2>
+    <input type="hidden" id="resId">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Suite</label>
+        <select id="resUnidad">
+          <option value="suite-1">Suite 1</option>
+          <option value="suite-2">Suite 2</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Canal</label>
+        <select id="resCanal">
+          <option value="instagram">Instagram</option>
+          <option value="whatsapp">WhatsApp</option>
+          <option value="web">Página Web</option>
+          <option value="booking">Booking</option>
+          <option value="expedia">Expedia</option>
+          <option value="alquilerargentina">Alquiler Argentina</option>
+          <option value="airbnb">Airbnb</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Huésped</label>
+      <input type="text" id="resHuesped" placeholder="Nombre del huésped">
+    </div>
+    <div class="form-group">
+      <label>Contacto</label>
+      <input type="text" id="resContacto" placeholder="Teléfono o email">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Check-in</label>
+        <input type="date" id="resDesde">
+      </div>
+      <div class="form-group">
+        <label>Check-out</label>
+        <input type="date" id="resHasta">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Personas</label>
+        <select id="resPersonas">
+          <option value="1">1</option>
+          <option value="2" selected>2</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Estado</label>
+        <select id="resEstado">
+          <option value="confirmada">Confirmada</option>
+          <option value="pendiente">Pendiente</option>
+          <option value="cancelada">Cancelada</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Total $</label>
+        <input type="number" id="resTotal" placeholder="0">
+      </div>
+      <div class="form-group">
+        <label>Seña $</label>
+        <input type="number" id="resSena" placeholder="0">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Nota</label>
+      <textarea id="resNota" rows="2" placeholder="Observaciones..."></textarea>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-danger" id="btnDelete" onclick="deleteRes()" style="display:none">Eliminar</button>
+      <button class="btn btn-primary" onclick="saveRes()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const UNITS = [
+  { id: 'suite-1', name: 'Suite 1' },
+  { id: 'suite-2', name: 'Suite 2' }
+];
+const CANALES = { instagram:'Instagram', whatsapp:'WhatsApp', web:'Web', booking:'Booking', expedia:'Expedia', alquilerargentina:'Alquiler Arg.', airbnb:'Airbnb' };
+const MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const DIAS = ['D','L','M','X','J','V','S'];
+
+let reservas = [];
+let currentYear, currentMonth;
+
+async function init() {
+  const now = new Date();
+  currentYear = now.getFullYear();
+  currentMonth = now.getMonth();
+  await loadReservas();
+  render();
+}
+
+async function loadReservas() {
+  try {
+    const r = await fetch('/admin/api/reservas');
+    reservas = await r.json();
+  } catch { reservas = []; }
+}
+
+function changeMonth(delta) {
+  currentMonth += delta;
+  if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+  if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+  render();
+}
+
+function render() {
+  document.getElementById('monthLabel').textContent = `${MESES[currentMonth]} ${currentYear}`;
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const today = new Date();
+  const todayStr = today.toISOString().split('T')[0];
+
+  const cal = document.getElementById('calendar');
+  cal.style.setProperty('--days', daysInMonth);
+  cal.innerHTML = '';
+
+  // Header row: empty corner + day numbers
+  const corner = document.createElement('div');
+  corner.className = 'cal-header';
+  corner.textContent = '';
+  cal.appendChild(corner);
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date = new Date(currentYear, currentMonth, d);
+    const dateStr = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const dow = date.getDay();
+    const h = document.createElement('div');
+    h.className = 'cal-header' + (dateStr === todayStr ? ' today' : '') + (dow === 0 || dow === 6 ? ' weekend' : '');
+    h.innerHTML = `${DIAS[dow]}<br>${d}`;
+    cal.appendChild(h);
+  }
+
+  // Row per unit
+  for (const unit of UNITS) {
+    const label = document.createElement('div');
+    label.className = 'cal-unit';
+    label.textContent = unit.name;
+    cal.appendChild(label);
+
+    const unitReservas = reservas.filter(r => r.unidadId === unit.id);
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dateStr = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const date = new Date(currentYear, currentMonth, d);
+      const dow = date.getDay();
+      const cell = document.createElement('div');
+      cell.className = 'cal-cell' + (dow === 0 || dow === 6 ? ' weekend' : '');
+      cell.onclick = () => openModal(null, unit.id, dateStr);
+
+      // Render reservation bars that START on this day
+      for (const res of unitReservas) {
+        if (res.desde === dateStr) {
+          const desde = new Date(res.desde + 'T12:00:00');
+          const hasta = new Date(res.hasta + 'T12:00:00');
+          const nights = Math.round((hasta - desde) / 86400000);
+          const monthEnd = daysInMonth - d + 1;
+          const span = Math.min(nights, monthEnd);
+
+          const bar = document.createElement('div');
+          bar.className = `res-bar canal-${res.canal} estado-${res.estado}`;
+          bar.style.width = `calc(${span * 100}% + ${(span - 1)}px)`;
+          bar.style.left = '0';
+          bar.textContent = `${res.huesped} (${CANALES[res.canal] || res.canal})`;
+          bar.title = `${res.huesped}\n${res.desde} → ${res.hasta}\n${CANALES[res.canal]}\n${res.estado}`;
+          bar.onclick = (e) => { e.stopPropagation(); openModal(res); };
+          cell.appendChild(bar);
+        }
+      }
+
+      cal.appendChild(cell);
+    }
+  }
+
+  updateStats();
+}
+
+function updateStats() {
+  const monthStart = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}-01`;
+  const nextMonth = currentMonth === 11 ? `${currentYear+1}-01-01` : `${currentYear}-${String(currentMonth+2).padStart(2,'0')}-01`;
+  const monthRes = reservas.filter(r => r.hasta > monthStart && r.desde < nextMonth && r.estado !== 'cancelada');
+  const confirmed = monthRes.filter(r => r.estado === 'confirmada');
+  const pending = monthRes.filter(r => r.estado === 'pendiente');
+  let nights = 0;
+  for (const r of monthRes) {
+    const desde = new Date(Math.max(new Date(r.desde+'T12:00:00'), new Date(monthStart+'T12:00:00')));
+    const hasta = new Date(Math.min(new Date(r.hasta+'T12:00:00'), new Date(nextMonth+'T12:00:00')));
+    nights += Math.max(0, Math.round((hasta - desde) / 86400000));
+  }
+  document.getElementById('statTotal').textContent = monthRes.length;
+  document.getElementById('statConfirm').textContent = confirmed.length;
+  document.getElementById('statPending').textContent = pending.length;
+  document.getElementById('statNights').textContent = nights;
+}
+
+function openModal(res, unitId, dateStr) {
+  document.getElementById('modalTitle').textContent = res ? 'Editar reserva' : 'Nueva reserva';
+  document.getElementById('btnDelete').style.display = res ? 'block' : 'none';
+  document.getElementById('resId').value = res ? res.id : '';
+  document.getElementById('resUnidad').value = res ? res.unidadId : (unitId || 'suite-1');
+  document.getElementById('resCanal').value = res ? res.canal : 'instagram';
+  document.getElementById('resHuesped').value = res ? res.huesped : '';
+  document.getElementById('resContacto').value = res ? (res.contacto || '') : '';
+  document.getElementById('resDesde').value = res ? res.desde : (dateStr || '');
+  document.getElementById('resHasta').value = res ? res.hasta : '';
+  document.getElementById('resPersonas').value = res ? res.personas : 2;
+  document.getElementById('resEstado').value = res ? res.estado : 'confirmada';
+  document.getElementById('resTotal').value = res ? (res.total || '') : '';
+  document.getElementById('resSena').value = res ? (res.sena || '') : '';
+  document.getElementById('resNota').value = res ? (res.nota || '') : '';
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+}
+
+async function saveRes() {
+  const id = document.getElementById('resId').value;
+  const data = {
+    unidadId: document.getElementById('resUnidad').value,
+    canal: document.getElementById('resCanal').value,
+    huesped: document.getElementById('resHuesped').value,
+    contacto: document.getElementById('resContacto').value,
+    desde: document.getElementById('resDesde').value,
+    hasta: document.getElementById('resHasta').value,
+    personas: parseInt(document.getElementById('resPersonas').value),
+    estado: document.getElementById('resEstado').value,
+    total: parseFloat(document.getElementById('resTotal').value) || 0,
+    sena: parseFloat(document.getElementById('resSena').value) || 0,
+    nota: document.getElementById('resNota').value
+  };
+
+  if (!data.huesped || !data.desde || !data.hasta) {
+    showToast('Completá huésped, check-in y check-out');
+    return;
+  }
+
+  if (id) {
+    await fetch(`/admin/api/reservas/${id}`, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
+  } else {
+    await fetch('/admin/api/reservas', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
+  }
+  closeModal();
+  await loadReservas();
+  render();
+  showToast(id ? 'Reserva actualizada' : 'Reserva creada');
+}
+
+async function deleteRes() {
+  const id = document.getElementById('resId').value;
+  if (!id || !confirm('¿Eliminar esta reserva?')) return;
+  await fetch(`/admin/api/reservas/${id}`, { method: 'DELETE' });
+  closeModal();
+  await loadReservas();
+  render();
+  showToast('Reserva eliminada');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+init();
+</script>
+</body>
+</html>

@@ -101,10 +101,63 @@ const server = http.createServer(async (req, res) => {
 
       const token = getCookie(req, 'arroyo_admin');
       if (!verifyToken(token)) {
+        if (urlPath.startsWith('/admin/api/')) {
+          res.writeHead(401, { 'Content-Type': 'application/json' });
+          return res.end('{"error":"unauthorized"}');
+        }
         res.writeHead(302, { 'Location': '/admin/login' });
         return res.end();
       }
 
+      // --- Reservas API ---
+      const RESERVAS_FILE = path.join(__dirname, 'data', 'reservas.json');
+      function readReservas() {
+        try { return JSON.parse(fs.readFileSync(RESERVAS_FILE, 'utf8')); } catch { return []; }
+      }
+      function writeReservas(data) {
+        const dir = path.dirname(RESERVAS_FILE);
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+        fs.writeFileSync(RESERVAS_FILE, JSON.stringify(data, null, 2), 'utf8');
+      }
+
+      if (urlPath === '/admin/api/reservas' && req.method === 'GET') {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify(readReservas()));
+      }
+
+      if (urlPath === '/admin/api/reservas' && req.method === 'POST') {
+        const body = JSON.parse(await parseBody(req));
+        const reservas = readReservas();
+        body.id = 'res_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+        body.creada = new Date().toISOString();
+        reservas.push(body);
+        writeReservas(reservas);
+        res.writeHead(201, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify(body));
+      }
+
+      if (urlPath.startsWith('/admin/api/reservas/') && req.method === 'PUT') {
+        const id = urlPath.split('/').pop();
+        const body = JSON.parse(await parseBody(req));
+        const reservas = readReservas();
+        const idx = reservas.findIndex(r => r.id === id);
+        if (idx === -1) { res.writeHead(404); return res.end('{"error":"not found"}'); }
+        Object.assign(reservas[idx], body);
+        writeReservas(reservas);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify(reservas[idx]));
+      }
+
+      if (urlPath.startsWith('/admin/api/reservas/') && req.method === 'DELETE') {
+        const id = urlPath.split('/').pop();
+        let reservas = readReservas();
+        reservas = reservas.filter(r => r.id !== id);
+        writeReservas(reservas);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end('{"ok":true}');
+      }
+
+      // --- Static admin files ---
       let adminPath = urlPath.replace(/^\/admin\/?/, '') || 'index.html';
       const adminRoot = path.join(ROOT, 'admin');
       const safe = path.normalize(adminPath).replace(/^(\.\.[/\\])+/, '');
