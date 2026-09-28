@@ -30,9 +30,99 @@ const MIME = {
   '.xml': 'application/xml; charset=utf-8',
 };
 
-const server = http.createServer((req, res) => {
+// --- Admin auth (cookie-based) ---
+const crypto = require('crypto');
+const ADMIN_USER = process.env.ADMIN_USER || 'ADMIN';
+const ADMIN_PASS = process.env.ADMIN_PASS || 'Arroyo2026';
+const TOKEN_SECRET = crypto.randomBytes(32).toString('hex');
+
+function makeToken() {
+  const payload = Date.now().toString();
+  const hmac = crypto.createHmac('sha256', TOKEN_SECRET).update(payload).digest('hex');
+  return payload + '.' + hmac;
+}
+function verifyToken(tok) {
+  if (!tok) return false;
+  const [payload, sig] = tok.split('.');
+  if (!payload || !sig) return false;
+  const expected = crypto.createHmac('sha256', TOKEN_SECRET).update(payload).digest('hex');
+  return crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expected));
+}
+function getCookie(req, name) {
+  const h = req.headers.cookie || '';
+  const m = h.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]+)'));
+  return m ? m[1] : null;
+}
+function parseBody(req) {
+  return new Promise(r => { let b = ''; req.on('data', c => b += c); req.on('end', () => r(b)); });
+}
+
+const LOGIN_PAGE = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — Arroyo Suite House</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Hanken Grotesk',system-ui,sans-serif;font-weight:300;background:#f6efe3;color:#15110d;display:flex;align-items:center;justify-content:center;min-height:100vh}
+.card{background:#fff;border:1px solid #e7dac4;border-radius:16px;padding:48px 40px;width:360px;text-align:center;box-shadow:0 4px 24px rgba(21,17,13,.06)}
+.logo{font-family:'Fraunces',Georgia,serif;font-size:28px;font-weight:500;letter-spacing:-.02em;color:#15110d;margin-bottom:4px}
+.logo-sub{font-size:12px;color:#a59a89;text-transform:uppercase;letter-spacing:2px;margin-bottom:32px}
+input{width:100%;padding:12px 16px;border:1px solid #e7dac4;border-radius:10px;font-size:14px;font-family:inherit;margin-bottom:12px;background:#f6efe3}
+input:focus{outline:2px solid #bb6b43;border-color:transparent;background:#fff}
+button{width:100%;padding:14px;background:#bb6b43;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;font-family:inherit;cursor:pointer;letter-spacing:.02em;transition:background .15s}
+button:hover{background:#9a5430}.err{color:#c44b3b;font-size:13px;margin-bottom:12px;display:none}</style></head>
+<body><div class="card"><img src="/assets/img/logo-negro.png" alt="Arroyo Suite House" style="width:200px;margin:0 auto 8px"><div class="logo-sub">Admin</div>
+<div class="err" id="err">Usuario o contraseña incorrectos</div>
+<form method="POST" action="/admin/login">
+<input name="user" placeholder="Usuario" autocomplete="username" required>
+<input name="pass" type="password" placeholder="Contraseña" autocomplete="current-password" required>
+<button type="submit">Entrar</button></form></div>
+<script>if(location.search.includes('fail'))document.getElementById('err').style.display='block'</script></body></html>`;
+
+const server = http.createServer(async (req, res) => {
   try {
     let urlPath = decodeURIComponent((req.url || '/').split('?')[0]);
+
+    // --- Admin routes ---
+    if (urlPath.startsWith('/admin')) {
+      if (urlPath === '/admin/login' && req.method === 'POST') {
+        const body = await parseBody(req);
+        const params = new URLSearchParams(body);
+        if (params.get('user') === ADMIN_USER && params.get('pass') === ADMIN_PASS) {
+          const token = makeToken();
+          res.writeHead(302, { 'Set-Cookie': `arroyo_admin=${token}; Path=/admin; HttpOnly; SameSite=Strict; Max-Age=86400`, 'Location': '/admin/' });
+          return res.end();
+        }
+        res.writeHead(302, { 'Location': '/admin/login?fail=1' });
+        return res.end();
+      }
+
+      if (urlPath === '/admin/login' || urlPath === '/admin/login/') {
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        return res.end(LOGIN_PAGE);
+      }
+
+      const token = getCookie(req, 'arroyo_admin');
+      if (!verifyToken(token)) {
+        res.writeHead(302, { 'Location': '/admin/login' });
+        return res.end();
+      }
+
+      let adminPath = urlPath.replace(/^\/admin\/?/, '') || 'index.html';
+      const adminRoot = path.join(ROOT, 'admin');
+      const safe = path.normalize(adminPath).replace(/^(\.\.[/\\])+/, '');
+      let file = path.join(adminRoot, safe);
+      if (!file.startsWith(adminRoot)) { res.writeHead(403); return res.end('Forbidden'); }
+
+      fs.stat(file, (err, stat) => {
+        if (err || !stat.isFile()) {
+          file = path.join(adminRoot, 'index.html');
+        }
+        const ext = path.extname(file).toLowerCase();
+        res.writeHead(200, { 'Content-Type': MIME[ext] || 'application/octet-stream', 'Cache-Control': 'no-cache' });
+        fs.createReadStream(file).pipe(res);
+      });
+      return;
+    }
+
+    // --- Public site ---
     if (urlPath === '/') urlPath = '/index.html';
     // Evitar path traversal
     const safe = path.normalize(urlPath).replace(/^(\.\.[/\\])+/, '');

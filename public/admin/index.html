@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arroyo Suite House — Envío Promo</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f6efe3;
+  --card: #fff;
+  --border: #e7dac4;
+  --text: #15110d;
+  --text2: #a59a89;
+  --accent: #bb6b43;
+  --accent2: #9a5430;
+  --green: #7e8a6f;
+  --green-bg: #e8f0e4;
+  --red: #c44b3b;
+  --yellow: #c9a35a;
+  --yellow-bg: #f6efe3;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Hanken Grotesk', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans); font-weight: 300; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+.header { background: var(--card); border-bottom: 1px solid var(--border); padding: 20px 24px; position: sticky; top: 0; z-index: 10; }
+.header h1 { font-family: var(--serif); font-size: 22px; font-weight: 500; letter-spacing: -.012em; }
+.header .sub { color: var(--text2); font-size: 13px; margin-top: 4px; }
+.layout { display: grid; grid-template-columns: 340px 1fr; height: calc(100vh - 70px); }
+.sidebar { background: var(--card); border-right: 1px solid var(--border); padding: 16px; overflow-y: auto; }
+.sidebar h3 { font-family: var(--sans); font-size: 11px; font-weight: 500; margin-bottom: 12px; color: var(--text2); text-transform: uppercase; letter-spacing: 1.5px; }
+.msg-box { width: 100%; min-height: 140px; border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 14px; font-family: inherit; resize: vertical; margin-bottom: 12px; }
+.msg-box:focus { outline: 2px solid var(--accent); border-color: transparent; }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
+.btn-primary { background: var(--accent); color: #fff; font-weight: 500; }
+.btn-primary:hover { background: var(--accent2); }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-outline:hover { background: #f5f0ea; }
+.btn-sm { padding: 6px 12px; font-size: 13px; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.stat { background: var(--bg); border-radius: 8px; padding: 12px; text-align: center; }
+.stat .num { font-family: var(--serif); font-size: 26px; font-weight: 500; color: var(--accent); }
+.stat .label { font-size: 11px; color: var(--text2); text-transform: uppercase; margin-top: 2px; }
+.filters { margin-bottom: 16px; }
+.filters input, .filters select { width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; margin-bottom: 8px; }
+.main { padding: 16px; overflow-y: auto; }
+.lead-table { width: 100%; border-collapse: collapse; }
+.lead-table th { position: sticky; top: 0; background: var(--bg); text-align: left; padding: 10px 12px; font-size: 12px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--border); }
+.lead-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: middle; }
+.lead-table tr:hover { background: #f9f6f2; }
+.lead-table tr.sent { background: var(--green-bg); }
+.lead-table tr.skipped { opacity: 0.4; }
+.username { font-weight: 600; color: var(--accent); }
+.snippet { color: var(--text2); max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+.badge-sent { background: var(--green-bg); color: var(--green); }
+.badge-pending { background: var(--yellow-bg); color: var(--yellow); }
+.badge-skipped { background: #f0f0f0; color: #888; }
+.actions { display: flex; gap: 4px; }
+.toast { position: fixed; bottom: 20px; right: 20px; background: var(--green); color: #fff; padding: 12px 20px; border-radius: 8px; font-size: 14px; opacity: 0; transition: opacity 0.3s; z-index: 100; }
+.toast.show { opacity: 1; }
+.progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin-bottom: 16px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--green); transition: width 0.3s; }
+.year-filter { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 8px; }
+.year-btn { padding: 4px 10px; border: 1px solid var(--border); border-radius: 14px; font-size: 12px; cursor: pointer; background: transparent; }
+.year-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.img-upload { border: 2px dashed var(--border); border-radius: 8px; padding: 16px; text-align: center; cursor: pointer; margin-bottom: 12px; transition: border-color 0.2s; position: relative; }
+.img-upload:hover { border-color: var(--accent); }
+.img-upload.has-image { border-style: solid; border-color: var(--green); padding: 8px; }
+.img-upload img { max-width: 100%; max-height: 160px; border-radius: 6px; display: block; margin: 0 auto; }
+.img-upload .placeholder { color: var(--text2); font-size: 13px; }
+.img-upload input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.img-remove { position: absolute; top: 4px; right: 4px; background: var(--red); color: #fff; border: none; border-radius: 50%; width: 24px; height: 24px; font-size: 14px; cursor: pointer; line-height: 24px; }
+.img-instructions { background: var(--yellow-bg); border: 1px solid #e8d78a; border-radius: 8px; padding: 12px; font-size: 12px; color: var(--text); margin-bottom: 12px; line-height: 1.5; display: none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div style="display:flex;align-items:center;gap:16px">
+    <img src="/assets/img/logo-negro.png" alt="Arroyo Suite House" style="height:32px">
+    <div>
+      <h1>Envío Promo Oct/Nov</h1>
+      <div class="sub">10% OFF estadías octubre y noviembre 2026 (no incluye fines de semana largos)</div>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="stats">
+      <div class="stat"><div class="num" id="totalCount">0</div><div class="label">Total</div></div>
+      <div class="stat"><div class="num" id="sentCount" style="color:var(--green)">0</div><div class="label">Enviados</div></div>
+      <div class="stat"><div class="num" id="pendingCount" style="color:var(--yellow)">0</div><div class="label">Pendientes</div></div>
+      <div class="stat"><div class="num" id="skippedCount" style="color:#888">0</div><div class="label">Omitidos</div></div>
+    </div>
+
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+    <h3>Mensaje</h3>
+    <textarea class="msg-box" id="messageText"></textarea>
+
+    <h3>Imagen adjunta</h3>
+    <div class="img-upload" id="imgUpload">
+      <div class="placeholder" id="imgPlaceholder">Click o arrastrá una imagen aquí</div>
+      <img id="imgPreview" style="display:none">
+      <button class="img-remove" id="imgRemove" style="display:none" onclick="removeImage(event)">&times;</button>
+      <input type="file" accept="image/*" id="imgInput" onchange="handleImage(this)">
+    </div>
+
+    <div class="img-instructions" id="imgInstructions">
+      <strong>Para enviar la imagen:</strong><br>
+      1. Se abre Instagram Direct<br>
+      2. Pegá el mensaje (Ctrl+V)<br>
+      3. Clickeá el ícono de imagen en IG y seleccioná la imagen descargada<br>
+      4. Enviá ambos
+    </div>
+
+    <div style="display:flex;gap:8px;margin-bottom:16px">
+      <button class="btn btn-primary" onclick="copyMessage()" style="flex:1">Copiar mensaje</button>
+      <button class="btn btn-outline" onclick="downloadImage()" id="btnDownloadImg" style="flex:1;display:none">Descargar imagen</button>
+    </div>
+
+    <h3>Filtros</h3>
+    <div class="filters">
+      <input type="text" id="searchBox" placeholder="Buscar por nombre..." oninput="renderTable()">
+      <select id="statusFilter" onchange="renderTable()">
+        <option value="all">Todos</option>
+        <option value="pending">Pendientes</option>
+        <option value="sent">Enviados</option>
+        <option value="skipped">Omitidos</option>
+      </select>
+      <div class="year-filter" id="yearFilter"></div>
+    </div>
+
+    <h3>Acciones</h3>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <button class="btn btn-outline" onclick="exportProgress()">Exportar progreso (CSV)</button>
+      <button class="btn btn-outline" onclick="resetProgress()" style="color:var(--red)">Resetear progreso</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <table class="lead-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Username</th>
+          <th>Último contacto</th>
+          <th>Msgs</th>
+          <th>Consulta</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const DEFAULT_MSG = `¡Hola! Te escribimos desde Arroyo Suite House 🏡
+
+Vimos que en algún momento consultaste por nuestras suites para parejas y queremos contarte que tenemos una promo especial:
+
+✨ 10% OFF en estadías durante octubre y noviembre 2026
+(No incluye fines de semana largos)
+
+📍 Suites privadas para parejas en Arroyo de los Patos, Traslasierra - Córdoba
+🛏️ Todo nuevo, desayuno incluido
+🌊 Pileta, deck, parrilla
+
+¿Te interesa? Respondé este mensaje y te pasamos disponibilidad y tarifas 😊
+
+www.arroyosuitehouse.com`;
+
+let leads = [];
+let progress = {};
+let promoImageBlob = null;
+let promoImageName = '';
+
+function init() {
+  try { progress = JSON.parse(localStorage.getItem('arroyo-promo-progress') || '{}'); } catch { progress = {}; }
+  const savedMsg = localStorage.getItem('arroyo-promo-msg');
+  document.getElementById('messageText').value = savedMsg || DEFAULT_MSG;
+  document.getElementById('messageText').addEventListener('input', () => {
+    localStorage.setItem('arroyo-promo-msg', document.getElementById('messageText').value);
+  });
+  loadLeads();
+}
+
+async function loadLeads() {
+  try {
+    const resp = await fetch('leads.json');
+    leads = await resp.json();
+  } catch {
+    leads = [];
+    showToast('Error cargando leads.json');
+  }
+  buildYearFilter();
+  renderTable();
+  updateStats();
+}
+
+function handleImage(input) {
+  const file = input.files[0];
+  if (!file) return;
+  promoImageBlob = file;
+  promoImageName = file.name;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const preview = document.getElementById('imgPreview');
+    preview.src = e.target.result;
+    preview.style.display = 'block';
+    document.getElementById('imgPlaceholder').style.display = 'none';
+    document.getElementById('imgRemove').style.display = 'block';
+    document.getElementById('imgUpload').classList.add('has-image');
+    document.getElementById('btnDownloadImg').style.display = 'block';
+    document.getElementById('imgInstructions').style.display = 'block';
+    localStorage.setItem('arroyo-promo-img', e.target.result);
+    localStorage.setItem('arroyo-promo-img-name', file.name);
+  };
+  reader.readAsDataURL(file);
+}
+
+function removeImage(e) {
+  e.stopPropagation();
+  promoImageBlob = null;
+  promoImageName = '';
+  document.getElementById('imgPreview').style.display = 'none';
+  document.getElementById('imgPlaceholder').style.display = 'block';
+  document.getElementById('imgRemove').style.display = 'none';
+  document.getElementById('imgUpload').classList.remove('has-image');
+  document.getElementById('imgInput').value = '';
+  document.getElementById('btnDownloadImg').style.display = 'none';
+  document.getElementById('imgInstructions').style.display = 'none';
+  localStorage.removeItem('arroyo-promo-img');
+  localStorage.removeItem('arroyo-promo-img-name');
+}
+
+function downloadImage() {
+  const src = document.getElementById('imgPreview').src;
+  if (!src) return;
+  const a = document.createElement('a');
+  a.href = src;
+  a.download = promoImageName || 'promo-arroyo.jpg';
+  a.click();
+  showToast('Imagen descargada — adjuntala en IG');
+}
+
+// Restore saved image on load
+function restoreImage() {
+  try {
+    const saved = localStorage.getItem('arroyo-promo-img');
+    const name = localStorage.getItem('arroyo-promo-img-name');
+    if (saved) {
+      document.getElementById('imgPreview').src = saved;
+      document.getElementById('imgPreview').style.display = 'block';
+      document.getElementById('imgPlaceholder').style.display = 'none';
+      document.getElementById('imgRemove').style.display = 'block';
+      document.getElementById('imgUpload').classList.add('has-image');
+      document.getElementById('btnDownloadImg').style.display = 'block';
+      document.getElementById('imgInstructions').style.display = 'block';
+      promoImageName = name || 'promo-arroyo.jpg';
+    }
+  } catch {}
+}
+
+function buildYearFilter() {
+  const years = new Set();
+  for (const l of leads) years.add(l.lastContact.substring(0, 4));
+  const sorted = [...years].sort().reverse();
+  const container = document.getElementById('yearFilter');
+  container.innerHTML = '<button class="year-btn active" onclick="filterYear(this, \'all\')">Todos</button>';
+  for (const y of sorted) {
+    container.innerHTML += `<button class="year-btn" onclick="filterYear(this, '${y}')">${y}</button>`;
+  }
+}
+
+let activeYear = 'all';
+function filterYear(el, year) {
+  activeYear = year;
+  document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderTable();
+}
+
+function renderTable() {
+  const search = document.getElementById('searchBox').value.toLowerCase();
+  const statusF = document.getElementById('statusFilter').value;
+  const tbody = document.getElementById('tableBody');
+
+  let filtered = leads.filter(l => {
+    if (search && !l.username.toLowerCase().includes(search)) return false;
+    if (activeYear !== 'all' && !l.lastContact.startsWith(activeYear)) return false;
+    const st = progress[l.folder] || 'pending';
+    if (statusF !== 'all' && st !== statusF) return false;
+    return true;
+  });
+
+  tbody.innerHTML = '';
+  for (let i = 0; i < filtered.length; i++) {
+    const l = filtered[i];
+    const st = progress[l.folder] || 'pending';
+    const snippet = l.snippets[0]?.text?.substring(0, 80) || '';
+    const tr = document.createElement('tr');
+    tr.className = st;
+    tr.innerHTML = `
+      <td>${i + 1}</td>
+      <td class="username">@${esc(l.username)}</td>
+      <td>${l.lastContact}</td>
+      <td>${l.totalMessages}</td>
+      <td class="snippet" title="${esc(snippet)}">${esc(snippet)}</td>
+      <td><span class="badge badge-${st}">${st === 'sent' ? 'Enviado' : st === 'skipped' ? 'Omitido' : 'Pendiente'}</span></td>
+      <td class="actions">
+        <button class="btn btn-primary btn-sm" onclick="sendTo('${esc(l.folder)}', '${esc(l.username)}')" title="Copiar msg + abrir DM">Enviar</button>
+        <button class="btn btn-outline btn-sm" onclick="markSent('${esc(l.folder)}')" title="Marcar como enviado">✓</button>
+        <button class="btn btn-outline btn-sm" onclick="markSkipped('${esc(l.folder)}')" title="Omitir">✕</button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  }
+  updateStats();
+}
+
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+async function sendTo(folder, username) {
+  const msg = document.getElementById('messageText').value;
+
+  // Copy message to clipboard
+  try {
+    await navigator.clipboard.writeText(msg);
+    showToast('Mensaje copiado — pegalo en el DM');
+  } catch {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = msg;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('Mensaje copiado');
+  }
+
+  // If there's an image, also trigger download so user can attach in IG
+  const imgSrc = document.getElementById('imgPreview').src;
+  if (imgSrc && document.getElementById('imgPreview').style.display !== 'none') {
+    // Auto-download the image for easy attach
+    const a = document.createElement('a');
+    a.href = imgSrc;
+    a.download = promoImageName || 'promo-arroyo.jpg';
+    a.click();
+  }
+
+  const igUrl = `https://www.instagram.com/direct/new/?query=${encodeURIComponent(username)}`;
+  window.open(igUrl, '_blank');
+}
+
+function markSent(folder) {
+  progress[folder] = 'sent';
+  saveProgress();
+  renderTable();
+}
+
+function markSkipped(folder) {
+  progress[folder] = 'skipped';
+  saveProgress();
+  renderTable();
+}
+
+function saveProgress() {
+  localStorage.setItem('arroyo-promo-progress', JSON.stringify(progress));
+}
+
+function updateStats() {
+  let total = leads.length, sent = 0, skipped = 0, pending = 0;
+  for (const l of leads) {
+    const st = progress[l.folder] || 'pending';
+    if (st === 'sent') sent++;
+    else if (st === 'skipped') skipped++;
+    else pending++;
+  }
+  document.getElementById('totalCount').textContent = total;
+  document.getElementById('sentCount').textContent = sent;
+  document.getElementById('pendingCount').textContent = pending;
+  document.getElementById('skippedCount').textContent = skipped;
+  document.getElementById('progressFill').style.width = total ? ((sent / total) * 100) + '%' : '0%';
+}
+
+function copyMessage() {
+  const msg = document.getElementById('messageText').value;
+  navigator.clipboard.writeText(msg).then(() => showToast('Mensaje copiado'));
+}
+
+function exportProgress() {
+  const lines = ['Username,Estado,Ultimo Contacto'];
+  for (const l of leads) {
+    const st = progress[l.folder] || 'pending';
+    lines.push(`"@${l.username}","${st}","${l.lastContact}"`);
+  }
+  const blob = new Blob(['﻿' + lines.join('\n')], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'arroyo-promo-progreso.csv';
+  a.click();
+}
+
+function resetProgress() {
+  if (confirm('¿Seguro? Se borra todo el progreso de envío.')) {
+    progress = {};
+    saveProgress();
+    renderTable();
+    showToast('Progreso reseteado');
+  }
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+init();
+restoreImage();
+</script>
+</body>
+</html>
