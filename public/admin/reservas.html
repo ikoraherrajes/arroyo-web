@@ -211,6 +211,16 @@ body { font-family: var(--sans); font-weight: 300; background: var(--bg); color:
         <input type="number" id="resSena" placeholder="0">
       </div>
     </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Auto</label>
+        <input type="text" id="resAuto" placeholder="Marca y modelo">
+      </div>
+      <div class="form-group">
+        <label>Patente</label>
+        <input type="text" id="resPatente" placeholder="ABC 123" style="text-transform:uppercase">
+      </div>
+    </div>
     <div class="form-group">
       <label>Nota</label>
       <textarea id="resNota" rows="2" placeholder="Observaciones..."></textarea>
@@ -361,6 +371,8 @@ function openModal(res, unitId, dateStr) {
   document.getElementById('resEstado').value = res ? res.estado : 'confirmada';
   document.getElementById('resTotal').value = res ? (res.total || '') : '';
   document.getElementById('resSena').value = res ? (res.sena || '') : '';
+  document.getElementById('resAuto').value = res ? (res.auto || '') : '';
+  document.getElementById('resPatente').value = res ? (res.patente || '') : '';
   document.getElementById('resNota').value = res ? (res.nota || '') : '';
   document.getElementById('modalOverlay').classList.add('open');
 }
@@ -382,6 +394,8 @@ async function saveRes() {
     estado: document.getElementById('resEstado').value,
     total: parseFloat(document.getElementById('resTotal').value) || 0,
     sena: parseFloat(document.getElementById('resSena').value) || 0,
+    auto: document.getElementById('resAuto').value,
+    patente: document.getElementById('resPatente').value.toUpperCase(),
     nota: document.getElementById('resNota').value
   };
 
