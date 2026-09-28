@@ -390,8 +390,7 @@ async function sendTo(folder, username) {
   }
 
   const handle = folder.replace(/_\d+$/, '');
-  const igUrl = `https://www.instagram.com/direct/new/?query=${encodeURIComponent(handle)}`;
-  window.open(igUrl, '_blank');
+  window.open(`https://www.instagram.com/${handle}/`, '_blank');
 }
 
 function markSent(folder) {
