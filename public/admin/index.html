@@ -376,12 +376,10 @@ function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>
 async function sendTo(folder, username) {
   const msg = document.getElementById('messageText').value;
 
-  // Copy message to clipboard
   try {
     await navigator.clipboard.writeText(msg);
     showToast('Mensaje copiado — pegalo en el DM');
   } catch {
-    // Fallback
     const ta = document.createElement('textarea');
     ta.value = msg;
     document.body.appendChild(ta);
@@ -391,17 +389,8 @@ async function sendTo(folder, username) {
     showToast('Mensaje copiado');
   }
 
-  // If there's an image, also trigger download so user can attach in IG
-  const imgSrc = document.getElementById('imgPreview').src;
-  if (imgSrc && document.getElementById('imgPreview').style.display !== 'none') {
-    // Auto-download the image for easy attach
-    const a = document.createElement('a');
-    a.href = imgSrc;
-    a.download = promoImageName || 'promo-arroyo.jpg';
-    a.click();
-  }
-
-  const igUrl = `https://www.instagram.com/direct/new/?query=${encodeURIComponent(username)}`;
+  const handle = folder.replace(/_\d+$/, '');
+  const igUrl = `https://www.instagram.com/direct/new/?query=${encodeURIComponent(handle)}`;
   window.open(igUrl, '_blank');
 }
 
