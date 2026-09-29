@@ -110,7 +110,8 @@ const server = http.createServer(async (req, res) => {
       }
 
       // --- Reservas API ---
-      const RESERVAS_FILE = path.join(__dirname, 'data', 'reservas.json');
+      const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
+      const RESERVAS_FILE = path.join(DATA_DIR, 'reservas.json');
       function readReservas() {
         try { return JSON.parse(fs.readFileSync(RESERVAS_FILE, 'utf8')); } catch { return []; }
       }
