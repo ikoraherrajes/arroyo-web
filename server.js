@@ -78,6 +78,12 @@ button:hover{background:#9a5430}.err{color:#c44b3b;font-size:13px;margin-bottom:
 
 const server = http.createServer(async (req, res) => {
   try {
+    const host = (req.headers.host || '').replace(/:\d+$/, '');
+    if (host === 'arroyosuitehouse.com') {
+      res.writeHead(301, { 'Location': 'https://www.arroyosuitehouse.com' + req.url });
+      return res.end();
+    }
+
     let urlPath = decodeURIComponent((req.url || '/').split('?')[0]);
 
     // --- Admin routes ---
